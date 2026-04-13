@@ -218,9 +218,13 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
   50%       { transform: translateY(-18px) rotate(15deg); }
 }
 @keyframes twinkle {
-  0%, 100% { opacity: 1;   transform: scale(1);   }
-  40%       { opacity: .15; transform: scale(.7); }
-  60%       { opacity: .15; transform: scale(.7); }
+  0%, 100% { opacity: 1;   transform: scale(1);    }
+  40%       { opacity: .15; transform: scale(.65); }
+  60%       { opacity: .15; transform: scale(.65); }
+}
+@keyframes star-pulse {
+  0%, 100% { transform: scale(1);    }
+  50%       { transform: scale(1.35); }
 }
 @keyframes scroll-bounce {
   0%, 100% { transform: translateX(-50%) translateY(0); }
@@ -378,14 +382,14 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
 .hero__stars { position: absolute; inset: 0; pointer-events: none; }
 .hero__star {
   position: absolute;
-  animation: star-float 6s ease-in-out infinite, twinkle 4s ease-in-out infinite;
+  animation: star-pulse 5s ease-in-out infinite;
 }
-.hero__star--1  { top: 10%; left:  7%; width: 40px; animation-delay: 0s, 0.5s; }
-.hero__star--2  { top: 18%; right:  9%; width: 32px; animation-delay: -2s, 1.5s; }
-.hero__star--3  { bottom: 30%; left: 11%; width: 44px; animation-delay: -4s, 0s; }
-.hero__star--4  { bottom: 20%; right:  7%; width: 36px; animation-delay: -1s, 2s; }
-.hero__star--5  { top: 55%; left:  3%; width: 28px; animation-delay: -3s, 3s; }
-.hero__star--6  { top: 42%; right:  4%; width: 38px; animation-delay: -5s, 1s; }
+.hero__star--1  { top: 10%; left:  7%; width: 40px; animation-delay:  0s; }
+.hero__star--2  { top: 18%; right:  9%; width: 32px; animation-delay: -2s; }
+.hero__star--3  { bottom: 30%; left: 11%; width: 44px; animation-delay: -4s; }
+.hero__star--4  { bottom: 20%; right:  7%; width: 36px; animation-delay: -1s; }
+.hero__star--5  { top: 55%; left:  3%; width: 28px; animation-delay: -3s; }
+.hero__star--6  { top: 42%; right:  4%; width: 38px; animation-delay: -5s; }
 
 /* Saucer logo */
 .hero__content {
