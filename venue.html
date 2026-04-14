@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Venue — Compute! Paris 2026</title>
+  <meta name="description" content="Centre International de Conférences de Sorbonne Université, 4 place Jussieu, 75005 Paris. November 25–26, 2026.">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="assets/logos/compute_favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="assets/logos/compute_text.svg" class="nav__logo-text" alt="Compute! Paris 2026">
+      </a>
+      <ul class="nav__links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="cfp.html">CfP</a></li>
+        <li><a href="venue.html" class="active">Venue</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav__social">
+        <a href="https://www.linkedin.com/company/103528767" aria-label="LinkedIn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><use href="assets/logos/icon-linkedin.svg#icon"/></svg>
+        </a>
+        <a href="https://bsky.app/profile/computeparis.bsky.social" aria-label="Bluesky" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><use href="assets/logos/icon-bluesky.svg#icon"/></svg>
+        </a>
+        <a href="https://mastodon.social/@computeparis" aria-label="Mastodon" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><use href="assets/logos/icon-mastodon.svg#icon"/></svg>
+        </a>
+      </div>
+      <button class="nav__burger" aria-label="Open menu">
+        <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── MOBILE NAV ── -->
+  <div class="nav__mobile" role="dialog" aria-label="Navigation menu">
+    <button class="nav__mobile-close" aria-label="Close menu">
+      <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+    </button>
+    <a href="about.html">About</a>
+    <a href="cfp.html">CfP</a>
+    <a href="venue.html" class="active">Venue</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- ── PAGE HERO ── -->
+  <header class="page-hero">
+    <div class="page-hero__content container">
+      <span class="overline">Landing zone</span>
+      <h1>In the heart of Paris.</h1>
+      <p>Centre International de Conférences de Sorbonne Université — 4 place Jussieu, 75005 Paris</p>
+    </div>
+  </header>
+
+  <!-- ── ABOUT THE VENUE ── -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="venue-intro">
+        <div class="venue-intro__imgs">
+          <div class="venue-intro__img-main">
+            <img src="assets/images/venue/cicsu-auditorium.webp" alt="CICSU main auditorium" loading="lazy">
+          </div>
+          <div class="venue-intro__img-secondary">
+            <img src="assets/images/venue/cicsu-entrance.webp" alt="CICSU entrance" loading="lazy">
+          </div>
+          <div class="venue-intro__img-secondary">
+            <img src="assets/images/bastien-nvs-vHGFQ2TJmL8-unsplash-jussieu-atelier.webp" alt="Jussieu campus atelier" loading="lazy">
+          </div>
+        </div>
+        <div class="venue-intro__text">
+          <span class="overline">Ground control</span>
+          <h2>A world-class venue on the Jussieu campus.</h2>
+          <p>
+            The Centre International de Conférences de Sorbonne Université sits at the heart of the
+            Jussieu campus — the main science campus of Sorbonne Université, heir to the former UPMC.
+            Located in the 5th arrondissement, it sits between the Latin Quarter and the banks of the Seine,
+            in one of the densest concentrations of research institutions in France.
+          </p>
+          <p>
+            The venue offers a main auditorium seating several hundred, dedicated breakout rooms for
+            community tracks and workshops, and open spaces for networking. Modern AV infrastructure
+            throughout, with full accessibility.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PARIS GALLERY ── -->
+  <section class="section section--dark" style="padding-top:0">
+    <div class="container">
+      <div class="paris-split">
+        <div class="paris-split__text">
+          <span class="overline">The city</span>
+          <h2>Paris in November.</h2>
+          <p>
+            November is a practical time to be in Paris. The summer crowds are gone, the cultural
+            calendar is full, and the city is easier to move around. Temperatures are mild — think
+            layers, not a parka.
+          </p>
+          <p>
+            The 5th arrondissement puts you within walking distance of Notre-Dame, the Panthéon,
+            the Jardin des Plantes, and the Institut du Monde Arabe. The Seine is two minutes on foot.
+          </p>
+          <p>
+            CDG airport connects via RER B in about 50 minutes. Orly via Métro line 14 in 25 minutes.
+            Eurostar from London St Pancras takes 2h15. There is no excuse not to come.
+          </p>
+        </div>
+        <div class="paris-split__grid">
+          <div class="paris-grid">
+            <div class="paris-grid__tall"><img src="assets/images/anna-hunko-flAtr7MmKTU-unsplash-eiffel-night.webp" alt="Eiffel Tower at night" loading="lazy"></div>
+            <div><img src="assets/images/alexus-goh-w7k0G-yw46I-unsplash-cdg-etoile-night.webp" alt="Arc de Triomphe at night" loading="lazy"></div>
+            <div><img src="assets/images/marc-babin-k0rPLkk_I8M-unsplash-louvre-night.webp" alt="Louvre at night" loading="lazy"></div>
+          </div>
+        </div>
+      </div>
+      <p class="gallery__credits">
+        Photos by
+        <a href="https://unsplash.com/photos/flAtr7MmKTU" target="_blank" rel="noopener">Anna Hunko</a>,
+        <a href="https://unsplash.com/photos/k0rPLkk_I8M" target="_blank" rel="noopener">Marc Babin</a>, and
+        <a href="https://unsplash.com/photos/w7k0G-yw46I" target="_blank" rel="noopener">Alexus Goh</a>
+        on <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a>.
+        Venue photos by <a href="https://unsplash.com/photos/vHGFQ2TJmL8" target="_blank" rel="noopener">Bastien NVS</a> on Unsplash.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── ACCESS INFO + MAP ── -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-header section-header--left">
+        <span class="overline">Coordinates</span>
+        <h2>Well connected, centrally located.</h2>
+      </div>
+      <div class="access__grid">
+        <div class="access__card">
+          <h3>🚇 Metro</h3>
+          <ul>
+            <li><strong>Jussieu</strong> — Lines 7 &amp; 10 (direct)</li>
+            <li><strong>Cardinal Lemoine</strong> — Line 10 (5 min walk)</li>
+            <li><strong>Gare d'Austerlitz</strong> — Lines 5 &amp; 10 (2 stops)</li>
+          </ul>
+        </div>
+        <div class="access__card">
+          <h3>🚌 Bus</h3>
+          <ul>
+            <li><strong>Lines 67 &amp; 89</strong> — stop Jussieu</li>
+            <li><strong>Lines 24, 63, 86, 87</strong> — nearby</li>
+          </ul>
+        </div>
+        <div class="access__card">
+          <h3>🚲 Vélib' &amp; Cycling</h3>
+          <ul>
+            <li>Vélib' station at Place Jussieu</li>
+            <li>Bike lanes along Quai Saint-Bernard</li>
+            <li>Secure cycle parking on site</li>
+          </ul>
+        </div>
+        <div class="access__card">
+          <h3>♿ Accessibility</h3>
+          <p>The CICSU is fully wheelchair accessible. All conference spaces, restrooms, and entrances are step-free. If you require additional accommodations, please <a href="mailto:compute-paris@quantstack.net" style="color:var(--cyan)">contact us</a>.</p>
+        </div>
+      </div>
+      <div class="map-wrap">
+        <div class="map-embed" id="venue-map" aria-label="Map: Centre International de Conférences de Sorbonne Université"></div>
+      </div>
+      <div class="map-links">
+        <a href="https://www.google.com/maps?q=Centre+International+de+Conf%C3%A9rences+Sorbonne+Universit%C3%A9,+4+place+Jussieu,+75005+Paris" target="_blank" rel="noopener" class="btn btn--outline" style="color:white">Open in Google Maps</a>
+        <a href="https://www.openstreetmap.org/?mlat=48.84642&mlon=2.35480#map=16/48.84642/2.35480" target="_blank" rel="noopener" class="btn btn--outline" style="color:white">Open in OpenStreetMap</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <img src="assets/logos/compute_favicon.svg" class="footer-logo" alt="Compute!">
+        <p>Call for proposals is open.</p>
+        <p>Paris, November 25–26, 2026. 🛸</p>
+      </div>
+      <nav class="footer__nav" aria-label="Footer navigation">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="venue.html">Venue</a></li>
+          <li><a href="sponsors.html">Sponsors</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">Code of Conduct</a></li>
+          <li><a href="#">Legal</a></li>
+        </ul>
+      </nav>
+      <div class="footer__contact">
+        <h4>Contact</h4>
+        <p>
+          Centre International de Conférences<br>
+          de Sorbonne Université<br>
+          4 place Jussieu, 75005 Paris, France
+        </p>
+        <a href="mailto:compute-paris@quantstack.net" style="display:block;margin-top:12px;color:var(--cyan)">compute-paris@quantstack.net</a>
+        <div class="footer__social">
+          <a href="https://www.linkedin.com/company/103528767" aria-label="LinkedIn" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><use href="assets/logos/icon-linkedin.svg#icon"/></svg>
+          </a>
+          <a href="https://bsky.app/profile/computeparis.bsky.social" aria-label="Bluesky" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><use href="assets/logos/icon-bluesky.svg#icon"/></svg>
+          </a>
+          <a href="https://mastodon.social/@computeparis" aria-label="Mastodon" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><use href="assets/logos/icon-mastodon.svg#icon"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Compute! Paris — Organized by QuantStack</span>
+      <span><a href="#">Code of Conduct</a> · <a href="#">Legal</a></span>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script>
+    (function () {
+      var lat = 48.84642, lon = 2.35480;
+      var map = L.map('venue-map', { scrollWheelZoom: false }).setView([lat, lon], 16);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 19,
+        className: 'osm-dark'
+      }).addTo(map);
+
+      var pinIcon = L.divIcon({
+        className: '',
+        html: '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="44" viewBox="0 0 30 44"><path d="M15 0C6.72 0 0 6.72 0 15c0 11.25 15 29 15 29S30 26.25 30 15C30 6.72 23.28 0 15 0z" fill="#f2c94c"/><circle cx="15" cy="15" r="7" fill="#0a1628"/><circle cx="15" cy="15" r="3" fill="#f2c94c"/></svg>',
+        iconSize: [30, 44],
+        iconAnchor: [15, 44],
+        popupAnchor: [0, -46]
+      });
+
+      L.marker([lat, lon], { icon: pinIcon })
+        .addTo(map)
+        .bindPopup('<strong style="color:#f2c94c">CICSU</strong><br>4 place Jussieu<br>75005 Paris')
+        .openPopup();
+    })();
+  </script>
+</body>
+</html>
