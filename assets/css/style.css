@@ -626,8 +626,7 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
   border: 1px solid rgba(168,216,240,.07);
   transition: background var(--t);
 }
-.audience__cell:hover { background: rgba(255,255,255,.05); }
-.audience__cell:nth-child(2) { background: rgba(168,216,240,.04); }
+.audience__cell:hover { background: rgba(168,216,240,.08); }
 .audience__icon { font-size: 2.6rem; margin-bottom: 14px; }
 .audience__cell h3 {
   font-size: 1.2rem;
