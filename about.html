@@ -1,273 +1,390 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About — Compute! Paris 2026</title>
-  <meta name="description" content="Compute! brings together academia, digital industry, and public institutions around a shared belief: that understanding your tools is what gives you agency.">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="icon" href="assets/logos/compute_favicon.svg" type="image/svg+xml">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>About — Compute! Paris 2026</title>
+        <meta
+            name="description"
+            content="Compute! brings together academia, digital industry, and public institutions around a shared belief: that understanding your tools is what gives you agency."
+        />
+        <link rel="stylesheet" href="assets/css/style.css" />
+        <link
+            rel="icon"
+            href="assets/logos/compute_favicon.svg"
+            type="image/svg+xml"
+        />
+    </head>
+    <body>
+        <!-- ── NAV ── -->
+        <nav class="nav nav--scrolled">
+            <div class="nav__inner">
+                <a href="index.html" class="nav__logo">
+                    <img
+                        src="assets/logos/compute_text.svg"
+                        class="nav__logo-text"
+                        alt="Compute! Paris 2026"
+                    />
+                </a>
+                <ul class="nav__links">
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="cfp.html">CFP</a></li>
+                    <li><a href="venue.html">Venue</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav__social">
+                    <a
+                        href="https://www.linkedin.com/company/103528767"
+                        aria-label="LinkedIn"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                            />
+                        </svg>
+                    </a>
+                    <a
+                        href="https://bsky.app/profile/computeparis.bsky.social"
+                        aria-label="Bluesky"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.87-1.113 7.823-4.308.953 3.195 2.05 9.271 7.733 4.308 4.267-4.308 1.172-6.498-2.74-7.078a8.741 8.741 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.478 0-.69-.139-1.861-.902-2.204-.659-.299-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8z"
+                            />
+                        </svg>
+                    </a>
+                    <a
+                        href="https://mastodon.social/@computeparis"
+                        aria-label="Mastodon"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"
+                            />
+                        </svg>
+                    </a>
+                </div>
+                <button class="nav__burger" aria-label="Open menu">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+                        />
+                    </svg>
+                </button>
+            </div>
+        </nav>
 
-  <!-- ── NAV ── -->
-  <nav class="nav nav--scrolled">
-    <div class="nav__inner">
-      <a href="index.html" class="nav__logo">
-        <img src="assets/logos/compute_text.svg" class="nav__logo-text" alt="Compute! Paris 2026">
-      </a>
-      <ul class="nav__links">
-        <li><a href="about.html" class="active">About</a></li>
-        <li><a href="venue.html">Venue</a></li>
-        <li><a href="sponsors.html">Sponsors</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <div class="nav__social">
-        <a href="https://www.linkedin.com/company/103528767" aria-label="LinkedIn" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-        <a href="https://bsky.app/profile/computeparis.bsky.social" aria-label="Bluesky" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.87-1.113 7.823-4.308.953 3.195 2.05 9.271 7.733 4.308 4.267-4.308 1.172-6.498-2.74-7.078a8.741 8.741 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.478 0-.69-.139-1.861-.902-2.204-.659-.299-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8z"/></svg>
-        </a>
-        <a href="https://mastodon.social/@computeparis" aria-label="Mastodon" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg>
-        </a>
-      </div>
-      <button class="nav__burger" aria-label="Open menu">
-        <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
-      </button>
-    </div>
-  </nav>
-
-  <!-- ── MOBILE NAV ── -->
-  <div class="nav__mobile" role="dialog" aria-label="Navigation menu">
-    <button class="nav__mobile-close" aria-label="Close menu">
-      <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-    </button>
-    <a href="about.html" class="active">About</a>
-    <a href="venue.html">Venue</a>
-    <a href="sponsors.html">Sponsors</a>
-    <a href="contact.html">Contact</a>
-  </div>
-
-  <!-- ── PAGE HERO ── -->
-  <header class="page-hero">
-    <div class="page-hero__content container">
-      <span class="overline overline--cyan">About the conference</span>
-      <h1>The conference for everyone who works with data.</h1>
-      <p>Compute! brings together academia, digital industry, and public institutions around a shared belief: that understanding your tools is what gives you agency in a digital world.</p>
-    </div>
-  </header>
-
-  <!-- ── PHOTO SPLIT: CONVICTION ── -->
-  <div class="photo-split">
-    <div class="photo-split__img">
-      <img src="assets/images/pydata-2024-1.jpg" alt="Conference attendees">
-    </div>
-    <div class="photo-split__content">
-      <span class="overline">Our conviction</span>
-      <h2>Understanding is not a luxury — it's agency.</h2>
-      <p>
-        Compute! is a new annual conference with a conviction: understanding your tools and
-        algorithms is what gives you agency in a digital world.
-      </p>
-      <p>
-        Answers are easier to come by than ever. Understanding, trusting, and mastering the
-        tools producing them? That's the hard part. And the interesting one.
-      </p>
-    </div>
-  </div>
-
-  <!-- ── PHOTO SPLIT: COMMUNITY ── -->
-  <div class="photo-split photo-split--reverse">
-    <div class="photo-split__img">
-      <img src="assets/images/pydata-2024-2.jpg" alt="Community gathering">
-    </div>
-    <div class="photo-split__content">
-      <span class="overline overline--orange">From the community</span>
-      <h2>Built by the people who build the stack.</h2>
-      <p>
-        From the organizers of PyData Paris, Jupyter, Apache Arrow, Mamba, Scikit-learn,
-        and many more working on building our shared, powerful, accessible, and interpretable
-        compute infrastructure.
-      </p>
-      <p>
-        We organize talks, workshops, and open source community tracks — dedicated side rooms
-        where projects meet, grow, and find their people. The ecosystem, in one room.
-      </p>
-    </div>
-  </div>
-
-  <!-- ── WHO ATTENDS ── -->
-  <section class="section section--dark">
-    <div class="container">
-      <div class="section-header">
-        <span class="overline">Crew manifest</span>
-        <h2>One third academia. One third industry. One third institutions.</h2>
-        <p style="color:var(--cream-dim)">Students, open source maintainers, seasoned professionals, and the people who decide how organizations use data.</p>
-      </div>
-      <div class="audience__grid">
-        <div class="audience__cell">
-          <div class="audience__icon">🎓</div>
-          <h3>Academia</h3>
-          <p>Researchers, educators, PhD students, and scientific computing practitioners from universities and research institutes across Europe and beyond.</p>
-        </div>
-        <div class="audience__cell">
-          <div class="audience__icon">⚡</div>
-          <h3>Digital Industry</h3>
-          <p>Engineers, data scientists, open source maintainers, startup founders, and technical leaders who build and depend on the compute stack every day.</p>
-        </div>
-        <div class="audience__cell">
-          <div class="audience__icon">🏛</div>
-          <h3>Public Institutions</h3>
-          <p>Civil servants, policy analysts, public sector data teams, and decision-makers using computation in the service of society.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── WHAT TO EXPECT ── -->
-  <section class="section section--stars-light">
-    <div class="container">
-      <div class="section-header">
-        <span class="overline">Mission briefing</span>
-        <h2>Talks, workshops, community tracks, and sprints.</h2>
-        <p>Practical depth across data analysis, visualization, reproducible science, domain-specific tools, educational approaches, collaborative workflows, and the ethics of data work.</p>
-      </div>
-      <div class="expect__grid" style="margin-top:48px">
-        <div class="expect__card expect__card--light">
-          <div class="expect__icon">💬</div>
-          <h3>Talks</h3>
-          <p>Visionary keynotes and practical talks covering the full range of languages, platforms, and domains.</p>
-        </div>
-        <div class="expect__card expect__card--light">
-          <div class="expect__icon">🛠</div>
-          <h3>Workshops</h3>
-          <p>Immersive hands-on training taught by the engineers and researchers who wrote the code.</p>
-        </div>
-        <div class="expect__card expect__card--light">
-          <div class="expect__icon">🌐</div>
-          <h3>Community Tracks</h3>
-          <p>Side rooms for open source projects — organized by and for each community. Inspired by FOSDEM.</p>
-        </div>
-        <div class="expect__card expect__card--light">
-          <div class="expect__icon">⚗️</div>
-          <h3>Sprints</h3>
-          <p>Collaborative sessions where contributors and newcomers work side by side on shared infrastructure.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── COMMITTEE ── -->
-  <section class="section section--stars-light">
-    <div class="container">
-      <div class="section-header">
-        <span class="overline">Mission control</span>
-        <h2>The crew behind Compute!</h2>
-      </div>
-      <div class="committee__grid">
-
-        <div class="committee__card">
-          <img class="committee__photo" src="assets/images/committee/sylvain.webp" alt="Sylvain Corlay">
-          <span class="committee__name">Sylvain Corlay</span>
-          <span class="committee__org">QuantStack</span>
+        <!-- ── MOBILE NAV ── -->
+        <div class="nav__mobile" role="dialog" aria-label="Navigation menu">
+            <button class="nav__mobile-close" aria-label="Close menu">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                    />
+                </svg>
+            </button>
+            <a href="about.html" class="active">About</a>
+            <a href="cfp.html">CFP</a>
+            <a href="venue.html">Venue</a>
+            <a href="contact.html">Contact</a>
         </div>
 
-        <div class="committee__card">
-          <img class="committee__photo" src="assets/images/committee/sandrine.webp" alt="Sandrine Pataut">
-          <span class="committee__name">Sandrine Pataut</span>
-          <span class="committee__org">QuantStack</span>
+        <!-- ── PAGE HERO ── -->
+        <header class="page-hero">
+            <div class="page-hero__content container">
+                <span class="overline overline--cyan"
+                    >About the conference</span
+                >
+                <h1>The conference for everyone who works with data.</h1>
+                <p>
+                    Compute! brings together academia, digital industry, and
+                    public institutions around a shared belief: that
+                    understanding your tools is what gives you agency in a
+                    digital world.
+                </p>
+            </div>
+        </header>
+
+        <!-- ── PHOTO SPLIT: CONVICTION ── -->
+        <div class="photo-split">
+            <div class="photo-split__img">
+                <img
+                    src="assets/images/pydata-2024-1.jpg"
+                    alt="Conference attendees"
+                />
+            </div>
+            <div class="photo-split__content">
+                <span class="overline">Our conviction</span>
+                <h2>Understanding is not a luxury — it's agency.</h2>
+                <p>
+                    Compute! is a new annual conference with a conviction:
+                    understanding your tools and algorithms is what gives you
+                    agency in a digital world.
+                </p>
+                <p>
+                    Answers are easier to come by than ever. Understanding,
+                    trusting, and mastering the tools producing them? That's the
+                    hard part. And the interesting one.
+                </p>
+            </div>
         </div>
 
-        <div class="committee__card">
-          <img class="committee__photo" src="assets/images/committee/guillaume.webp" alt="Guillaume Lemaitre">
-          <span class="committee__name">Guillaume Lemaitre</span>
-          <span class="committee__org">:probabl.</span>
+        <!-- ── PHOTO SPLIT: COMMUNITY ── -->
+        <div class="photo-split photo-split--reverse">
+            <div class="photo-split__img">
+                <img
+                    src="assets/images/pydata-2024-3.png"
+                    alt="Community gathering"
+                />
+            </div>
+            <div class="photo-split__content">
+                <span class="overline overline--orange"
+                    >From the community</span
+                >
+                <h2>Built by the people who build the stack.</h2>
+                <p>
+                    From the organizers of PyData Paris, Jupyter, Apache Arrow,
+                    Mamba, Scikit-learn, and many more working on building our
+                    shared, powerful, accessible, and interpretable compute
+                    infrastructure.
+                </p>
+                <p>
+                    We organize talks, workshops, and open source community
+                    tracks — dedicated side rooms where projects meet, grow, and
+                    find their people. The ecosystem, in one room.
+                </p>
+            </div>
         </div>
 
-        <div class="committee__card">
-          <img class="committee__photo" src="assets/images/committee/olivier.webp" alt="Olivier Grisel">
-          <span class="committee__name">Olivier Grisel</span>
-          <span class="committee__org">:probabl.</span>
-        </div>
+        <!-- ── WHO ATTENDS ── -->
+        <section class="section section--dark">
+            <div class="container">
+                <div class="section-header">
+                    <span class="overline">Crew manifest</span>
+                    <h2>
+                        One third academia. One third industry. One third
+                        institutions.
+                    </h2>
+                    <p style="color: var(--cream-dim)">
+                        Students, open source maintainers, seasoned
+                        professionals, and the people who decide how
+                        organizations use data.
+                    </p>
+                </div>
+                <div class="audience__grid">
+                    <div class="audience__cell">
+                        <div class="audience__icon">🎓</div>
+                        <h3>Academia</h3>
+                        <p>
+                            Researchers, educators, PhD students, and scientific
+                            computing practitioners from universities and
+                            research institutes across Europe and beyond.
+                        </p>
+                    </div>
+                    <div class="audience__cell">
+                        <div class="audience__icon">⚡</div>
+                        <h3>Digital Industry</h3>
+                        <p>
+                            Engineers, data scientists, open source maintainers,
+                            startup founders, and technical leaders who build
+                            and depend on the compute stack every day.
+                        </p>
+                    </div>
+                    <div class="audience__cell">
+                        <div class="audience__icon">🏛</div>
+                        <h3>Public Institutions</h3>
+                        <p>
+                            Civil servants, policy analysts, public sector data
+                            teams, and decision-makers using computation in the
+                            service of society.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div class="committee__card">
-          <div class="committee__initials">CM</div>
-          <span class="committee__name">Chiara Marmo</span>
-          <span class="committee__org">Université Paris Saclay – LISN</span>
-        </div>
+        <!-- ── COMMITTEE ── -->
+        <section class="section section--stars-light">
+            <div class="container">
+                <div class="section-header">
+                    <span class="overline">Mission control</span>
+                    <h2>The crew behind Compute!</h2>
+                </div>
+                <div class="committee__grid">
+                    <div class="committee__card">
+                        <img
+                            class="committee__photo"
+                            src="assets/images/committee/sylvain.webp"
+                            alt="Sylvain Corlay"
+                        />
+                        <span class="committee__name">Sylvain Corlay</span>
+                        <span class="committee__org">QuantStack</span>
+                    </div>
 
-        <div class="committee__card">
-          <img class="committee__photo" src="assets/images/committee/emmanuel.webp" alt="Emmanuel Jakobowicz">
-          <span class="committee__name">Emmanuel Jakobowicz</span>
-          <span class="committee__org">Stats4decision</span>
-        </div>
+                    <div class="committee__card">
+                        <img
+                            class="committee__photo"
+                            src="assets/images/committee/sandrine.webp"
+                            alt="Sandrine Pataut"
+                        />
+                        <span class="committee__name">Sandrine Pataut</span>
+                        <span class="committee__org">QuantStack</span>
+                    </div>
 
-      </div>
-    </div>
-  </section>
+                    <div class="committee__card">
+                        <img
+                            class="committee__photo"
+                            src="assets/images/committee/guillaume.webp"
+                            alt="Guillaume Lemaitre"
+                        />
+                        <span class="committee__name">Guillaume Lemaitre</span>
+                        <span class="committee__org">:probabl.</span>
+                    </div>
 
-  <!-- ── CTA ── -->
-  <section class="section section--stars-blue" style="text-align:center">
-    <div class="container">
-      <div class="section-header">
-        <span class="overline">Open channel</span>
-        <h2>Ready to transmit?</h2>
-        <p style="color:var(--cream-dim)">Whether you're a practitioner, educator, researcher, or open source maintainer — we want to hear from you.</p>
-      </div>
-      <div style="margin-top:40px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
-        <a href="contact.html" class="btn btn--gold">Submit a Proposal 🛸</a>
-        <a href="sponsors.html" class="btn btn--outline" style="color:white">Become a Sponsor</a>
-      </div>
-    </div>
-  </section>
+                    <div class="committee__card">
+                        <img
+                            class="committee__photo"
+                            src="assets/images/committee/olivier.webp"
+                            alt="Olivier Grisel"
+                        />
+                        <span class="committee__name">Olivier Grisel</span>
+                        <span class="committee__org">:probabl.</span>
+                    </div>
 
-  <!-- ── FOOTER ── -->
-  <footer class="footer">
-    <div class="footer__inner">
-      <div class="footer__brand">
-        <img src="assets/logos/compute_main_logo.svg" class="footer-logo" alt="Compute!">
-        <p>Crew assembling. Call for proposals for Paris 2026 is open. 🛸</p>
-      </div>
-      <nav class="footer__nav" aria-label="Footer navigation">
-        <h4>Navigate</h4>
-        <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="venue.html">Venue</a></li>
-          <li><a href="sponsors.html">Sponsors</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="#">Code of Conduct</a></li>
-          <li><a href="#">Legal</a></li>
-        </ul>
-      </nav>
-      <div class="footer__contact">
-        <h4>Contact</h4>
-        <p>
-          Centre International de Conférences<br>
-          de Sorbonne Université<br>
-          4 place Jussieu, 75005 Paris, France
-        </p>
-        <a href="mailto:compute-paris@quantstack.net" style="display:block;margin-top:12px;color:var(--cyan)">compute-paris@quantstack.net</a>
-        <div class="footer__social">
-          <a href="https://www.linkedin.com/company/103528767" aria-label="LinkedIn" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          </a>
-          <a href="https://bsky.app/profile/computeparis.bsky.social" aria-label="Bluesky" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24"><path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.87-1.113 7.823-4.308.953 3.195 2.05 9.271 7.733 4.308 4.267-4.308 1.172-6.498-2.74-7.078a8.741 8.741 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.478 0-.69-.139-1.861-.902-2.204-.659-.299-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8z"/></svg>
-          </a>
-          <a href="https://mastodon.social/@computeparis" aria-label="Mastodon" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24"><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <span>© 2026 Compute! Paris — Organized by QuantStack</span>
-      <span><a href="#">Code of Conduct</a> · <a href="#">Legal</a></span>
-    </div>
-  </footer>
+                    <div class="committee__card">
+                        <img
+                            class="committee__photo"
+                            src="assets/images/committee/chiara.webp"
+                            alt="Chiara Marmo"
+                        />
+                        <span class="committee__name">Chiara Marmo</span>
+                        <span class="committee__org"
+                            >Université Paris Saclay – LISN</span
+                        >
+                    </div>
 
-  <script src="assets/js/main.js"></script>
-</body>
+                    <div class="committee__card">
+                        <img
+                            class="committee__photo"
+                            src="assets/images/committee/emmanuel.webp"
+                            alt="Emmanuel Jakobowicz"
+                        />
+                        <span class="committee__name">Emmanuel Jakobowicz</span>
+                        <span class="committee__org">Stats4decision</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── CTA ── -->
+        <section class="section section--stars-blue" style="text-align: center">
+            <div class="container">
+                <div class="section-header">
+                    <span class="overline">Open channel</span>
+                    <h2>Ready to transmit?</h2>
+                    <p style="color: var(--cream-dim)">
+                        Whether you're a practitioner, educator, researcher, or
+                        open source maintainer — we want to hear from you.
+                    </p>
+                </div>
+                <div
+                    style="
+                        margin-top: 40px;
+                        display: flex;
+                        gap: 16px;
+                        justify-content: center;
+                        flex-wrap: wrap;
+                    "
+                >
+                    <a
+                        href="https://pretalx.com/compute-paris-2026/cfp"
+                        class="btn btn--gold"
+                        >Submit a Proposal 🛸</a
+                    >
+                </div>
+            </div>
+        </section>
+
+        <!-- ── FOOTER ── -->
+        <footer class="footer">
+            <div class="footer__inner">
+                <div class="footer__brand">
+                    <img
+                        src="assets/logos/compute_favicon.svg"
+                        class="footer-logo"
+                        alt="Compute!"
+                    />
+                    <p>
+                        Crew assembling. Call for proposals for Paris 2026 is
+                        open. 🛸
+                    </p>
+                </div>
+                <div class="footer__contact">
+                    <h4>Contact</h4>
+                    <a
+                        href="mailto:compute-paris@quantstack.net"
+                        style="
+                            display: block;
+                            margin-top: 12px;
+                            color: var(--cyan);
+                        "
+                        >compute-paris@quantstack.net</a
+                    >
+                    <div class="footer__social">
+                        <a
+                            href="https://www.linkedin.com/company/103528767"
+                            aria-label="LinkedIn"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                                />
+                            </svg>
+                        </a>
+                        <a
+                            href="https://bsky.app/profile/computeparis.bsky.social"
+                            aria-label="Bluesky"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.87-1.113 7.823-4.308.953 3.195 2.05 9.271 7.733 4.308 4.267-4.308 1.172-6.498-2.74-7.078a8.741 8.741 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.478 0-.69-.139-1.861-.902-2.204-.659-.299-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8z"
+                                />
+                            </svg>
+                        </a>
+                        <a
+                            href="https://mastodon.social/@computeparis"
+                            aria-label="Mastodon"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"
+                                />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <span>© 2026 Compute! Paris — Organized by QuantStack</span>
+                <span
+                    ><a href="/code-of-conduct.html">Code of Conduct</a> ·
+                    <a href="/legal.html">Legal</a></span
+                >
+            </div>
+        </footer>
+
+        <script src="assets/js/main.js"></script>
+    </body>
 </html>

@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Code of Conduct — Compute! Paris</title>
+        <link rel="stylesheet" href="/assets/css/style.css" />
+        <style>
+            /* Page-local spacing for the Code of Conduct content */
+            .legal-article {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 40px 0;
+                line-height: 1.85;
+                font-size: 1rem;
+                color: var(--text-dark);
+            }
+            .legal-article h2 {
+                margin: 38px 0 12px;
+                font-size: 1.35rem;
+                color: var(--navy);
+            }
+            .legal-article h3 {
+                margin: 24px 0 10px;
+                font-size: 1.05rem;
+                color: var(--navy-mid);
+            }
+            .legal-article p {
+                margin: 0 0 16px;
+            }
+            .legal-article ul,
+            .legal-article ol {
+                margin: 0 0 18px 1.25rem;
+            }
+            .legal-article li {
+                margin: 6px 0;
+            }
+            .legal-contact {
+                background: rgba(10, 22, 40, 0.04);
+                border: 1px solid rgba(168, 216, 240, 0.08);
+                padding: 18px;
+                border-radius: 10px;
+                margin: 18px 0;
+            }
+            @media (max-width: 700px) {
+                .legal-article {
+                    padding: 28px 16px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- ── NAV ── -->
+        <nav class="nav nav--scrolled">
+            <div class="nav__inner">
+                <a href="index.html" class="nav__logo">
+                    <img
+                        src="assets/logos/compute_text.svg"
+                        class="nav__logo-text"
+                        alt="Compute! Paris 2026"
+                    />
+                </a>
+                <ul class="nav__links">
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="venue.html">Venue</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav__social">
+                    <a
+                        href="https://www.linkedin.com/company/103528767"
+                        aria-label="LinkedIn"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                            />
+                        </svg>
+                    </a>
+                    <a
+                        href="https://bsky.app/profile/computeparis.bsky.social"
+                        aria-label="Bluesky"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.87-1.113 7.823-4.308.953 3.195 2.05 9.271 7.733 4.308 4.267-4.308 1.172-6.498-2.74-7.078a8.741 8.741 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.478 0-.69-.139-1.861-.902-2.204-.659-.299-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8z"
+                            />
+                        </svg>
+                    </a>
+                    <a
+                        href="https://mastodon.social/@computeparis"
+                        aria-label="Mastodon"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"
+                            />
+                        </svg>
+                    </a>
+                </div>
+                <button class="nav__burger" aria-label="Open menu">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+                        />
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- ── MOBILE NAV ── -->
+        <div class="nav__mobile" role="dialog" aria-label="Navigation menu">
+            <button class="nav__mobile-close" aria-label="Close menu">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                    />
+                </svg>
+            </button>
+            <a href="about.html" class="active">About</a>
+            <a href="venue.html">Venue</a>
+            <a href="contact.html">Contact</a>
+        </div>
+
+        <main role="main">
+            <section class="page-hero">
+                <div class="page-hero__content container">
+                    <h1>Code of Conduct</h1>
+                    <p
+                        style="
+                            color: rgba(245, 237, 218, 0.65);
+                            max-width: 52ch;
+                        "
+                    >
+                        Our community is built on respect, collaboration, and
+                        inclusivity. This Code of Conduct explains expected
+                        behaviour, how to report concerns, and how reports are
+                        handled.
+                    </p>
+                </div>
+            </section>
+
+            <section class="section section--cream">
+                <div class="container">
+                    <article
+                        class="legal-article"
+                        aria-labelledby="coc-heading"
+                    >
+                        <h2 id="coc-heading">Our Community Values</h2>
+
+                        <p>
+                            We welcome the participation of every member and are
+                            committed to creating a harassment-free, welcoming
+                            environment for all, regardless of age, gender,
+                            gender identity and expression, sexual orientation,
+                            disability, physical appearance, body size, race,
+                            ethnicity, nationality, religion, or socio‑economic
+                            status.
+                        </p>
+
+                        <p>Our community thrives when we:</p>
+                        <ul>
+                            <li>
+                                Are open and considerate to all perspectives and
+                                backgrounds.
+                            </li>
+                            <li>
+                                Focus on what is best for the community, not
+                                just ourselves.
+                            </li>
+                            <li>
+                                Acknowledge the time and effort of others,
+                                especially volunteers.
+                            </li>
+                            <li>
+                                Show empathy and respect in all interactions,
+                                both online and in person.
+                            </li>
+                            <li>
+                                Use welcoming and inclusive language to ensure
+                                everyone feels valued.
+                            </li>
+                        </ul>
+
+                        <h2>Expected Behavior</h2>
+                        <ul>
+                            <li>
+                                Be kind and respectful: treat others with
+                                empathy, patience, and consideration.
+                            </li>
+                            <li>
+                                Be inclusive: welcome and support people of all
+                                backgrounds and identities.
+                            </li>
+                            <li>
+                                Be professional: communicate appropriately for a
+                                diverse, global audience.
+                            </li>
+                            <li>
+                                Be collaborative: work together, share
+                                knowledge, and help others grow.
+                            </li>
+                            <li>
+                                Be mindful: consider the impact of your words
+                                and actions on others.
+                            </li>
+                            <li>
+                                Respect boundaries: accept when someone declines
+                                interaction or asks you to stop.
+                            </li>
+                        </ul>
+
+                        <h2>Unacceptable Behavior</h2>
+                        <p>
+                            The following behaviours are considered harassment
+                            and will not be tolerated:
+                        </p>
+                        <ul>
+                            <li>
+                                Harassment or discrimination based on protected
+                                characteristics (including age, gender, gender
+                                identity and expression, sexual orientation,
+                                disability, physical appearance, body size,
+                                race, ethnicity, nationality, religion, or
+                                socio‑economic status).
+                            </li>
+                            <li>
+                                Sexualized language or imagery, unwelcome sexual
+                                attention, or advances.
+                            </li>
+                            <li>
+                                Violent threats or language, intimidation,
+                                stalking, or unwelcome physical contact.
+                            </li>
+                            <li>
+                                Trolling, insults, or derogatory comments,
+                                including jokes that are exclusionary or
+                                demeaning.
+                            </li>
+                            <li>
+                                Publishing others’ private information without
+                                explicit permission.
+                            </li>
+                            <li>
+                                Sustained disruption of community events,
+                                discussions, or activities.
+                            </li>
+                            <li>
+                                Advocating for or encouraging any of the above
+                                behaviours.
+                            </li>
+                        </ul>
+
+                        <h2>Consequences of Unacceptable Behavior</h2>
+                        <p>
+                            Anyone asked to stop unacceptable behaviour is
+                            expected to comply immediately. Organizers may take
+                            any action they deem appropriate, including:
+                        </p>
+                        <ul>
+                            <li>A verbal or written warning.</li>
+                            <li>
+                                Temporary or permanent removal from community
+                                spaces, events, or communication channels.
+                            </li>
+                            <li>
+                                Banning from future participation in community
+                                activities.
+                            </li>
+                        </ul>
+
+                        <h2>Reporting and Enforcement</h2>
+
+                        <h3>How to Report</h3>
+                        <p>
+                            If you experience or witness unacceptable behaviour,
+                            please report it as soon as possible. You can:
+                        </p>
+                        <ul>
+                            <li>
+                                Contact a community organizer or event staff
+                                directly.
+                            </li>
+                            <li>
+                                Submit an anonymous report using this form:
+                                <a href="#" aria-label="Anonymous report form"
+                                    >anonymous report form</a
+                                >.
+                            </li>
+                            <li>
+                                Email:
+                                <a href="mailto:compute-paris@quantstack.net"
+                                    >compute-paris@quantstack.net</a
+                                >
+                            </li>
+                        </ul>
+                        <p>
+                            When reporting, include as much detail as possible
+                            (time, location, description, identities involved,
+                            witnesses, evidence).
+                        </p>
+
+                        <h3>Confidentiality</h3>
+                        <p>
+                            All reports will be treated confidentially. Your
+                            identity will not be shared without your consent,
+                            except as necessary to address the incident or as
+                            required by law.
+                        </p>
+
+                        <h3>Enforcement Process</h3>
+                        <ol>
+                            <li>
+                                <strong>Acknowledgment</strong> — Reports will
+                                be acknowledged within 48 hours.
+                            </li>
+                            <li>
+                                <strong>Investigation</strong> — The Code of
+                                Conduct team will review the report and gather
+                                additional information if needed.
+                            </li>
+                            <li>
+                                <strong>Response</strong> — The team will
+                                determine an appropriate response (mediation,
+                                warnings, removal, etc.).
+                            </li>
+                            <li>
+                                <strong>Follow‑up</strong> — The reporter will
+                                be informed of the outcome unless anonymity was
+                                requested.
+                            </li>
+                        </ol>
+
+                        <h2>Scope</h2>
+                        <p>
+                            This Code of Conduct applies to all community
+                            spaces, including but not limited to:
+                        </p>
+                        <ul>
+                            <li>
+                                In‑person and online events (conferences,
+                                meetups, workshops).
+                            </li>
+                            <li>
+                                Communication channels (mailing lists, chat
+                                platforms, forums, social media).
+                            </li>
+                            <li>
+                                Code repositories, issue trackers, and pull
+                                requests.
+                            </li>
+                            <li>
+                                Any other space managed by the community or
+                                organization.
+                            </li>
+                        </ul>
+
+                        <h2>Contact Information</h2>
+                        <div
+                            class="legal-contact"
+                            role="note"
+                            aria-label="Code of Conduct contact"
+                        >
+                            <p><strong>Name:</strong> Sandrine Pataut</p>
+                            <p>
+                                <strong>Email:</strong>
+                                <a href="mailto:sandrine.pataut@quantstack.net"
+                                    >sandrine.pataut@quantstack.net</a
+                                >
+                            </p>
+                            <p>
+                                <strong>Preferred contact method:</strong> email
+                            </p>
+                        </div>
+
+                        <h2>Attribution and License</h2>
+                        <p>
+                            This Code of Conduct is adapted from the
+                            <a
+                                href="https://www.contributor-covenant.org/"
+                                target="_blank"
+                                rel="noopener"
+                                >Contributor Covenant</a
+                            >. It is licensed under the Creative Commons
+                            Attribution‑ShareAlike 3.0 Unported License.
+                        </p>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <!-- ── FOOTER ── -->
+        <footer class="footer">
+            <div class="footer__inner">
+                <div class="footer__brand">
+                    <img
+                        src="assets/logos/compute_favicon.svg"
+                        class="footer-logo"
+                        alt="Compute!"
+                    />
+                    <p>
+                        Crew assembling. Call for proposals for Paris 2026 is
+                        open. 🛸
+                    </p>
+                </div>
+                <div class="footer__contact">
+                    <h4>Contact</h4>
+                    <a
+                        href="mailto:compute-paris@quantstack.net"
+                        style="
+                            display: block;
+                            margin-top: 12px;
+                            color: var(--cyan);
+                        "
+                        >compute-paris@quantstack.net</a
+                    >
+                    <div class="footer__social">
+                        <a
+                            href="https://www.linkedin.com/company/103528767"
+                            aria-label="LinkedIn"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                                />
+                            </svg>
+                        </a>
+                        <a
+                            href="https://bsky.app/profile/computeparis.bsky.social"
+                            aria-label="Bluesky"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.87-1.113 7.823-4.308.953 3.195 2.05 9.271 7.733 4.308 4.267-4.308 1.172-6.498-2.74-7.078a8.741 8.741 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.478 0-.69-.139-1.861-.902-2.204-.659-.299-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8z"
+                                />
+                            </svg>
+                        </a>
+                        <a
+                            href="https://mastodon.social/@computeparis"
+                            aria-label="Mastodon"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"
+                                />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <span>© 2026 Compute! Paris — Organized by QuantStack</span>
+                <span
+                    ><a href="/code-of-conduct.html">Code of Conduct</a> ·
+                    <a href="/legal.html">Legal</a></span
+                >
+            </div>
+        </footer>
+
+        <script src="assets/js/main.js"></script>
+    </body>
+</html>
