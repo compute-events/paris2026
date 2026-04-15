@@ -101,6 +101,7 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
 /* Cards inherit dark text even without --light modifier */
 .section--stars-light .expect__card h3 { color: var(--navy); }
 .section--stars-light .expect__card p  { color: var(--text-mid); }
+.section--navy-mid    { background: var(--navy-mid); color: var(--cream); }
 .section--stars-blue  {
   background-color: var(--navy);
   background-image: url('../images/backgrounds/BlueBG-Stars.jpg');
@@ -119,6 +120,7 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
 /* Subtle grain overlay on dark sections */
 .section--dark::before,
 .section--space::before,
+.section--navy-mid::before,
 .section--stars-dark::before,
 .section--stars-blue::before {
   content: '';
@@ -129,7 +131,7 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
   pointer-events: none;
   z-index: 0;
 }
-.section--dark > *, .section--space > *,
+.section--dark > *, .section--space > *, .section--navy-mid > *,
 .section--stars-dark > *, .section--stars-blue > * { position: relative; z-index: 1; }
 
 /* ── Overline / Section label ── */
@@ -689,10 +691,12 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
 }
 .section--stars-light .committee__name { color: var(--text-dark); }
 .section--dark .committee__name,
-.section--space .committee__name { color: var(--cream); }
+.section--space .committee__name,
+.section--navy-mid .committee__name { color: var(--cream); }
 .committee__org { font-size: .82rem; color: var(--text-mid); }
 .section--dark .committee__org,
-.section--space .committee__org { color: var(--muted); }
+.section--space .committee__org,
+.section--navy-mid .committee__org { color: var(--muted); }
 
 /* ============================================================
    PHOTO SPLIT
