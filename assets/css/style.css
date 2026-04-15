@@ -743,6 +743,12 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
   position: relative;
   overflow: hidden;
 }
+.page-hero--wide {
+  align-items: flex-start;
+  padding-bottom: 80px;
+}
+.page-hero--wide .cfp-intro__text p { color: rgba(255,255,255,.75); }
+
 /* Warm beam hint on inner pages */
 .page-hero::before {
   content: '';
@@ -1446,6 +1452,47 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
 @media (max-width: 600px) {
   .hero__orbit { width: 280px; height: 280px; }
   .hero__coords { display: none; }
+}
+
+/* ============================================================
+   CFP — INTRO
+   ============================================================ */
+.cfp-intro {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 64px;
+  align-items: start;
+}
+.cfp-intro__text p {
+  color: var(--cream-dim);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+.cfp-intro__text p:last-child { margin-bottom: 0; }
+.cfp-intro__cta {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(242,201,76,.15);
+  border-radius: 12px;
+  padding: 28px 24px;
+}
+.cfp-intro__deadline {
+  font-size: .9rem;
+  color: var(--cream-dim);
+  text-align: center;
+}
+.cfp-intro__deadline strong { color: var(--beam-gold); }
+.cfp-intro__perk {
+  font-size: .85rem;
+  color: var(--cream);
+  text-align: center;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .cfp-intro { grid-template-columns: 1fr; gap: 32px; }
 }
 
 /* ============================================================
