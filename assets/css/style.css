@@ -1605,6 +1605,8 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
 }
 
 @media (max-width: 768px) {
+  .cfp-proposal-grid { grid-template-columns: 1fr !important; }
+  .cfp-proposal-grid__main { grid-row: auto !important; }
   .cfp-dates { grid-template-columns: 1fr; gap: 32px; }
   .cfp-dates::before { display: none; }
   .cfp-date { text-align: left; display: flex; align-items: center; gap: 16px; }
