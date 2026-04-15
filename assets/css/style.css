@@ -1493,6 +1493,7 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
 
 @media (max-width: 768px) {
   .cfp-intro { grid-template-columns: 1fr; gap: 32px; }
+  .cfp-intro__cta .btn { width: auto !important; align-self: center; }
 }
 
 /* ============================================================
