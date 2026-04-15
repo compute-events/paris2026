@@ -688,9 +688,11 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
   color: var(--text-dark);
 }
 .section--stars-light .committee__name { color: var(--text-dark); }
-.section--dark .committee__name { color: var(--cream); }
+.section--dark .committee__name,
+.section--space .committee__name { color: var(--cream); }
 .committee__org { font-size: .82rem; color: var(--text-mid); }
-.section--dark .committee__org { color: var(--muted); }
+.section--dark .committee__org,
+.section--space .committee__org { color: var(--muted); }
 
 /* ============================================================
    PHOTO SPLIT
