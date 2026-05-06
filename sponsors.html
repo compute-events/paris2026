@@ -13,7 +13,26 @@
   <meta property="og:image" content="https://compute.events/paris2026/assets/images/og-card.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://compute.events/paris2026/assets/images/og-card.png">
+  <!-- Font performance & swap fix (page-scoped) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Page-only fallback stacks to reduce visual jump while fonts load -->
+  <style>
+    :root {
+      --font-head: 'Space Grotesk', 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-body: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    .nav__links a {
+      font-variation-settings: 'wght' 600;
+    }
+  </style>
+
   <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Load brochure + sponsor styles only on this page -->
+  <link rel="stylesheet" href="assets/css/brochure.css">
+  <link rel="stylesheet" href="assets/css/sponsors.css">
   <link rel="icon" href="assets/logos/compute_favicon.svg" type="image/svg+xml">
   <!-- Privacy-friendly analytics by Plausible -->
   <script async src="https://plausible.io/js/pa-mO2lgUZ8L7uwhGXaoCMp7.js"></script>
@@ -32,9 +51,11 @@
       </a>
       <ul class="nav__links">
         <li><a href="about.html">About</a></li>
+        <li><a href="cfp.html">CfP</a></li>
         <li><a href="tickets.html">Tickets</a></li>
-          <li><a href="venue.html">Venue</a></li>
+        <li><a href="venue.html">Venue</a></li>
         <li><a href="sponsors.html" class="active">Sponsors</a></li>
+        <li><a href="updates.html">Updates</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
       <div class="nav__social">
@@ -60,9 +81,11 @@
       <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
     </button>
     <a href="about.html">About</a>
+    <a href="cfp.html">CfP</a>
     <a href="tickets.html">Tickets</a>
     <a href="venue.html">Venue</a>
     <a href="sponsors.html" class="active">Sponsors</a>
+    <a href="updates.html">Updates</a>
     <a href="contact.html">Contact</a>
   </div>
 
@@ -80,7 +103,7 @@
     <div class="container">
 
       <!-- Organiser -->
-      <div class="sponsor-tier sponsor-tier--platinum">
+      <div class="sponsor-tier sponsor-tier--organiser">
         <div class="sponsor-tier__label">Organiser</div>
         <div class="sponsor-logos">
           <a href="https://quantstack.net/" class="sponsor-logo" target="_blank" rel="noopener" aria-label="QuantStack">
@@ -97,13 +120,195 @@
           Reach thousands of practitioners, researchers, and decision-makers — and help
           keep Compute! accessible to everyone.
         </p>
-        <a href="mailto:compute-paris@quantstack.net?subject=Sponsorship%20Inquiry%20—%20Compute!%20Paris%202026" class="btn btn--gold">
+        <a class="btn btn--gold"
+           href="assets/brochure/sponsorship-prospectus_2026.pdf"
+           download="ComputeParis_Sponsorship_Prospectus_2026.pdf"
+           target="_blank"
+           rel="noopener"
+           aria-label="Download the Compute! Paris sponsorship prospectus PDF">
           Get the sponsorship deck
         </a>
       </div>
 
     </div>
   </section>
+
+  <!-- ── BROCHURE ── -->
+  <main class="brochure">
+
+    <!-- COVER -->
+    <section class="brochure-cover">
+      <div class="container">
+        <img class="logo" src="assets/logos/compute_favicon.svg" alt="Compute!" />
+        <h1>Sponsorship Prospectus</h1>
+        <p class="lead">Paris — November 25–26, 2026 · Cité des Sciences</p>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="brochure-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="overline">About</span>
+          <h2>What is Compute! Paris?</h2>
+        </div>
+
+        <div class="brochure-intro">
+          <div>
+            <p>Compute! is a community and conference for everyone who works with open source compute and data infrastructure. We bring researchers, maintainers, educators and practitioners together to share knowledge, celebrate open tooling, and advance the state of the art.</p>
+            <p style="margin-top:12px;color:var(--text-mid)">Audience: students, researchers, OSS maintainers, industry engineers, and public sector practitioners.</p>
+            <p style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
+              <a class="btn btn--gold"
+                 href="assets/brochure/sponsorship-prospectus_2026.pdf"
+                 download="ComputeParis_Sponsorship_Prospectus_2026.pdf"
+                 target="_blank"
+                 rel="noopener"
+                 aria-label="Download the Compute! Paris sponsorship prospectus PDF">
+                Download the sponsorship deck (PDF)
+              </a>
+            </p>
+          </div>
+
+          <div class="hero-img">
+            <img src="assets/images/venue/CIC-SU.webp" alt="CICSU - auditorium">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPICS & VENUE -->
+    <section class="brochure-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="overline overline--orange">Tracks & Venue</span>
+          <h2>Conference topics and venue</h2>
+        </div>
+
+        <div class="brochure-split">
+          <div>
+            <h4 style="color:var(--beam-orange)">Conference tracks</h4>
+            <ul>
+              <li>Open-source AI / ML</li>
+              <li>Data visualization & storytelling</li>
+              <li>High-performance & distributed computing</li>
+              <li>Interactive computing & reproducibility</li>
+              <li>Geospatial & instrumentation</li>
+            </ul>
+
+            <h4 style="color:var(--beam-orange);margin-top:14px">Venue highlights</h4>
+            <ul>
+              <li>Main theatre (~500 seats)</li>
+              <li>Two side stages (~100 seats each)</li>
+              <li>Space for 10 sponsor booths</li>
+            </ul>
+          </div>
+
+          <div class="hero-img">
+            <img src="assets/images/venue/CIC-SU.webp" alt="CICSU - auditorium">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PACKAGES -->
+    <section class="brochure-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="overline">Packages</span>
+          <h2>Sponsorship options</h2>
+        </div>
+
+        <p style="color:var(--text-mid)">Sponsoring Compute! Paris 2026 is an opportunity for your company to connect with a vibrant community of data scientists, engineers, and open-source maintainers.
+            Don't miss this chance to be part of the Paris open-source AI movement and take your company's data science capabilities to the next level.<br>
+            Below is a concise benefit matrix — contact us for custom packages.</p>
+
+        <div class="packages" aria-hidden="false">
+          <div class="packages-grid" role="table" aria-label="Sponsorship benefits">
+            <div class="col-label" role="columnheader"></div>
+            <div class="level level--silver" role="columnheader">Silver<div class="price">€2,000</div></div>
+            <div class="level level--gold"   role="columnheader">Gold<div class="price">€4,000</div></div>
+            <div class="level level--platinum" role="columnheader">Platinum<div class="price">€8,000</div></div>
+            <div class="level level--diamond"  role="columnheader">Diamond<div class="price">€16,000</div></div>
+
+            <!-- benefit rows -->
+            <div class="benefit" role="rowheader">Logo on event website</div>
+              <div class="tick" role="cell">✓</div><div class="tick" role="cell">✓</div><div class="tick" role="cell">✓</div><div class="tick" role="cell">✓</div>
+
+            <div class="benefit" role="rowheader">Job board listing</div>
+              <div class="tick" role="cell"></div><div class="tick" role="cell">✓</div><div class="tick" role="cell">✓</div><div class="tick" role="cell">✓</div>
+
+            <div class="benefit" role="rowheader">Diversity scholarships</div>
+              <div class="tick" role="cell">1</div><div class="tick" role="cell">2</div><div class="tick" role="cell">4</div><div class="tick" role="cell">8</div>
+
+            <div class="benefit" role="rowheader">Conference passes</div>
+              <div class="tick" role="cell">2</div><div class="tick" role="cell">4</div><div class="tick" role="cell">8</div><div class="tick" role="cell">16</div>
+
+            <div class="benefit" role="rowheader">Expo booth</div>
+              <div class="tick" role="cell"></div><div class="tick" role="cell">✓</div><div class="tick" role="cell">✓</div><div class="tick" role="cell">✓</div>
+
+            <div class="benefit" role="rowheader">Premium logo placement *</div>
+              <div class="tick" role="cell"></div><div class="tick" role="cell"></div><div class="tick" role="cell">✓</div><div class="tick" role="cell">✓</div>
+
+          </div>
+
+          <p style="color:var(--text-mid);margin-top:12px;font-size:.95rem">* Premium placement: website hero, conference screens and video assets.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- What to expect (retrospective) -->
+    <section class="brochure-section brochure-retro">
+      <div class="container">
+        <div class="section-header">
+          <h2>What to expect</h2>
+          <p class="overline">Thought leadership · Branding · Talent attraction</p>
+        </div>
+
+        <div class="retro-grid">
+          <div class="retro-chart" aria-hidden="true">
+            <img src="assets/images/brochure/attendees_chart.webp" alt="" role="presentation">
+            <div class="retro-chart__label"></div>
+          </div>
+
+          <div class="retro-stats">
+            <div class="retro-stats__cols">
+              <div class="split-left">
+                <ul>
+                  <li><strong>1/3</strong> Tech, Software</li>
+                  <li><strong>1/3</strong> Finance, Business, Industry</li>
+                  <li><strong>1/3</strong> Academia, Government, Non‑Profit</li>
+                </ul>
+              </div>
+
+              <div class="split-right">
+                <ul>
+                  <li>2 days onsite</li>
+                  <li>3 keynotes · 42 talks · 2 lightning sessions</li>
+                  <li>social posts · backstage interviews</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Forward-looking CTA strip -->
+        <div class="retro-cta">
+          <div class="retro-cta__text">
+            <h3>Let's make this first edition a success!</h3>
+            <ul>
+              <li>A growing community</li>
+              <li>A multi-platform social strategy</li>
+              <li>Amplified engagement and brand visibility</li>
+            </ul>
+          </div>
+          <div class="retro-cta__art" aria-hidden="true">
+            <img src="assets/images/brochure/growth_arrow.svg" alt="" role="presentation">
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
 
   <!-- ── FOOTER ── -->
   <footer class="footer">
@@ -120,6 +325,8 @@
           <li><a href="cfp.html">CfP</a></li>
           <li><a href="tickets.html">Tickets</a></li>
           <li><a href="venue.html">Venue</a></li>
+          <li><a href="sponsors.html">Sponsors</a></li>
+          <li><a href="updates.html">Updates</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="code-of-conduct.html">Code of Conduct</a></li>
           <li><a href="legal.html">Legal</a></li>

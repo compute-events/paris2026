@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 153.67231 104.51978"
+  preserveAspectRatio="xMidYMid meet"
+  role="img"
+  aria-hidden="true"
+  id="growth-arrow-cleaned">
+  <title>Growth arrow</title>
+
+  <defs>
+    <marker
+      id="arrowhead"
+      markerWidth="10"
+      markerHeight="7"
+      refX="9"
+      refY="3.5"
+      orient="auto">
+      <polygon points="0,0 10,3.5 0,7" fill="#2d5a5a"/>
+    </marker>
+  </defs>
+
+  <path
+    d="M 3.8703021,102.12521 37.822385,79.593565 47.893798,92.652954 67.050248,60.592993 80.496105,67.206761 94.720676,49.579387 117.51115,56.753645 139.43125,19.252452 146.43361,5.164009"
+    stroke="#2d5a5a"
+    stroke-width="2.70051"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+    marker-end="url(#arrowhead)"/>
+</svg>

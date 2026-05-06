@@ -1,0 +1,131 @@
+/* ============================================================
+   Compute! Paris 2026 — Sponsors page styles
+   Loaded only on sponsors.html (like brochure.css).
+   ============================================================ */
+
+/* ── Sponsor tiers ── */
+.sponsor-tier {
+  margin-bottom: 52px;
+}
+.sponsor-tier + .sponsor-tier {
+  padding-top: 48px;
+  border-top: 1px solid rgba(168,216,240,.08);
+}
+.sponsor-tier:last-of-type { margin-bottom: 0; }
+
+.sponsor-tier__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-head);
+  font-size: .72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  color: var(--beam-gold);
+  margin-bottom: 24px;
+}
+.sponsor-tier__label::before {
+  content: '✦';
+  font-size: .85rem;
+  animation: star-pulse 3s ease-in-out infinite;
+}
+
+/* ── Logo grid ── */
+.sponsor-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+
+.sponsor-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 36px;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(168,216,240,.12);
+  border-radius: var(--r);
+  min-width: 160px;
+  transition: background var(--t), border-color var(--t), transform var(--t), box-shadow var(--t);
+}
+.sponsor-logo:hover {
+  background: rgba(255,255,255,.13);
+  border-color: rgba(242,201,76,.3);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,.25);
+}
+
+/* White-on-dark logo treatment */
+.sponsor-logo img {
+  max-height: 52px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: .82;
+  transition: opacity var(--t);
+}
+.sponsor-logo:hover img { opacity: 1; }
+
+/* Tier size scale */
+.sponsor-tier--organiser .sponsor-logo,
+.sponsor-tier--platinum  .sponsor-logo,
+.sponsor-tier--diamond   .sponsor-logo {
+  padding: 28px 48px;
+  min-width: 220px;
+}
+.sponsor-tier--organiser .sponsor-logo img,
+.sponsor-tier--platinum  .sponsor-logo img,
+.sponsor-tier--diamond   .sponsor-logo img { max-height: 72px; }
+
+.sponsor-tier--gold .sponsor-logo { padding: 22px 40px; min-width: 190px; }
+.sponsor-tier--gold .sponsor-logo img { max-height: 60px; }
+
+/* ── Become a Sponsor CTA ── */
+.become-sponsor {
+  position: relative;
+  overflow: hidden;
+  margin-top: 60px;
+  padding: 52px 48px;
+  background: linear-gradient(135deg,
+    rgba(242,201,76,.08) 0%,
+    rgba(224,117,53,.05) 100%);
+  border: 1px solid rgba(242,201,76,.2);
+  border-radius: var(--r-lg);
+  text-align: center;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* radial glow behind the CTA */
+.become-sponsor::before {
+  content: '';
+  position: absolute;
+  top: -48px; left: 50%;
+  transform: translateX(-50%);
+  width: 340px; height: 200px;
+  background: radial-gradient(ellipse, rgba(242,201,76,.14) 0%, transparent 68%);
+  pointer-events: none;
+}
+.become-sponsor h2 {
+  color: var(--cream);
+  margin-bottom: 16px;
+  position: relative;
+}
+.become-sponsor p {
+  color: var(--cream-dim);
+  max-width: 48ch;
+  margin: 0 auto 32px;
+  font-size: 1rem;
+  line-height: 1.7;
+  position: relative;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .sponsor-logos { gap: 10px; }
+  .sponsor-logo  { min-width: 130px; padding: 16px 20px; }
+  .sponsor-tier--organiser .sponsor-logo,
+  .sponsor-tier--platinum  .sponsor-logo,
+  .sponsor-tier--diamond   .sponsor-logo { min-width: 160px;*
