@@ -89,7 +89,7 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
 /* All text on light backgrounds must be dark */
 .section--stars-light h2,
 .section--stars-light h3,
-.section--stars-light h4          { color: var(--space); }
+.section--stars-light h4           { color: var(--space); }
 .section--stars-light p,
 .section--cream p                  { color: var(--text-mid); }
 .section--stars-light .section-header p { color: var(--text-mid); }
@@ -98,10 +98,28 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
 .section--cream .overline          { color: var(--navy-mid); }
 .section--stars-light .overline::before,
 .section--cream .overline::before  { color: var(--beam-gold); animation: none; }
-/* Cards inherit dark text even without --light modifier */
+/* Cards on stars-light backgrounds */
+.section--stars-light .expect__card {
+  background: rgba(20,39,78,.05);
+  border-color: rgba(20,39,78,.1);
+}
 .section--stars-light .expect__card h3 { color: var(--navy); }
 .section--stars-light .expect__card p  { color: var(--text-mid); }
+.section--stars-light .expect__card:hover {
+  border-color: rgba(224,117,53,.35);
+  box-shadow: 0 12px 40px rgba(224,117,53,.07);
+}
+
+/* Audience cells on stars-light backgrounds */
+.section--stars-light .audience__cell {
+  background: rgba(20,39,78,.04);
+  border-color: rgba(20,39,78,.07);
+}
+.section--stars-light .audience__cell:hover { background: rgba(20,39,78,.08); }
+.section--stars-light .audience__cell h3 { color: var(--navy); }
+.section--stars-light .audience__cell p  { color: var(--text-mid); }
 .section--navy-mid    { background: var(--navy-mid); color: var(--cream); }
+
 .section--stars-blue  {
   background-color: var(--navy);
   background-image: url('../images/backgrounds/BlueBG-Stars.jpg');
@@ -697,6 +715,94 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
 .section--dark .committee__org,
 .section--space .committee__org,
 .section--navy-mid .committee__org { color: var(--muted); }
+
+/* ============================================================
+   KEYNOTE SPEAKERS
+   ============================================================ */
+.keynote__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 40px;
+  margin-top: 60px;
+}
+.keynote__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+.keynote__photo {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow:
+    0 0 0 3px var(--navy-mid),
+    0 0 0 5px var(--beam-gold),
+    0 12px 36px rgba(0,0,0,.4);
+  transition: box-shadow var(--t), transform var(--t);
+}
+.keynote__card:hover .keynote__photo {
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 0 3px var(--navy-mid),
+    0 0 0 5px var(--beam-orange),
+    0 20px 48px rgba(0,0,0,.5);
+}
+.keynote__initials {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+  box-shadow:
+    0 0 0 3px var(--navy-mid),
+    0 0 0 5px rgba(242,201,76,.5),
+    0 12px 36px rgba(0,0,0,.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-head);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--beam-gold);
+  transition: transform var(--t), box-shadow var(--t);
+}
+.keynote__card:hover .keynote__initials {
+  transform: translateY(-4px);
+}
+.keynote__body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.keynote__name {
+  font-family: var(--font-head);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--cream);
+}
+.keynote__role {
+  font-size: .82rem;
+  color: var(--beam-gold);
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+.keynote__bio {
+  font-size: .88rem;
+  color: var(--cream-dim);
+  line-height: 1.65;
+  margin-top: 8px;
+  max-width: 34ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 640px) {
+  .keynote__grid { gap: 48px; }
+}
 
 /* ============================================================
    PHOTO SPLIT
