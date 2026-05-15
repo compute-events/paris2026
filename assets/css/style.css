@@ -333,16 +333,7 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
   transition: color var(--t);
 }
 .nav__mobile a:hover { color: var(--beam-gold); }
-.nav__mobile-close {
-  position: absolute;
-  top: 20px; right: 24px;
-  background: none;
-  border: none;
-  color: var(--cream);
-  cursor: pointer;
-  padding: 4px;
-}
-.nav__mobile-close svg { width: 28px; height: 28px; fill: currentColor; }
+.nav__mobile-close { display: none; }
 
 /* ============================================================
    HERO
