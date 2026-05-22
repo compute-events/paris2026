@@ -205,68 +205,7 @@
     .cover__org strong { color: var(--cream); display: block; margin-bottom: 3px; }
 
     /* ============================================================
-       PAGE 2 — WHO ATTENDS
-    ============================================================ */
-    .audience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
-    .audience-cell {
-      background: rgba(255,255,255,.04); border: 1px solid rgba(168,216,240,.1);
-      border-radius: 10px; padding: 18px 16px;
-    }
-    .audience-cell__icon { font-size: 18pt; margin-bottom: 8px; }
-    .audience-cell__frac {
-      font-family: var(--font-head); font-size: 22pt; font-weight: 800; line-height: 1; margin-bottom: 6px;
-      background: linear-gradient(135deg, var(--beam-gold), var(--beam-orange));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .audience-cell h3 { font-size: 9.5pt; color: var(--cream); margin-bottom: 6px; }
-    .audience-cell p  { font-size: 8.5pt; color: var(--cream-dim); line-height: 1.55; max-width: none; }
-    .audience-photo {
-        width: 100%;
-        height: 300px;
-        object-fit: cover;
-        object-position: center 5%;
-        border-radius: 10px;
-        display: block;
-        margin-top: 14px;
-        opacity: .88;
-      }
-
-    .format-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
-    .format-cell {
-      background: rgba(255,255,255,.05); border: 1px solid rgba(168,216,240,.08);
-      border-radius: 8px; padding: 14px; text-align: center;
-    }
-    .format-cell__num { font-family: var(--font-head); font-size: 18pt; font-weight: 800; color: var(--beam-gold); line-height: 1; }
-    .format-cell__label { font-size: 8pt; color: var(--cream-dim); margin-top: 5px; }
-
-    /* ============================================================
-       PAGE 3 — TRACKS + VENUE
-    ============================================================ */
-    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
-    .info-card {
-      background: #fff; border: 1px solid rgba(10,22,40,.07); border-radius: 10px; padding: 20px 18px;
-      -webkit-print-color-adjust: exact; print-color-adjust: exact;
-    }
-    .info-card__icon { font-size: 16pt; margin-bottom: 10px; }
-    .info-card h3 { font-size: 10pt; color: var(--navy); margin-bottom: 12px; font-family: var(--font-head); }
-    .info-card li {
-      font-size: 9pt; color: var(--text-mid); padding-left: 16px;
-      position: relative; margin-bottom: 7px; line-height: 1.45;
-    }
-    .info-card li::before { content: '→'; position: absolute; left: 0; color: var(--beam-orange); font-weight: 700; }
-    .info-venue-img {
-          margin-top: 16px;
-          border-radius: 10px;
-          overflow: hidden;
-          width: 100%;
-          height:100%;
-          object-fit: cover;
-          object-position: center 40%;
-          display: block;
-        }
-
-    /* ============================================================
-       PAGE 4 — TIER CARDS
+       PAGE 2 — TIER CARDS
     ============================================================ */
     .tiers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 14px; }
     .tier-card {
@@ -314,7 +253,7 @@
     .tier-card--diamond  .tier-card__perk-icon { color: var(--saucer); }
 
     /* ============================================================
-       PAGE 4 — BENEFITS
+       PAGE 2 — BENEFITS
     ============================================================ */
     .matrix-table {
       width: 100%; border-collapse: collapse; font-size: 9pt; margin-top: 14px;
@@ -363,6 +302,68 @@
     .section--navy .matrix-table tbody tr:last-child td { border-bottom: none; }
     .section--navy .sp-check { color: var(--beam-gold); font-weight: 800; }
     .section--navy .sp-dash  { color: rgba(168,216,240,.25); }
+
+
+    /* ============================================================
+       PAGE 3 — WHO ATTENDS
+    ============================================================ */
+    .audience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
+    .audience-cell {
+      background: rgba(255,255,255,.04); border: 1px solid rgba(168,216,240,.1);
+      border-radius: 10px; padding: 18px 16px;
+    }
+    .audience-cell__icon { font-size: 18pt; margin-bottom: 8px; }
+    .audience-cell__frac {
+      font-family: var(--font-head); font-size: 22pt; font-weight: 800; line-height: 1; margin-bottom: 6px;
+      background: linear-gradient(135deg, var(--beam-gold), var(--beam-orange));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .audience-cell h3 { font-size: 9.5pt; color: var(--cream); margin-bottom: 6px; }
+    .audience-cell p  { font-size: 8.5pt; color: var(--cream-dim); line-height: 1.55; max-width: none; }
+    .audience-photo {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        object-position: center 10%;
+        border-radius: 10px;
+        display: block;
+        margin-top: 14px;
+        opacity: .88;
+      }
+
+    .format-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
+    .format-cell {
+      background: rgba(255,255,255,.05); border: 1px solid rgba(168,216,240,.08);
+      border-radius: 8px; padding: 14px; text-align: center;
+    }
+    .format-cell__num { font-family: var(--font-head); font-size: 18pt; font-weight: 800; color: var(--beam-gold); line-height: 1; }
+    .format-cell__label { font-size: 8pt; color: var(--cream-dim); margin-top: 5px; }
+
+    /* ============================================================
+       PAGE 4 — TRACKS + VENUE
+    ============================================================ */
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+    .info-card {
+      background: #fff; border: 1px solid rgba(10,22,40,.07); border-radius: 10px; padding: 20px 18px;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    .info-card__icon { font-size: 16pt; margin-bottom: 10px; }
+    .info-card h3 { font-size: 10pt; color: var(--navy); margin-bottom: 12px; font-family: var(--font-head); }
+    .info-card li {
+      font-size: 9pt; color: var(--text-mid); padding-left: 16px;
+      position: relative; margin-bottom: 7px; line-height: 1.45;
+    }
+    .info-card li::before { content: '→'; position: absolute; left: 0; color: var(--beam-orange); font-weight: 700; }
+    .info-venue-img {
+          margin-top: 16px;
+          border-radius: 10px;
+          overflow: hidden;
+          width: 100%;
+          height:100%;
+          object-fit: cover;
+          object-position: center 40%;
+          display: block;
+        }
 
 
     /* ============================================================
@@ -468,100 +469,7 @@
 
 
   <!-- ══════════════════════════════════════
-       PAGE 2 — WHO ATTENDS
-  ══════════════════════════════════════ -->
-  <div class="section section--dark page">
-    <div class="section__header">
-      <span class="overline overline--cream">Who attends</span>
-      <span class="rule"></span>
-      <h2 style="color:#fff">A community worth reaching.</h2>
-      <p>Researchers, open source maintainers, engineers, educators, and the people who decide how organizations invest in data infrastructure.</p>
-    </div>
-
-    <div class="audience-grid no-break">
-      <div class="audience-cell">
-        <div class="audience-cell__icon">🎓</div>
-        <div class="audience-cell__frac">1/3</div>
-        <h3>Academia &amp; Government</h3>
-        <p>Researchers, educators, PhD students, civil servants, and public sector data teams from universities and institutions across Europe and beyond.</p>
-      </div>
-      <div class="audience-cell">
-        <div class="audience-cell__icon">⚡</div>
-        <div class="audience-cell__frac">1/3</div>
-        <h3>Tech &amp; Software</h3>
-        <p>Engineers, open source maintainers, startup founders, and data scientists building the tools and pipelines that power modern computation.</p>
-      </div>
-      <div class="audience-cell">
-        <div class="audience-cell__icon">💼</div>
-        <div class="audience-cell__frac">1/3</div>
-        <h3>Finance &amp; Industry</h3>
-        <p>Business analysts, quants, industry practitioners, and decision-makers applying open-source data science at scale in production environments.</p>
-      </div>
-    </div>
-
-    <img class="audience-photo"
-             src="../images/conference-audience-3.webp"
-             alt="Conference audience">
-
-    <div style="margin-top:14px">
-      <span class="overline overline--cream">Conference format</span>
-      <span class="rule"></span>
-      <div class="format-grid no-break">
-        <div class="format-cell"><div class="format-cell__num">2</div><div class="format-cell__label">Days on-site</div></div>
-        <div class="format-cell"><div class="format-cell__num">3</div><div class="format-cell__label">Keynotes</div></div>
-        <div class="format-cell"><div class="format-cell__num">42</div><div class="format-cell__label">Talks &amp; sessions</div></div>
-        <div class="format-cell"><div class="format-cell__num">2</div><div class="format-cell__label">Lightning sessions</div></div>
-        <div class="format-cell"><div class="format-cell__num">400+</div><div class="format-cell__label">Expected attendees</div></div>
-        <div class="format-cell"><div class="format-cell__num">10</div><div class="format-cell__label">Sponsor expo booths</div></div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- ══════════════════════════════════════
-       PAGE 3 — TRACKS + VENUE
-  ══════════════════════════════════════ -->
-  <div class="section section--light page">
-    <div class="section__header">
-      <span class="overline overline--dark">The event</span>
-      <span class="rule"></span>
-      <h2 style="color:var(--space)">Open source compute, in Paris.</h2>
-      <p>Compute! brings researchers, maintainers, educators, and practitioners together to share knowledge and advance the state of the art in open data infrastructure.</p>
-    </div>
-
-    <div class="info-grid no-break">
-      <div class="info-card">
-        <div class="info-card__icon">🛸</div>
-        <h3>Conference tracks</h3>
-        <ul>
-          <li>Open-source AI / ML</li>
-          <li>Data visualization &amp; storytelling</li>
-          <li>High-performance &amp; distributed computing</li>
-          <li>Interactive computing &amp; reproducibility</li>
-          <li>Geospatial &amp; instrumentation</li>
-        </ul>
-      </div>
-      <div class="info-card">
-        <div class="info-card__icon">🏛</div>
-        <h3>Venue — Centre International de Conférences de Sorbonne Université, Paris</h3>
-        <ul>
-          <li>Main theatre — ~500 seats</li>
-          <li>Two side stages — ~100 seats each</li>
-          <li>10 sponsor expo booths</li>
-          <li>2 days on-site, November 25–26 2026</li>
-          <li>3 keynotes · 42 talks · 2 lightning sessions</li>
-        </ul>
-      </div>
-    </div>
-    <img class="info-venue-img"
-             src="../images/venue/cicsu-auditorium.webp"
-             alt="CICSU auditorium, Paris">
-  </div>
-
-
-
-  <!-- ══════════════════════════════════════
-       PAGE 4 — TIER CARDS & BENEFITS
+       PAGE 2 — TIER CARDS & BENEFITS
   ══════════════════════════════════════ -->
   <div class="section section--navy page">
     <div class="section__header">
@@ -663,6 +571,98 @@
     </table>
     <p class="matrix-footnote" style="color:var(--cream-dim);margin-top:10px">* Premium placement: website hero, conference screens, and all video assets.</p>
 
+  </div>
+
+
+  <!-- ══════════════════════════════════════
+       PAGE 3 — WHO ATTENDS
+  ══════════════════════════════════════ -->
+  <div class="section section--dark page">
+    <div class="section__header">
+      <span class="overline overline--cream">Who attends</span>
+      <span class="rule"></span>
+      <h2 style="color:#fff">A community worth reaching.</h2>
+      <p>Researchers, open source maintainers, engineers, educators, and the people who decide how organizations invest in data infrastructure.</p>
+    </div>
+
+    <div class="audience-grid no-break">
+      <div class="audience-cell">
+        <div class="audience-cell__icon">🎓</div>
+        <div class="audience-cell__frac">1/3</div>
+        <h3>Academia &amp; Government</h3>
+        <p>Researchers, educators, PhD students, civil servants, and public sector data teams from universities and institutions across Europe and beyond.</p>
+      </div>
+      <div class="audience-cell">
+        <div class="audience-cell__icon">⚡</div>
+        <div class="audience-cell__frac">1/3</div>
+        <h3>Tech &amp; Software</h3>
+        <p>Engineers, open source maintainers, startup founders, and data scientists building the tools and pipelines that power modern computation.</p>
+      </div>
+      <div class="audience-cell">
+        <div class="audience-cell__icon">💼</div>
+        <div class="audience-cell__frac">1/3</div>
+        <h3>Finance &amp; Industry</h3>
+        <p>Business analysts, quants, industry practitioners, and decision-makers applying open-source data science at scale in production environments.</p>
+      </div>
+    </div>
+
+    <img class="audience-photo"
+             src="../images/conference-audience-3.webp"
+             alt="Conference audience">
+
+    <div style="margin-top:14px">
+      <span class="overline overline--cream">Conference format</span>
+      <span class="rule"></span>
+      <div class="format-grid no-break">
+        <div class="format-cell"><div class="format-cell__num">2</div><div class="format-cell__label">Days on-site</div></div>
+        <div class="format-cell"><div class="format-cell__num">3</div><div class="format-cell__label">Keynotes</div></div>
+        <div class="format-cell"><div class="format-cell__num">42</div><div class="format-cell__label">Talks &amp; sessions</div></div>
+        <div class="format-cell"><div class="format-cell__num">2</div><div class="format-cell__label">Lightning sessions</div></div>
+        <div class="format-cell"><div class="format-cell__num">400+</div><div class="format-cell__label">Expected attendees</div></div>
+        <div class="format-cell"><div class="format-cell__num">10</div><div class="format-cell__label">Sponsor expo booths</div></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════
+       PAGE 4 — TRACKS + VENUE
+  ══════════════════════════════════════ -->
+  <div class="section section--light page">
+    <div class="section__header">
+      <span class="overline overline--dark">The event</span>
+      <span class="rule"></span>
+      <h2 style="color:var(--space)">Open source compute, in Paris.</h2>
+      <p>Compute! brings researchers, maintainers, educators, and practitioners together to share knowledge and advance the state of the art in open data infrastructure.</p>
+    </div>
+
+    <div class="info-grid no-break">
+      <div class="info-card">
+        <div class="info-card__icon">🛸</div>
+        <h3>Conference tracks</h3>
+        <ul>
+          <li>Open-source AI / ML</li>
+          <li>Data visualization &amp; storytelling</li>
+          <li>High-performance &amp; distributed computing</li>
+          <li>Interactive computing &amp; reproducibility</li>
+          <li>Geospatial &amp; instrumentation</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <div class="info-card__icon">🏛</div>
+        <h3>Venue — Centre International de Conférences de Sorbonne Université, Paris</h3>
+        <ul>
+          <li>Main theatre — ~500 seats</li>
+          <li>Two side stages — ~100 seats each</li>
+          <li>10 sponsor expo booths</li>
+          <li>2 days on-site, November 25–26 2026</li>
+          <li>3 keynotes · 42 talks · 2 lightning sessions</li>
+        </ul>
+      </div>
+    </div>
+    <img class="info-venue-img"
+             src="../images/venue/cicsu-auditorium.webp"
+             alt="CICSU auditorium, Paris">
   </div>
 
 
