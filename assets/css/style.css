@@ -144,7 +144,7 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='[...your svg here...]'%3E%3C/feTurbulence%3E%3C/filter%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
   opacity: .025;
   pointer-events: none;
   z-index: 0;
@@ -243,6 +243,10 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
   0%, 100% { opacity: 1;   transform: scale(1);    }
   40%       { opacity: .15; transform: scale(.65); }
   60%       { opacity: .15; transform: scale(.65); }
+}
+@keyframes star-pulse {
+  0%, 100% { transform: scale(1);    }
+  50%       { transform: scale(1.35); }
 }
 @keyframes scroll-bounce {
   0%, 100% { transform: translateX(-50%) translateY(0); }
