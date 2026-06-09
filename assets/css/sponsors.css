@@ -448,3 +448,160 @@
   .sp-about__card { padding: 28px 20px; }
   .sp-tiers__grid { grid-template-columns: 1fr; }
 }
+
+/* ── SPONSORS INTRO HEADER ── */
+.sp-intro {
+  background: var(--cream);
+  padding: 80px 24px 64px;
+  text-align: center;
+}
+.sp-intro h2 {
+  color: var(--space);
+  margin-bottom: 16px;
+}
+.sp-intro p {
+  color: var(--text-mid);
+  font-size: 1.05rem;
+  max-width: 54ch;
+  margin: 0 auto;
+}
+
+/* ── SILVER SPONSORS SECTION ── */
+.sp-silver-sponsors {
+  background: linear-gradient(135deg, rgba(168,216,240,.12) 0%, rgba(168,216,240,.06) 100%);
+  padding: 72px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.sp-silver-sponsors::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 300px;
+  background: radial-gradient(ellipse, rgba(168,216,240,.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.sp-silver-sponsors > .container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+.sp-silver-sponsors h3 {
+  color: var(--space);
+  font-size: 1.4rem;
+  margin-bottom: 40px;
+  font-family: var(--font-head);
+  font-weight: 700;
+}
+.sp-silver-sponsors .overline {
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.sp-silver-sponsors .overline::before {
+  color: var(--muted);
+}
+
+/* ── COMMUNITY PARTNERS SECTION ── */
+.sp-community-partners {
+  background: linear-gradient(135deg, rgba(242,201,76,.12) 0%, rgba(224,117,53,.08) 100%);
+  padding: 72px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.sp-community-partners::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: 10%;
+  width: 400px;
+  height: 300px;
+  background: radial-gradient(ellipse, rgba(242,201,76,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.sp-community-partners > .container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+.sp-community-partners h3 {
+  color: var(--space);
+  font-size: 1.4rem;
+  margin-bottom: 40px;
+  font-family: var(--font-head);
+  font-weight: 700;
+}
+.sp-community-partners .overline {
+  color: var(--beam-orange);
+  margin-bottom: 16px;
+}
+.sp-community-partners .overline::before {
+  color: var(--beam-gold);
+}
+
+/* ── LOGO CONTAINERS ── */
+.sp-logos-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+/* Silver tier logo cards - match silver background */
+.sp-silver-sponsors .sp-logo-card {
+  background: rgba(168,216,240,.12);
+  border: 1px solid rgba(168,216,240,.25);
+  border-radius: var(--r-lg);
+  padding: 32px 48px;
+  box-shadow: 0 4px 20px rgba(10,22,40,.08);
+  transition: transform var(--t), box-shadow var(--t), border-color var(--t), background var(--t);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 240px;
+}
+.sp-silver-sponsors .sp-logo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(10,22,40,.15);
+  border-color: rgba(168,216,240,.4);
+  background: rgba(168,216,240,.18);
+}
+
+/* Community partners logo cards - match gold/orange background */
+.sp-community-partners .sp-logo-card {
+  background: rgba(242,201,76,.12);
+  border: 1px solid rgba(242,201,76,.25);
+  border-radius: var(--r-lg);
+  padding: 32px 48px;
+  box-shadow: 0 4px 20px rgba(10,22,40,.08);
+  transition: transform var(--t), box-shadow var(--t), border-color var(--t), background var(--t);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 240px;
+}
+.sp-community-partners .sp-logo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(224,117,53,.2);
+  border-color: rgba(224,117,53,.4);
+  background: rgba(242,201,76,.18);
+}
+
+.sp-logo-card img {
+  max-width: 220px;
+  max-height: 90px;
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .sp-logos-row { gap: 32px; }
+  .sp-logo-card { padding: 24px 36px; min-width: 200px; }
+  .sp-logo-card img { max-width: 180px; max-height: 70px; }
+}
