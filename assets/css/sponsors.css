@@ -501,6 +501,39 @@
   margin-bottom: 16px;
 }
 
+/* ── GOLD SPONSORS SECTION ── */
+.sp-gold-sponsors {
+  background: #c79c1a;
+  padding: 72px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.sp-gold-sponsors::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 300px;
+  background: radial-gradient(ellipse, rgba(168,216,240,.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.sp-gold-sponsors > .container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+.sp-gold-sponsors h3 {
+  color: var(--space);
+  font-size: 1.4rem;
+  margin-bottom: 40px;
+  font-family: var(--font-head);
+  font-weight: 700;
+}
+.sp-gold-sponsors .overline {
+  margin-bottom: 16px;
+}
 
 /* ── COMMUNITY PARTNERS SECTION ── */
 .sp-community-partners {
@@ -542,6 +575,27 @@
   align-items: center;
   gap: 48px;
   flex-wrap: wrap;
+}
+
+/* Gold tier logo cards - match silver background */
+.sp-gold-sponsors .sp-logo-card {
+  background: var(--cream);
+  border: 1px solid rgba(168,216,240,.25);
+  border-radius: var(--r-lg);
+  padding: 32px 48px;
+  box-shadow: 0 4px 20px rgba(10,22,40,.08);
+  transition: transform var(--t), box-shadow var(--t), border-color var(--t), background var(--t);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 240px;
+}
+.sp-gold-sponsors .sp-logo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(10,22,40,.15);
+  border-color: rgba(168,216,240,.4);
+  background: rgba(168,216,240,.18);
 }
 
 /* Silver tier logo cards - match silver background */
