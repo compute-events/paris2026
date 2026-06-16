@@ -23,7 +23,7 @@
   display: flex;
   align-items: flex-start;
   gap: 16px;
-  background: #fff;
+  background: var(--cream) !important;
   border: 1px solid rgba(10,22,40,.08);
   border-radius: var(--r-lg);
   padding: 24px;
@@ -68,7 +68,7 @@
 }
 
 .sprint-topic {
-  background: #fff;
+  background: var(--cream) !important;
   border: 1px solid rgba(10,22,40,.08);
   border-radius: var(--r-lg);
   padding: 32px 28px;
