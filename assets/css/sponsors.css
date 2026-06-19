@@ -256,7 +256,7 @@
   width: 100%;
   border-collapse: collapse;
   font-size: .93rem;
-  background: #fff;
+  background: var(--cream);
 }
 .sp-matrix__table th,
 .sp-matrix__table td {
@@ -305,7 +305,7 @@
 
 /* ── ABOUT (tracks + venue) ── */
 .sp-about {
-  background: linear-gradient(180deg, var(--cream) 0%, rgba(214,232,245,.4) 100%);
+  background-color: var(--blue-horizon);
   padding: var(--pad);
 }
 .sp-about__grid {
@@ -315,7 +315,7 @@
   margin-top: 52px;
 }
 .sp-about__card {
-  background: #fff;
+  background: var(--cream);
   border: 1px solid rgba(10,22,40,.06);
   border-radius: var(--r-lg);
   padding: 40px 36px;
@@ -451,7 +451,8 @@
 
 /* ── SPONSORS INTRO HEADER ── */
 .sp-intro {
-  background: var(--cream);
+  background: var(--navy);
+  background-image: url('../images/backgrounds/BlueBG-Stars.jpg');
   padding: 80px 24px 64px;
   text-align: center;
 }
@@ -468,7 +469,7 @@
 
 /* ── SILVER SPONSORS SECTION ── */
 .sp-silver-sponsors {
-  background: linear-gradient(135deg, rgba(168,216,240,.12) 0%, rgba(168,216,240,.06) 100%);
+  background:  #4B5A6E;
   padding: 72px 24px;
   position: relative;
   overflow: hidden;
@@ -497,16 +498,46 @@
   font-weight: 700;
 }
 .sp-silver-sponsors .overline {
-  color: var(--muted);
   margin-bottom: 16px;
 }
-.sp-silver-sponsors .overline::before {
-  color: var(--muted);
+
+/* ── GOLD SPONSORS SECTION ── */
+.sp-gold-sponsors {
+  background: #c79c1a;
+  padding: 72px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.sp-gold-sponsors::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 300px;
+  background: radial-gradient(ellipse, rgba(168,216,240,.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.sp-gold-sponsors > .container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+.sp-gold-sponsors h3 {
+  color: var(--space);
+  font-size: 1.4rem;
+  margin-bottom: 40px;
+  font-family: var(--font-head);
+  font-weight: 700;
+}
+.sp-gold-sponsors .overline {
+  margin-bottom: 16px;
 }
 
 /* ── COMMUNITY PARTNERS SECTION ── */
 .sp-community-partners {
-  background: linear-gradient(135deg, rgba(242,201,76,.12) 0%, rgba(224,117,53,.08) 100%);
+  background-color: var(--navy);
   padding: 72px 24px;
   position: relative;
   overflow: hidden;
@@ -527,18 +558,14 @@
   text-align: center;
 }
 .sp-community-partners h3 {
-  color: var(--space);
+  color: var(--cream);
   font-size: 1.4rem;
   margin-bottom: 40px;
   font-family: var(--font-head);
   font-weight: 700;
 }
 .sp-community-partners .overline {
-  color: var(--beam-orange);
   margin-bottom: 16px;
-}
-.sp-community-partners .overline::before {
-  color: var(--beam-gold);
 }
 
 /* ── LOGO CONTAINERS ── */
@@ -550,9 +577,30 @@
   flex-wrap: wrap;
 }
 
+/* Gold tier logo cards - match silver background */
+.sp-gold-sponsors .sp-logo-card {
+  background: var(--cream);
+  border: 1px solid rgba(168,216,240,.25);
+  border-radius: var(--r-lg);
+  padding: 32px 48px;
+  box-shadow: 0 4px 20px rgba(10,22,40,.08);
+  transition: transform var(--t), box-shadow var(--t), border-color var(--t), background var(--t);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 240px;
+}
+.sp-gold-sponsors .sp-logo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(10,22,40,.15);
+  border-color: rgba(168,216,240,.4);
+  background: rgba(168,216,240,.18);
+}
+
 /* Silver tier logo cards - match silver background */
 .sp-silver-sponsors .sp-logo-card {
-  background: rgba(168,216,240,.12);
+  background: var(--cream);
   border: 1px solid rgba(168,216,240,.25);
   border-radius: var(--r-lg);
   padding: 32px 48px;
@@ -573,7 +621,7 @@
 
 /* Community partners logo cards - match gold/orange background */
 .sp-community-partners .sp-logo-card {
-  background: rgba(242,201,76,.12);
+  background: var(--cream);
   border: 1px solid rgba(242,201,76,.25);
   border-radius: var(--r-lg);
   padding: 32px 48px;

@@ -176,6 +176,9 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
 .overline--cyan::before { color: var(--saucer); }
 .overline--cream { color: var(--cream); }
 .overline--cream::before { color: var(--beam-gold); }
+.overline--navy-mid { color: var(--navy-mid); }
+.overline--navy-mid::before { color: var(--navy-mid); }
+
 
 /* ── Buttons ── */
 .btn {
