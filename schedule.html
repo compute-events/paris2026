@@ -3,27 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tickets — Compute! Paris 2026</title>
-  <meta name="description" content="Get your ticket for Compute! Paris 2026. Two days of open source computation and data science. November 25–26 at Sorbonne Université.">
+  <title>Schedule — Compute! Paris 2026</title>
+  <meta name="description" content="The full two-day program for Compute! Paris 2026. Four keynotes and 42 talks across three rooms. Paris, November 25–26, 2026.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Compute! Paris 2026">
-  <meta property="og:url" content="https://compute.events/paris2026/tickets.html">
-  <meta property="og:title" content="Tickets — Compute! Paris 2026">
-  <meta property="og:description" content="Get your ticket for Compute! Paris 2026. Two days of open source computation and data science. November 25–26 at Sorbonne Université.">
+  <meta property="og:url" content="https://compute.events/paris2026/schedule.html">
+  <meta property="og:title" content="Schedule — Compute! Paris 2026">
+  <meta property="og:description" content="Four keynotes and 42 talks across three rooms. Paris, November 25–26, 2026.">
   <meta property="og:image" content="https://compute.events/paris2026/assets/images/og-card.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://compute.events/paris2026/assets/images/og-card.png">
-  <link rel="stylesheet" href="assets/css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-head: 'Space Grotesk', 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-body: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    .nav__links a { font-variation-settings: 'wght' 600; }
+    /* Keep the pretalx widget inside the page rhythm. The widget ships its
+       own stylesheet, so this only nudges the container and a couple of accents. */
+    .schedule-embed { max-width: 1100px; margin: 0 auto; }
+    .schedule-embed .pretalx-widget-info-message a { color: var(--cyan); }
+  </style>
+  <link rel="stylesheet" href="assets/css/style.css">
   <link rel="icon" href="assets/logos/compute_favicon.svg" type="image/svg+xml">
-  <script src="https://js.tito.io/v2" async></script>
+
+  <!-- pretalx schedule widget -->
+  <script type="text/javascript" src="https://pretalx.com/compute-paris-2026/widgets/schedule.js"></script>
+
   <!-- Privacy-friendly analytics by Plausible -->
   <script async src="https://plausible.io/js/pa-mO2lgUZ8L7uwhGXaoCMp7.js"></script>
   <script>
-  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
-  plausible.init()
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init()
   </script>
 </head>
 <body>
@@ -36,10 +50,10 @@
       </a>
       <ul class="nav__links">
         <li><a href="about.html">About</a></li>
-        <!--<li><a href="cfp.html">CfP</a></li>-->
-        <li><a href="tickets.html" class="active">Tickets</a></li>
+        <li><a href="cfp.html">CfP</a></li>
+        <li><a href="tickets.html">Tickets</a></li>
         <li><a href="venue.html">Venue</a></li>
-        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="schedule.html" class="active">Schedule</a></li>
         <li><a href="sponsors.html">Sponsors</a></li>
         <li><a href="sprints.html">Sprints</a></li>
         <li><a href="updates.html">Updates</a></li>
@@ -68,10 +82,10 @@
       <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
     </button>
     <a href="about.html">About</a>
-    <!--<a href="cfp.html">CfP</a>-->
-    <a href="tickets.html" class="active">Tickets</a>
+    <a href="cfp.html">CfP</a>
+    <a href="tickets.html">Tickets</a>
     <a href="venue.html">Venue</a>
-    <a href="schedule.html">Schedule</a>
+    <a href="schedule.html" class="active">Schedule</a>
     <a href="sponsors.html">Sponsors</a>
     <a href="sprints.html">Sprints</a>
     <a href="updates.html">Updates</a>
@@ -81,16 +95,55 @@
   <!-- ── PAGE HERO ── -->
   <header class="page-hero">
     <div class="page-hero__content container">
-      <span class="overline">November 25–26, 2026 · Paris</span>
-      <h1>Tickets</h1>
-      <p>Two days at Sorbonne Université with the people who build and use the open source data stack.</p>
+      <span class="overline">Flight plan</span>
+      <h1>Two days, three rooms.</h1>
+      <p>Four keynotes and 42 talks across the Auditorium and two breakout rooms. Browse the full program below, or open any talk for its abstract and speakers.</p>
     </div>
   </header>
 
-  <!-- ── TITO WIDGET ── -->
+  <!-- ── LIVE SCHEDULE (pretalx widget) ── -->
+  <section class="section section--navy-mid">
+    <div class="container">
+      <div class="section-header">
+        <span class="overline">Program</span>
+        <h2>The full program</h2>
+      </div>
+
+      <div class="schedule-embed">
+        <pretalx-schedule
+          event-url="https://pretalx.com/compute-paris-2026/"
+          locale="en"
+          format="grid"
+          style="--pretalx-clr-primary: #eac535">
+        </pretalx-schedule>
+
+        <noscript>
+          <div class="pretalx-widget">
+            <div class="pretalx-widget-info-message">
+              JavaScript is disabled in your browser. To access our schedule without JavaScript,
+              please <a target="_blank" rel="noopener"
+                 href="https://pretalx.com/compute-paris-2026/schedule/">click here</a>.
+            </div>
+          </div>
+        </noscript>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── OTHER FORMATS ── -->
   <section class="section section--dark">
     <div class="container">
-      <tito-widget event="quantstack/compute-paris-2026"></tito-widget>
+      <div class="section-header">
+        <span class="overline">Other formats</span>
+        <h2>Take it with you</h2>
+        <p style="color:var(--cream-dim)">
+          Prefer a different view? The full schedule, an iCal subscription for your
+          calendar, and machine-readable exports all live on the pretalx event page.
+        </p>
+      </div>
+      <div class="hero__ctas" style="justify-content:center">
+        <a class="btn btn--gold" href="https://pretalx.com/compute-paris-2026/schedule/" target="_blank" rel="noopener">Open full schedule 🛸</a>
+      </div>
     </div>
   </section>
 
@@ -106,7 +159,7 @@
         <h4>Navigate</h4>
         <ul>
           <li><a href="about.html">About</a></li>
-          <!--<li><a href="cfp.html">CfP</a></li>-->
+          <li><a href="cfp.html">CfP</a></li>
           <li><a href="tickets.html">Tickets</a></li>
           <li><a href="venue.html">Venue</a></li>
           <li><a href="schedule.html">Schedule</a></li>
@@ -120,7 +173,7 @@
       </nav>
       <div class="footer__contact">
         <h4>Contact</h4>
-        <a href="mailto:paris@compute.events" style="display:block;margin-top:12px;color:var(--cyan)">paris@compute.events</a>
+        <a href="mailto:paris@compute.events" style="display:block;margin-top:12px;color:var(--saucer)">paris@compute.events</a>
         <div class="footer__social">
           <a href="https://www.linkedin.com/company/103528767" aria-label="LinkedIn" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24"><use href="assets/logos/icon-linkedin.svg#icon"/></svg>
