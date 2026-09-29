@@ -589,7 +589,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 240px;
+  box-sizing: border-box;
+  width: 320px;
+  height: 160px;
+  max-width: 100%;
 }
 .sp-gold-sponsors .sp-logo-card:hover {
   transform: translateY(-4px);
@@ -610,7 +613,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 240px;
+  box-sizing: border-box;
+  width: 320px;
+  height: 160px;
+  max-width: 100%;
 }
 .sp-silver-sponsors .sp-logo-card:hover {
   transform: translateY(-4px);
@@ -631,7 +637,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 240px;
+  box-sizing: border-box;
+  width: 320px;
+  height: 160px;
+  max-width: 100%;
 }
 .sp-community-partners .sp-logo-card:hover {
   transform: translateY(-4px);
@@ -652,4 +661,7 @@
   .sp-logos-row { gap: 32px; }
   .sp-logo-card { padding: 24px 36px; min-width: 200px; }
   .sp-logo-card img { max-width: 180px; max-height: 70px; }
+  .sp-gold-sponsors .sp-logo-card,
+  .sp-silver-sponsors .sp-logo-card,
+  .sp-community-partners .sp-logo-card { width: 260px; height: 130px; }
 }
