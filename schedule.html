@@ -24,7 +24,15 @@
     .nav__links a { font-variation-settings: 'wght' 600; }
     /* Keep the pretalx widget inside the page rhythm. The widget ships its
        own stylesheet, so this only nudges the container and a couple of accents. */
-    .schedule-embed { max-width: 1100px; margin: 0 auto; }
+    /* The grid has a minimum width per room; let it scroll horizontally
+       instead of being clipped by body { overflow-x: hidden }. */
+    /* Give the grid room on large screens instead of the usual --max-w. */
+    .container--schedule { max-width: 1800px; }
+    .schedule-embed {
+      margin: 0 auto;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
     .schedule-embed .pretalx-widget-info-message a { color: var(--cyan); }
   </style>
   <link rel="stylesheet" href="assets/css/style.css">
@@ -103,7 +111,7 @@
 
   <!-- ── LIVE SCHEDULE (pretalx widget) ── -->
   <section class="section section--navy-mid">
-    <div class="container">
+    <div class="container container--schedule">
       <div class="section-header">
         <span class="overline">Program</span>
         <h2>The full program</h2>
