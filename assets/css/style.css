@@ -894,6 +894,18 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
 .page-hero p { color: rgba(245,237,218,.65); font-size: 1.05rem; max-width: 52ch; }
 
 /* ============================================================
+   VENUE CHANGE NOTICE
+   ============================================================ */
+.venue-notice {
+  background: var(--navy-mid);
+  color: var(--cream);
+  padding: 28px 24px;
+  border-top: 1px solid rgba(168,216,240,.12);
+  border-bottom: 1px solid rgba(168,216,240,.12);
+}
+.venue-notice p { color: var(--cream-dim); margin-top: 8px; max-width: 72ch; }
+
+/* ============================================================
    VENUE INTRO
    ============================================================ */
 .venue-intro {
