@@ -185,8 +185,8 @@
         <div class="access__card">
           <h3>🚆 RER</h3>
           <ul>
-            <li><strong>RER A</strong> — Nogent-sur-Marne, 13 min from Châtelet–Les Halles (branch towards Boissy-Saint-Léger)</li>
-            <li><strong>RER E</strong> — Nogent–Le Perreux, closest to the venue (branch towards Tournan)</li>
+            <li><strong>RER A</strong> — Nogent-sur-Marne. From Châtelet–Les Halles, Gare de Lyon or Nation, take a train towards Boissy-Saint-Léger (not Marne-la-Vallée).</li>
+            <li><strong>RER E</strong> — Nogent–Le Perreux, closest to the venue. From Haussmann–Saint-Lazare or Magenta, take a train towards Tournan or Villiers-sur-Marne (not Chelles–Gournay).</li>
           </ul>
         </div>
         <div class="access__card">
@@ -194,13 +194,14 @@
           <ul>
             <li><strong>Gare de Lyon</strong> — RER A, direct</li>
             <li><strong>Gare du Nord &amp; Gare de l'Est</strong> — RER E from Magenta, direct</li>
+            <li><strong>Gare Saint-Lazare</strong> — RER E from Haussmann–Saint-Lazare, direct</li>
           </ul>
         </div>
         <div class="access__card">
           <h3>✈️ From the airports</h3>
           <ul>
             <li><strong>CDG</strong> — RER B to Châtelet–Les Halles, then RER A</li>
-            <li><strong>Orly</strong> — Métro 14 to Châtelet, then RER A</li>
+            <li><strong>Orly</strong> — Métro 14 to Gare de Lyon, then RER A</li>
           </ul>
         </div>
         <div class="access__card">
@@ -267,6 +268,7 @@
 
   <script src="assets/js/main.js"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="assets/js/venue-routes.js"></script>
   <script>
     (function () {
       var lat = 48.83203, lon = 2.48924;
@@ -286,19 +288,54 @@
         popupAnchor: [0, -46]
       });
 
+      // RER tracks and walking routes (assets/js/venue-routes.js, from OpenStreetMap)
+      var R = window.VENUE_ROUTES;
+      var RER_A = '#E2231A', RER_E = '#C04191', WALK = '#f2c94c', RIVER = '#6fd6c8';
+      L.polyline(R.rerA, { color: RER_A, weight: 3, opacity: .9 }).addTo(map);
+      L.polyline(R.rerE, { color: RER_E, weight: 3, opacity: .9 }).addTo(map);
+      L.polyline(R.walkA, { color: WALK, weight: 3, dashArray: '1 6', lineCap: 'round' }).addTo(map).bindTooltip('On foot from RER A', { sticky: true });
+      L.polyline(R.walkE, { color: WALK, weight: 3, dashArray: '1 6', lineCap: 'round' }).addTo(map).bindTooltip('On foot from RER E', { sticky: true });
+      L.polyline(R.walkRiver, { color: RIVER, weight: 3, dashArray: '1 6', lineCap: 'round' }).addTo(map).bindTooltip('Along the Marne · Promenade Yvette Horner', { sticky: true });
+
+      // Main stops along the way (small dots, labeled)
+      [[R.stopsA, RER_A], [R.stopsE, RER_E]].forEach(function (pair) {
+        pair[0].forEach(function (s) {
+          L.circleMarker([s[0], s[1]], { radius: 4, color: '#ffffff', weight: 1.5, fillColor: pair[1], fillOpacity: 1 })
+            .addTo(map)
+            .bindTooltip(s[2], { permanent: !!s[3], direction: s[3] || 'right', className: 'map-stop-label' });
+        });
+      });
+
+      [
+        { lat: 48.83517, lon: 2.47182, color: RER_A, name: 'RER A · Nogent-sur-Marne', dir: 'left' },
+        { lat: 48.83861, lon: 2.49427, color: RER_E, name: 'RER E · Nogent–Le Perreux', dir: 'right' }
+      ].forEach(function (s) {
+        L.circleMarker([s.lat, s.lon], { radius: 8, color: '#ffffff', weight: 3, fillColor: s.color, fillOpacity: 1 })
+          .addTo(map)
+          .bindTooltip(s.name, { permanent: true, direction: s.dir, offset: [s.dir === 'left' ? -10 : 10, 0] });
+      });
+
       L.marker([lat, lon], { icon: pinIcon })
         .addTo(map)
         .bindPopup('<strong style="color:#f2c94c">Hôtel du Port</strong><br>8 rue du Port<br>94130 Nogent-sur-Marne')
-        .openPopup();
+        .bindTooltip('Hôtel du Port', { permanent: true, direction: 'bottom', offset: [0, 4] });
 
-      [
-        { lat: 48.83517, lon: 2.47182, name: 'RER A · Nogent-sur-Marne' },
-        { lat: 48.83861, lon: 2.49427, name: 'RER E · Nogent–Le Perreux' }
-      ].forEach(function (s) {
-        L.circleMarker([s.lat, s.lon], { radius: 7, color: '#0a1628', weight: 2, fillColor: '#56ccf2', fillOpacity: 1 })
-          .addTo(map)
-          .bindTooltip(s.name);
-      });
+      // Show the whole trip: central Paris (Châtelet, Saint-Lazare) to the venue
+      var tripPoints = R.stopsA.concat(R.stopsE).map(function (s) { return [s[0], s[1]]; })
+        .concat([[lat, lon], [48.83517, 2.47182], [48.83861, 2.49427]]);
+      map.fitBounds(L.latLngBounds(tripPoints), { paddingTopLeft: [30, 30], paddingBottomRight: [170, 30] });
+
+      var legend = L.control({ position: 'bottomleft' });
+      legend.onAdd = function () {
+        var div = L.DomUtil.create('div', 'map-legend');
+        div.innerHTML =
+          '<span><i style="background:' + RER_A + '"></i>RER A</span>' +
+          '<span><i style="background:' + RER_E + '"></i>RER E</span>' +
+          '<span><i class="map-legend__walk"></i>Walking route</span>' +
+          '<span><i class="map-legend__walk map-legend__walk--river"></i>Along the Marne</span>';
+        return div;
+      };
+      legend.addTo(map);
     })();
   </script>
 </body>
