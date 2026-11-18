@@ -290,11 +290,21 @@
 
       // RER tracks and walking routes (assets/js/venue-routes.js, from OpenStreetMap)
       var R = window.VENUE_ROUTES;
-      var RER_A = '#E2231A', RER_E = '#C04191', WALK = '#f2c94c';
-      L.polyline(R.rerA, { color: RER_A, weight: 5, opacity: .9 }).addTo(map);
-      L.polyline(R.rerE, { color: RER_E, weight: 5, opacity: .9 }).addTo(map);
-      L.polyline(R.walkA, { color: WALK, weight: 4, dashArray: '2 8', lineCap: 'round' }).addTo(map).bindTooltip('On foot from RER A', { sticky: true });
-      L.polyline(R.walkE, { color: WALK, weight: 4, dashArray: '2 8', lineCap: 'round' }).addTo(map).bindTooltip('On foot from RER E', { sticky: true });
+      var RER_A = '#E2231A', RER_E = '#C04191', WALK = '#f2c94c', RIVER = '#6fd6c8';
+      L.polyline(R.rerA, { color: RER_A, weight: 3, opacity: .9 }).addTo(map);
+      L.polyline(R.rerE, { color: RER_E, weight: 3, opacity: .9 }).addTo(map);
+      L.polyline(R.walkA, { color: WALK, weight: 3, dashArray: '1 6', lineCap: 'round' }).addTo(map).bindTooltip('On foot from RER A', { sticky: true });
+      L.polyline(R.walkE, { color: WALK, weight: 3, dashArray: '1 6', lineCap: 'round' }).addTo(map).bindTooltip('On foot from RER E', { sticky: true });
+      L.polyline(R.walkRiver, { color: RIVER, weight: 3, dashArray: '1 6', lineCap: 'round' }).addTo(map).bindTooltip('Along the Marne · Promenade Yvette Horner', { sticky: true });
+
+      // Main stops along the way (small dots, labeled)
+      [[R.stopsA, RER_A], [R.stopsE, RER_E]].forEach(function (pair) {
+        pair[0].forEach(function (s) {
+          L.circleMarker([s[0], s[1]], { radius: 4, color: '#ffffff', weight: 1.5, fillColor: pair[1], fillOpacity: 1 })
+            .addTo(map)
+            .bindTooltip(s[2], { permanent: !!s[3], direction: s[3] || 'right', className: 'map-stop-label' });
+        });
+      });
 
       [
         { lat: 48.83517, lon: 2.47182, color: RER_A, name: 'RER A · Nogent-sur-Marne', dir: 'left' },
@@ -310,7 +320,10 @@
         .bindPopup('<strong style="color:#f2c94c">Hôtel du Port</strong><br>8 rue du Port<br>94130 Nogent-sur-Marne')
         .bindTooltip('Hôtel du Port', { permanent: true, direction: 'bottom', offset: [0, 4] });
 
-      map.fitBounds(L.latLngBounds(R.walkA.concat(R.walkE)), { padding: [60, 60] });
+      // Show the whole trip: central Paris (Châtelet, Saint-Lazare) to the venue
+      var tripPoints = R.stopsA.concat(R.stopsE).map(function (s) { return [s[0], s[1]]; })
+        .concat([[lat, lon], [48.83517, 2.47182], [48.83861, 2.49427]]);
+      map.fitBounds(L.latLngBounds(tripPoints), { paddingTopLeft: [30, 30], paddingBottomRight: [170, 30] });
 
       var legend = L.control({ position: 'bottomleft' });
       legend.onAdd = function () {
@@ -318,7 +331,8 @@
         div.innerHTML =
           '<span><i style="background:' + RER_A + '"></i>RER A</span>' +
           '<span><i style="background:' + RER_E + '"></i>RER E</span>' +
-          '<span><i class="map-legend__walk"></i>Walking route</span>';
+          '<span><i class="map-legend__walk"></i>Walking route</span>' +
+          '<span><i class="map-legend__walk map-legend__walk--river"></i>Along the Marne</span>';
         return div;
       };
       legend.addTo(map);
