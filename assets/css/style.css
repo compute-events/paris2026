@@ -897,13 +897,15 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
    VENUE CHANGE NOTICE
    ============================================================ */
 .venue-notice {
-  background: var(--navy-mid);
+  background: #2D5A9A;
   color: var(--cream);
   padding: 28px 24px;
-  border-top: 1px solid rgba(168,216,240,.12);
-  border-bottom: 1px solid rgba(168,216,240,.12);
+  border-top: 3px solid var(--beam-gold);
+  border-bottom: 1px solid rgba(168,216,240,.25);
 }
-.venue-notice p { color: var(--cream-dim); margin-top: 8px; max-width: 72ch; }
+.venue-notice .overline { color: var(--beam-gold); }
+.venue-notice p { color: var(--cream); margin-top: 8px; max-width: 72ch; }
+.venue-notice a { color: var(--beam-gold); font-weight: 600; text-decoration: underline; white-space: nowrap; }
 
 /* ============================================================
    VENUE INTRO
@@ -1061,6 +1063,16 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
 .leaflet-popup-content { margin: 10px 14px; font-size: .85rem; line-height: 1.5; }
 .leaflet-container { font-family: inherit; background: #0a1628; }
 .osm-dark { filter: invert(100%) hue-rotate(180deg); }
+.map-legend {
+  display: flex; flex-direction: column; gap: 4px;
+  background: rgba(10,22,40,.85); color: var(--cream);
+  padding: 8px 12px; border-radius: 6px; font-size: .78rem; line-height: 1.4;
+}
+.map-legend span { display: flex; align-items: center; gap: 8px; }
+.map-legend i { display: inline-block; width: 18px; height: 4px; border-radius: 2px; }
+.map-legend i.map-legend__walk {
+  height: 0; border-top: 4px dotted var(--beam-gold); border-radius: 0;
+}
 
 /* ============================================================
    SPONSORS
