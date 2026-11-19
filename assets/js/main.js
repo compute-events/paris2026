@@ -90,3 +90,24 @@ if (form) {
     }
   });
 }
+
+// --- Phone quick bar: schedule, venue and chat one tap away (styles in style.css) ---
+(() => {
+  const page = location.pathname.split('/').pop() || 'index.html';
+  const icon = d => `<svg viewBox="0 0 24 24" aria-hidden="true">${d}</svg>`;
+  const items = [
+    ['schedule.html', 'Schedule', icon('<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4M7 13h4M7 17h7"/>')],
+    ['venue.html#inside', 'Venue map', icon('<path d="M12 2 3 7l9 5 9-5-9-5Zm-9 10 9 5 9-5M3 17l9 5 9-5"/>')],
+    ['venue.html#arrival', 'When to arrive', icon('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>')],
+    ['https://compute-community.zulipchat.com', 'Chat', icon('<path d="M4 5h16v11H9l-5 4V5Z"/><path d="M8 9h8M8 12h5"/>')],
+  ];
+  const bar = document.createElement('nav');
+  bar.className = 'c26-quick';
+  bar.setAttribute('aria-label', 'Event quick links');
+  bar.innerHTML = items.map(([href, label, svg]) => {
+    const ext = href.startsWith('http'), here = !ext && href.split('#')[0] === page && !href.includes('#');
+    return `<a href="${href}"${ext ? ' target="_blank" rel="noopener"' : ''}${here ? ' aria-current="page"' : ''}>${svg}<span>${label}${ext ? ' ↗' : ''}</span></a>`;
+  }).join('');
+  document.body.appendChild(bar);
+  document.body.classList.add('has-c26-quick');
+})();
