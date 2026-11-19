@@ -1874,3 +1874,22 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
   fill: currentColor;
   flex-shrink: 0;
 }
+
+/* ============================================================
+   PHONE QUICK BAR — schedule, venue and chat one tap away (assets/js/main.js)
+   ============================================================ */
+.c26-quick { display: none; }
+@media (max-width: 899px) {
+  .c26-quick {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 90; display: flex;
+    padding-bottom: env(safe-area-inset-bottom, 0px); background: rgba(10,22,40,.94); backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(245,237,218,.12);
+  }
+  .c26-quick a {
+    flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 0 10px;
+    color: var(--cream-dim); font: 600 .72rem/1.2 var(--font-body); text-decoration: none;
+  }
+  .c26-quick a[aria-current="page"] { color: var(--beam-gold); }
+  .c26-quick svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round; }
+  body.has-c26-quick { padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)); }
+}

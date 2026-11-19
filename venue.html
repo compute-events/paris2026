@@ -15,6 +15,7 @@
   <meta name="twitter:image" content="https://compute.events/paris2026/assets/images/og-card.png">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/event/event.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap">
@@ -135,6 +136,54 @@
           </p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ── WHEN TO ARRIVE ── -->
+  <section class="section section--navy-mid" id="arrival">
+    <div class="container">
+      <div class="section-header section-header--left">
+        <span class="overline">Arrival</span>
+        <h2>When to arrive</h2>
+      </div>
+      <div class="c26 c26-arrive">
+        <article class="c26-card">
+          <h3>Attendees</h3>
+          <dl class="c26-when">
+            <dt>Wed 25 · Thu 26</dt><dd><b>08:30</b> registration and welcome coffee. The opening session starts at 09:00 on Wednesday.</dd>
+            <dt>Fri 27</dt><dd><b>09:30</b> project sprints in the Salon Panoramique, 3rd floor, until 17:00.</dd>
+          </dl>
+          <p>Come in through the <b>event entrance</b> on the south side of the building, not the hotel lobby. The welcome desk is just inside on the right. <a href="#inside/welcome">Show the welcome desk</a></p>
+        </article>
+        <article class="c26-card">
+          <h3>Speakers</h3>
+          <dl class="c26-when"><dt>Your talk day</dt><dd><b>30 minutes</b> before your slot.</dd></dl>
+          <p>Pick up your badge at the welcome desk, then go to your room and test your laptop and slides during the break before your talk. Your room and time are in the <a href="schedule.html">schedule</a>.</p>
+        </article>
+        <article class="c26-card">
+          <h3>Sponsors</h3>
+          <dl class="c26-when"><dt>Wed 25</dt><dd><b>08:00–09:00</b> booth setup in the Salon Plaisance, 2nd floor. Booths are open from the first break.</dd></dl>
+          <p>Each booth has a 1.2 × 0.7 m table, room for a roll-up banner, and power nearby. Breaks and the buffet are in the same room. <a href="#inside/plaisance">Show the booths</a></p>
+        </article>
+      </div>
+      <ul class="c26 c26-good">
+        <li><b>Talks:</b> Track 1 in the grand amphitheater (ground floor); Track 2 in Salon 3 and Track 3 in Salon 2 (1st floor). Birds of a Feather sessions in Salon 1.</li>
+        <li><b>Breaks, buffet and sponsors</b> in the Salon Plaisance, 2nd floor. <b>Friday sprints</b> in the Salon Panoramique, 3rd floor.</li>
+        <li><b>Luggage and coats:</b> the hotel reception in the main lobby keeps luggage. You can also leave coats and bags in the cloakroom on the 2nd floor, next to the lifts. Although it’s in a safe location, the upper cloakroom is not attended, so keep valuables with you.</li>
+        <li><b>Step-free access:</b> use the hotel’s main entrance and lifts for the upper floors. For the amphitheater, follow the street south around the building to the event entrance. A ramp is available for the three steps between the lifts and the 1st-floor salons. <a href="#inside/lifts">Show the lifts</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── INSIDE THE VENUE (3D model, assets/event/venue.js) ── -->
+  <section class="section section--dark" id="inside">
+    <div class="container">
+      <div class="section-header section-header--left">
+        <span class="overline">Inside the building</span>
+        <h2>Find your way around the Hôtel du Port</h2>
+        <p style="color:var(--cream-dim)">Pick a floor, or tap a place below to find it. “View in 3D” shows the whole building.</p>
+      </div>
+      <div data-c26-venue></div>
     </div>
   </section>
 
@@ -268,6 +317,7 @@
   </footer>
 
   <script src="assets/js/main.js"></script>
+  <script src="assets/event/venue.js"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="assets/js/venue-routes.js"></script>
   <script>
