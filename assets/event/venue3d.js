@@ -214,7 +214,7 @@ window.Venue3D = function Venue3D(host, ui) {
   function highlight(p) {
     glow.forEach(m => { m.parent.remove(m); m.geometry.dispose(); }); glow = [];
     if (!p) return;
-    (p.all ? FLOORS : [FLOORS[p.floor]]).forEach(f => f.rooms.filter(r => p.rooms.includes(r.n)).forEach(r => {   // all: on every floor (lifts, toilets)
+    (p.all ? FLOORS : [FLOORS[p.floor]]).forEach(f => f.rooms.filter(r => p.rooms.includes(r.n) || (p.kind && r.k === p.kind)).forEach(r => {   // all: on every floor (lifts, toilets)
       const m = new THREE.Mesh(prism(r.p, H + .1), glowMat); m.renderOrder = 4;
       floors[f.id].add(m); glow.push(m);
     }));

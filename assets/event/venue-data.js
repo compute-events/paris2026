@@ -268,7 +268,7 @@ const PLACES = [
   {id:'welcome', name:'Welcome desk',           floor:0, rooms:['Welcome'], how:'Ground floor, just inside the event entrance on the south side of the building.'},
   {id:'cloak',   name:'Cloakroom · bags',       floor:2, rooms:['Cloakroom · bags'], how:'2nd floor, next to the lifts. Although it’s in a safe location, it is not attended, so keep valuables with you.'},
   {id:'terrace', name:'Terrace',             floor:2, rooms:['Terrace'], how:'2nd floor, outside the Salon Plaisance, on top of the salons. Outdoor stairs lead up to the Panoramique balcony.'},
-  {id:'wc',      name:'Toilets',                floor:1, all:true, rooms:['WC'], how:'There are toilets on every floor; the plans show the ones next to the main staircase.'},
+  {id:'wc',      name:'Toilets',                floor:1, all:true, kind:'wc', rooms:[], how:'There are toilets on every floor; the plans show the ones next to the main staircase.'},
   {id:'lifts',   name:'Lifts & main stairs',    floor:1, all:true, rooms:['ASC 1','ASC 2','Main staircase'], how:'In the hotel’s core, by the hotel lobby. They connect all floors.'},
 ];
 // How each floor connects to the others, shown under its plan

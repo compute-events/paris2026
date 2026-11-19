@@ -37,7 +37,7 @@
   const note = $('.c26-map__note');
   function draw() {
     const p = place && (place.all || place.floor === floor) ? place : null;   // all: lifts and toilets, on every floor
-    plan.innerHTML = VenuePlan.svg(FLOORS[floor], p && p.route, p ? p.rooms : []);
+    plan.innerHTML = VenuePlan.svg(FLOORS[floor], p && p.route, p ? p.rooms.concat(p.kind ? ['kind:' + p.kind] : []) : []);
     note.innerHTML = p ? `<b>${esc(p.name)}</b> ${esc(p.how)}` : `<b>${esc(floor === 0 ? 'Ground floor' : FLOORS[floor].name)}</b> ${esc(ACCESS[floor])}`;
   }
   function setFloor(i) {
