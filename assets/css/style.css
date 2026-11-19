@@ -897,15 +897,24 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
    VENUE CHANGE NOTICE
    ============================================================ */
 .venue-notice {
-  background: #2D5A9A;
-  color: var(--cream);
-  padding: 28px 24px;
-  border-top: 3px solid var(--beam-gold);
-  border-bottom: 1px solid rgba(168,216,240,.25);
+  background: linear-gradient(135deg, var(--beam-gold), var(--beam-orange));
+  color: var(--space);
+  padding: 36px 24px;
+  scroll-margin-top: var(--nav-h);
 }
-.venue-notice .overline { color: var(--beam-gold); }
-.venue-notice p { color: var(--cream); margin-top: 8px; max-width: 72ch; }
-.venue-notice a { color: var(--beam-gold); font-weight: 600; text-decoration: underline; white-space: nowrap; }
+.venue-notice__head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+.venue-notice__badge {
+  padding: 4px 10px; border-radius: 4px; background: var(--space); color: var(--beam-gold);
+  font-family: var(--font-head); font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+}
+.venue-notice .overline { color: var(--space); font-size: .8rem; }
+.venue-notice .overline::before { color: var(--space); }
+.venue-notice p { color: var(--space); margin-top: 10px; max-width: 72ch; font-size: 1.12rem; font-weight: 500; }
+.venue-notice a {
+  display: inline-block; margin-top: 4px; padding: 6px 16px; border-radius: 999px;
+  background: var(--space); color: var(--beam-gold); font-weight: 600; white-space: nowrap;
+}
+.venue-notice a:hover { background: var(--navy); }
 
 /* ============================================================
    VENUE INTRO
