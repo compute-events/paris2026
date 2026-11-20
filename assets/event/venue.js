@@ -41,10 +41,12 @@
     plan.innerHTML = VenuePlan.svg(FLOORS[floor], p && p.route, p ? p.rooms.concat(p.kind ? ['kind:' + p.kind] : [], p.area ? [p.area] : []) : []);
     note.innerHTML = p ? `<b>${esc(p.name)}</b> ${esc(p.how)}` : `<b>${esc(floor === 0 ? 'Ground floor' : FLOORS[floor].name)}</b> ${esc(ACCESS[floor])}`;
   }
+  // i = null: all floors (3D only)
   function setFloor(i) {
-    floor = i;
-    host.querySelectorAll('.c26-map__floors button').forEach(b => b.setAttribute('aria-selected', String(+b.dataset.f === i)));
-    if (mode === '2d') draw(); else venue.floor(i);
+    if (i !== null) floor = i;
+    host.querySelectorAll('.c26-map__floors button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.f === (i === null ? 'all' : String(i)))));
+    if (mode === '2d') draw();
+    else { venue.floor(i); if (!place) note.innerHTML = i === null ? '<b>All floors</b> The lifts and the main stairs connect every floor.' : `<b>${esc(i === 0 ? 'Ground floor' : FLOORS[i].name)}</b> ${esc(ACCESS[i])}`; }
   }
 
   /* ---------- 3D, on request ---------- */
@@ -64,9 +66,10 @@
     // 3D fills the screen on phones; the page snaps to it when scrolled close (see .c26-map.is-3d)
     $('.c26-map').classList.add('is-3d'); document.documentElement.classList.add('c26-snap');
     if (matchMedia('(max-width: 899px)').matches) $('.c26-map').scrollIntoView({block: 'start'});
-    modeBtn.disabled = false; modeBtn.textContent = 'Back to 2D';
+    modeBtn.disabled = false; modeBtn.textContent = '2D'; modeBtn.title = 'Back to the 2D plans';
+    if (!place) note.innerHTML = '<b>All floors</b> The lifts and the main stairs connect every floor.';
     venue.start(); venue.floor(null); venue.place(place);
-    host.querySelectorAll('.c26-map__floors button').forEach(b => b.setAttribute('aria-selected', 'false'));
+    host.querySelectorAll('.c26-map__floors button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.f === 'all')));
   }
   function to2d() {
     mode = '2d'; if (venue) venue.stop();
@@ -77,8 +80,8 @@
 
   function buildUi() {
     const fb = $('.c26-map__floors');
-    fb.innerHTML = FLOORS.map(f => `<button type="button" role="tab" class="c26-map__btn" data-f="${f.id}" aria-selected="false" title="${esc(f.name)} · ${esc(f.sub)}">${f.id === 0 ? 'Ground' : f.name.replace(' floor', '')}</button>`).join('');
-    fb.addEventListener('click', e => { const b = e.target.closest('button'); if (b) setFloor(+b.dataset.f); });
+    fb.innerHTML = `<button type="button" role="tab" class="c26-map__btn c26-map__all" data-f="all" aria-selected="false" title="All floors">All</button>` + FLOORS.map(f => `<button type="button" role="tab" class="c26-map__btn" data-f="${f.id}" aria-selected="false" title="${esc(f.name)} · ${esc(f.sub)}">${f.id === 0 ? 'Ground' : f.name.replace(' floor', '')}</button>`).join('');
+    fb.addEventListener('click', e => { const b = e.target.closest('button'); if (b) setFloor(b.dataset.f === 'all' ? null : +b.dataset.f); });
     modeBtn.addEventListener('click', () => mode === '2d' ? to3d() : to2d());
     $('.c26-map__reset').addEventListener('click', () => { venue.reset(); });
     if (touch) {

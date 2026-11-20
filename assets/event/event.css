@@ -315,3 +315,7 @@
   .c26-map.is-3d .c26-map__3d { flex: 1; min-height: 0; display: flex; flex-direction: column; }
   .c26-map.is-3d .c26-map__canvas { flex: 1; height: auto; min-height: 0; }
 }
+
+/* "All" floors button: only in the 3D view (2D shows one floor at a time) */
+.c26-map:not(.is-3d) .c26-map__all { display: none; }
+@media (max-width: 599px) { .c26-map__bar .c26-map__btn { padding: 6px 10px; } .c26-map__floors { gap: 4px; } }
