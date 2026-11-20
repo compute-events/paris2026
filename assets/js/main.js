@@ -115,4 +115,29 @@ if (form) {
   }).join('');
   document.body.appendChild(bar);
   document.body.classList.add('has-c26-quick');
+
+  // Chat: a small panel first. Zulip links always open in the browser (the Zulip app doesn't take over
+  // zulipchat.com links), so it also tells app users how to add the organization.
+  const ZULIP = 'https://compute-community.zulipchat.com', HOST = 'compute-community.zulipchat.com';
+  const dlg = document.createElement('dialog');
+  dlg.className = 'c26-chat';
+  dlg.setAttribute('aria-labelledby', 'c26-chat-h');
+  dlg.innerHTML = `
+    <button class="c26-chat__x" type="button" aria-label="Close">✕</button>
+    <h2 id="c26-chat-h">Community chat</h2>
+    <p>Talk with speakers, sprinters and other attendees on the Compute! Zulip. Public channels can be read without an account.</p>
+    <a class="btn btn--gold c26-chat__open" href="${ZULIP}" target="_blank" rel="noopener">Open Zulip in the browser ↗</a>
+    <h3>Using the Zulip app?</h3>
+    <p>Links open in the browser, not the app. In the app, add the organization:</p>
+    <p class="c26-chat__host"><code>${HOST}</code> <button type="button" class="c26-chat__copy">Copy</button></p>
+    <p class="c26-chat__stores">Get the app: <a href="https://apps.apple.com/app/zulip/id1203036395" target="_blank" rel="noopener">App Store</a> · <a href="https://play.google.com/store/apps/details?id=com.zulipmobile" target="_blank" rel="noopener">Google Play</a></p>`;
+  document.body.appendChild(dlg);
+  const chat = bar.querySelector(`a[href="${ZULIP}"]`);
+  chat.addEventListener('click', e => { if (!dlg.showModal) return; e.preventDefault(); dlg.showModal(); });   // old browsers: plain link
+  dlg.addEventListener('click', e => { if (e.target === dlg || e.target.closest('.c26-chat__x') || e.target.closest('.c26-chat__open')) dlg.close(); });
+  dlg.querySelector('.c26-chat__copy').addEventListener('click', e => {
+    const b = e.currentTarget;
+    (navigator.clipboard ? navigator.clipboard.writeText(HOST) : Promise.reject()).then(() => { b.textContent = 'Copied'; }, () => { b.textContent = 'Select and copy'; });
+    setTimeout(() => { b.textContent = 'Copy'; }, 2000);
+  });
 })();
