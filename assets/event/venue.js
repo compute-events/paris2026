@@ -41,24 +41,24 @@
     plan.innerHTML = VenuePlan.svg(FLOORS[floor], p && p.route, p ? p.rooms.concat(p.kind ? ['kind:' + p.kind] : [], p.area ? [p.area] : []) : []);
     note.innerHTML = p ? `<b>${esc(p.name)}</b> ${esc(p.how)}` : `<b>${esc(floor === 0 ? 'Ground floor' : FLOORS[floor].name)}</b> ${esc(ACCESS[floor])}`;
   }
-  // 3D: floor buttons switch floors on and off; "All" brings every floor back
+  // 3D: floor buttons switch floors on and off; all floors are on by default
   let shown = new Set();
   const allIds = () => FLOORS.map(f => f.id);
+  const mark3d = () => host.querySelectorAll('.c26-map__floors button').forEach(b => b.setAttribute('aria-selected', String(shown.has(+b.dataset.f))));
+  function allOn() { shown = new Set(allIds()); mark3d(); }
   function toggle3d(id) {
-    if (id === 'all') shown = new Set(allIds());
-    else { shown.has(id) ? shown.delete(id) : shown.add(id); if (!shown.size) shown = new Set(allIds()); }   // never hide everything
-    const all = shown.size === FLOORS.length;
-    host.querySelectorAll('.c26-map__floors button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.f === 'all' ? all : !all && shown.has(+b.dataset.f))));
-    if (id === 'all') venue.reset(); else venue.show([...shown]);
+    shown.has(id) ? shown.delete(id) : shown.add(id);
+    if (!shown.size) shown = new Set(allIds());   // never hide everything
+    mark3d(); venue.show([...shown]);
     if (!place) {
       const names = [...shown].sort().map(i => i === 0 ? 'Ground' : FLOORS[i].name.replace(' floor', ''));
-      note.innerHTML = all ? '<b>All floors</b> The lifts and the main stairs connect every floor. Tap a floor to hide or show it.' : `<b>Showing ${esc(names.join(', '))}</b> Tap a floor to hide or show it, or All for the whole building.`;
+      note.innerHTML = shown.size === FLOORS.length ? '<b>All floors</b> The lifts and the main stairs connect every floor. Tap a floor to hide or show it.' : `<b>Showing ${esc(names.join(', '))}</b> Tap a floor to hide or show it.`;
     }
   }
   // i = null: all floors (3D only)
   function setFloor(i) {
     if (i !== null) floor = i;
-    host.querySelectorAll('.c26-map__floors button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.f === (i === null ? 'all' : String(i)))));
+    host.querySelectorAll('.c26-map__floors button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.f === String(i))));
     if (mode === '2d') draw();
     else { venue.floor(i); if (!place) note.innerHTML = i === null ? '<b>All floors</b> The lifts and the main stairs connect every floor.' : `<b>${esc(i === 0 ? 'Ground floor' : FLOORS[i].name)}</b> ${esc(ACCESS[i])}`; }
   }
@@ -83,8 +83,7 @@
     modeBtn.disabled = false; modeBtn.textContent = '2D'; modeBtn.title = 'Back to the 2D plans';
     if (!place) note.innerHTML = '<b>All floors</b> The lifts and the main stairs connect every floor.';
     venue.start(); venue.floor(null); venue.place(place);
-    shown = new Set(allIds());
-    host.querySelectorAll('.c26-map__floors button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.f === 'all')));
+    allOn();
   }
   function to2d() {
     mode = '2d'; if (venue) venue.stop();
@@ -95,10 +94,10 @@
 
   function buildUi() {
     const fb = $('.c26-map__floors');
-    fb.innerHTML = `<button type="button" role="tab" class="c26-map__btn c26-map__all" data-f="all" aria-selected="false" title="All floors">All</button>` + FLOORS.map(f => `<button type="button" role="tab" class="c26-map__btn" data-f="${f.id}" aria-selected="false" title="${esc(f.name)} · ${esc(f.sub)}">${f.id === 0 ? 'Ground' : f.name.replace(' floor', '')}</button>`).join('');
-    fb.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; const id = b.dataset.f === 'all' ? 'all' : +b.dataset.f; if (mode === '3d') toggle3d(id); else setFloor(id === 'all' ? null : id); });
+    fb.innerHTML = FLOORS.map(f => `<button type="button" role="tab" class="c26-map__btn" data-f="${f.id}" aria-selected="false" title="${esc(f.name)} · ${esc(f.sub)}">${f.id === 0 ? 'Ground' : f.name.replace(' floor', '')}</button>`).join('');
+    fb.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; const id = +b.dataset.f; if (mode === '3d') toggle3d(id); else setFloor(id); });
     modeBtn.addEventListener('click', () => mode === '2d' ? to3d() : to2d());
-    $('.c26-map__reset').addEventListener('click', () => { venue.reset(); });
+    $('.c26-map__reset').addEventListener('click', () => { venue.reset(); allOn(); });
     if (touch) {
       const on = $('.c26-map__touch'), done = $('.c26-map__done');
       on.addEventListener('click', () => { venue.controls(true); canvas.classList.add('is-live'); on.hidden = true; done.hidden = false; });
@@ -115,7 +114,7 @@
   function pick(id) {
     place = PLACES.find(p => p.id === id) || null;
     host.querySelectorAll('.c26-place').forEach(b => b.setAttribute('aria-pressed', String(!!place && b.dataset.p === place.id)));
-    if (mode === '3d') { venue.place(place); if (place) { shown = new Set(allIds()); host.querySelectorAll('.c26-map__floors button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.f === 'all'))); } note.innerHTML = place ? `<b>${esc(place.name)}</b> ${esc(place.how)}` : 'Tap a place to find it in the building.'; }
+    if (mode === '3d') { venue.place(place); if (place) allOn(); note.innerHTML = place ? `<b>${esc(place.name)}</b> ${esc(place.how)}` : 'Tap a place to find it in the building.'; }
     else if (place && !place.all) setFloor(place.floor); else draw();
     const chip = place && host.querySelector(`.c26-chip2[data-p="${place.id}"]`);
     if (chip) chip.scrollIntoView({block: 'nearest', inline: 'nearest'});
