@@ -98,6 +98,8 @@
 .c26-talk__meta .room { font-weight: 600; color: var(--ink-mid); }
 .c26-talk__meta .tag { padding: 1px 7px; border-radius: 999px; background: var(--gc); color: var(--gt, #fff); font-weight: 600; }
 .c26-chip--sel optgroup { color: var(--text-dark); }
+.c26-talk__meta .bof { color: var(--blue-horizon); font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+.c26-talk--bof { background: #F2F6FC; border-style: dashed; border-left-style: solid; border-color: var(--blue-horizon); border-left-color: var(--tc, var(--blue-horizon)); }
 .c26-talk__meta .kn { color: var(--beam-orange); font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
 .c26-star { position: absolute; top: 6px; right: 4px; width: 40px; height: 40px; border: 0; background: none; cursor: pointer; font-size: 1.35rem; line-height: 1; color: #C9BFA8; }
 .c26-star[aria-pressed="true"] { color: var(--beam-orange); }
