@@ -252,7 +252,7 @@
 .c26-plan .booth-k { fill:var(--z-spons) }
 .c26-plan .flip text:not(.booth-n) { transform-box:fill-box;transform-origin:center;transform:rotate(-90deg) }
 .c26-plan .booth-n { font-size:.5px;font-weight:700;text-anchor:middle;fill:var(--z-spons);font-family:var(--mono) }
-.c26-plan .stand { fill:var(--paper);stroke:var(--z-buffet);stroke-width:.1 }
+.c26-plan .stand { fill:var(--ink2);stroke:var(--ink);stroke-width:.06 }   /* standing tables: dark top */
 .c26-plan .buf { fill:var(--z-buffet);opacity:.75 }
 .c26-plan .umbrella { fill:none;stroke:var(--mute);stroke-width:.06;stroke-dasharray:.25 .2 }
 .c26-plan .ttable { fill:var(--paper);stroke:var(--ink2);stroke-width:.08 }
