@@ -119,6 +119,9 @@
   .c26-slot--brk .c26-slot__t { display: block; }
   .c26-slot.is-now .c26-slot__t::after { display: block; margin-top: 4px; }
   .c26-slot__items { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+  /* one column per room: Track 1, 2, 3, then the BoF room on the right (not when filtering by room) */
+  .c26-slot--cols .c26-slot__items { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .c26-slot--cols .c26-talk { grid-column: var(--col, auto); }
   .c26-slot__items .c26-brk { grid-column: 1 / -1; }
 }
 

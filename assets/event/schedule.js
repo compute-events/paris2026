@@ -22,6 +22,9 @@
     'Salle panoramique': {name: 'Sprints · Salon Panoramique', where: '3rd floor', route: 'sprints'},
     'Guinguette': {name: 'La Guinguette des Maquereaux', where: 'island in the harbor, in front of the hotel'},
   };
+  // order of rooms within a time slot: Track 1, 2, 3, then the BoF room (on desktop it ends up on the right)
+  const ROOM_ORDER = ['Auditorium', 'Room 2', 'Room 3', 'Room 1'];
+  const roomRank = r => { const i = ROOM_ORDER.indexOf(r); return i < 0 ? ROOM_ORDER.length : i; };
   // Events that are not in pretalx
   const LOCAL = [
     {id: 'guinguette', title: 'Evening at the guinguette', start: '2026-11-25T18:30:00+01:00', end: '2026-11-25T22:00:00+01:00', room: 'Guinguette', type: 'Social',
@@ -102,7 +105,7 @@
         track: tracks[t.track] || null, tags: (t.tags || []).map(id => tags[id]).filter(Boolean), type: x.type || '', abstract: x.abstract || t.abstract || '',
         description: x.description || '', persons, url: x.url || (t.code ? EVENT + 'talk/' + t.code + '/' : null), day: keyOf(start),
       };
-    }).sort((a, b) => a.start - b.start || a.room.localeCompare(b.room))
+    }).sort((a, b) => a.start - b.start || roomRank(a.room) - roomRank(b.room) || a.room.localeCompare(b.room))
       // pretalx repeats a break once per room: keep one, not tied to a room
       .filter((t, i, all) => !t.brk || all.findIndex(o => o.brk && o.title === t.title && +o.start === +t.start && +o.end === +t.end) === i)
       .map(t => t.brk ? {...t, room: ''} : t);
@@ -140,10 +143,10 @@
       lastDay = day;
       const end = new Date(Math.max(...s.items.map(t => +t.end)));
       const cls = (now >= s.start && now < end ? ' is-now' : now >= end ? ' is-past' : '') + (s.items.every(t => t.brk) ? ' c26-slot--brk' : '');
-      return head + `<div class="c26-slot${cls}"><div class="c26-slot__t">${curDay === ALL ? `<span class="wd">${esc(wd.format(s.start))}</span> ` : ''}${hm.format(s.start)}<small>${hm.format(end)}</small></div><div class="c26-slot__items">` +
+      return head + `<div class="c26-slot${cls}${curRoom ? '' : ' c26-slot--cols'}"><div class="c26-slot__t">${curDay === ALL ? `<span class="wd">${esc(wd.format(s.start))}</span> ` : ''}${hm.format(s.start)}<small>${hm.format(end)}</small></div><div class="c26-slot__items">` +
         s.items.map(t => t.brk
           ? `<div class="c26-brk"><b>${esc(t.title)}</b><span>${hm.format(t.start)}–${hm.format(t.end)}</span></div>`
-          : `<div class="c26-talk${isBof(t) ? ' c26-talk--bof' : ''}" role="button" tabindex="0" data-id="${esc(t.id)}" style="${t.track ? `--tc:${esc(t.track.color)}` : ''}">
+          : `<div class="c26-talk${isBof(t) ? ' c26-talk--bof' : ''}" role="button" tabindex="0" data-id="${esc(t.id)}" style="${t.track ? `--tc:${esc(t.track.color)};` : ''}${roomRank(t.room) < ROOM_ORDER.length ? `--col:${roomRank(t.room) + 1}` : ''}">
               <span class="c26-talk__title">${esc(t.title)}</span>
               ${who(t) ? `<span class="c26-talk__who">${esc(who(t))}</span>` : ''}
               <span class="c26-talk__meta">${t.type === 'Keynote' ? '<span class="kn">Keynote</span>' : isBof(t) ? '<span class="bof">Birds of a Feather</span>' : t.type && t.type !== 'Talk' ? `<span>${esc(t.type)}</span>` : ''}<span class="room">${esc(roomLabel(t.room))}</span><span>${Math.round((t.end - t.start) / 60000)} min</span>${t.track ? `<span>${esc(t.track.name)}</span>` : ''}${(t.tags || []).map(g => `<span class="tag" style="--gc:${esc(g.color || '#14274E')};--gt:${ink(g.color)}">${esc(g.name)}</span>`).join('')}</span>
