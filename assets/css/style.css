@@ -1920,3 +1920,7 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
 .c26-chat__host code { padding: 6px 10px; border-radius: 8px; background: #fff; border: 1px solid rgba(10,22,40,.12); color: var(--navy); font-size: .9rem; }
 .c26-chat__copy { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--navy); background: none; color: var(--navy); font-weight: 600; cursor: pointer; }
 .c26-chat__stores a { color: var(--navy-mid); font-weight: 600; text-decoration: underline; }
+
+/* venue map: highlighted label (e.g. the guinguette after "Show on the map") */
+.leaflet-tooltip.map-tip--hl { background: #e07535; border-color: #e07535; color: #0a1628; font-weight: 700; box-shadow: 0 0 0 3px rgba(242,201,76,.6); }
+.leaflet-tooltip-right.map-tip--hl::before { border-right-color: #e07535; }
