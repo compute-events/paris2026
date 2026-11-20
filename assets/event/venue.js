@@ -109,7 +109,7 @@
   // #inside, #inside/<place id>, #inside/floor-<n>
   function go(hash) {
     const m = /^#inside(?:\/(.+))?$/.exec(hash); if (!m) return;
-    host.closest('section')?.scrollIntoView();
+    $('.c26-map').scrollIntoView({block: 'start'});   // straight to the map, not the section heading (offset: scroll-margin-top)
     if (!ready) { pending = hash; return; }
     const sub = m[1] || '', fl = /^floor-(\d)$/.exec(sub);
     if (fl) { if (mode === '3d') to2d(); return setFloor(+fl[1]); }
