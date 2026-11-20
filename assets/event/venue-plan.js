@@ -70,6 +70,7 @@ window.VenuePlan = (() => {
     (SEATS[f.id] || []).forEach(c => s += `<rect class="chair${c.r ? ' r' : ''}" x="${f2(c.x-.21)}" y="${f2(c.y-.21)}" width=".42" height=".42" rx=".08"/>`);
     (SCREENS[f.id] || []).forEach(([a,b]) => s += `<line class="screen" x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}"/>`);
     f.rooms.filter(r => hl.includes(r.n) || hl.includes('kind:' + r.k)).forEach(r => s += `<polygon class="hl" points="${ptsStr(r.p)}"/>`);
+    hl.filter(Array.isArray).forEach(p => s += `<polygon class="hl" points="${ptsStr(p)}"/>`);   // an area inside a room
     s += furniture(f.id);
     // only the route picked in the list: a dot where it starts on this floor, an arrow where it ends,
     // and a note where it comes from or continues to another floor

@@ -263,6 +263,7 @@ const PLACES = [
   {id:'track2',  short:'Track 2', name:'Track 2 · Salon 3',      floor:1, rooms:['Salon 3'], how:'1st floor. From the event entrance, take the stairs straight ahead up to the foyer. From the lifts or main stairs, go through the salon d’attente.'},
   {id:'track3',  short:'Track 3', name:'Track 3 · Salon 2',      floor:1, rooms:['Salon 2'], how:'1st floor, next to Salon 1. Same way as Track 2: up the event stairs to the foyer, or through the salon d’attente from the lifts.'},
   {id:'bof',     short:'BoF room', name:'BoF room · Salon 1',     floor:1, rooms:['Salon 1'], how:'1st floor, the first room on the right in the foyer at the top of the event stairs.'},
+  {id:'coffee', short:'☕ Coffee', name:'☕ Coffee', floor:2, rooms:[], area:R(24.8,5.8,34,9.8), how:'2nd floor, at the buffet in the middle of the Salon Plaisance, during every break. Take the lifts or the main stairs.'},
   {id:'plaisance', short:'Sponsors & food', name:'Sponsors, buffet & breaks', floor:2, rooms:['Salon Plaisance'], how:'2nd floor, Salon Plaisance. Take the lifts or the main stairs, then follow the corridor to the entrance. The terrace is just outside.'},
   {id:'sprints', short:'Sprints', name:'Sprints · Salon Panoramique', floor:3, rooms:['Salon Panoramique'], how:'3rd floor, Friday only. Take the lifts or the main stairs, then the corridor past the toilets to the entrance.'},
   {id:'welcome', short:'Welcome', name:'Welcome desk',           floor:0, rooms:['Welcome'], how:'Ground floor, just inside the event entrance on the south side of the building.'},

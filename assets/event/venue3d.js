@@ -218,6 +218,7 @@ window.Venue3D = function Venue3D(host, ui) {
       const m = new THREE.Mesh(prism(r.p, H + .1), glowMat); m.renderOrder = 4;
       floors[f.id].add(m); glow.push(m);
     }));
+    if (p.area) { const m = new THREE.Mesh(prism(p.area, 1.6), glowMat); m.renderOrder = 4; floors[p.floor].add(m); glow.push(m); }   // an area inside a room
   }
 
   return {
