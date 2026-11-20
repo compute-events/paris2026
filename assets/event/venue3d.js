@@ -191,9 +191,13 @@ window.Venue3D = function Venue3D(host, ui) {
   };
   // per floor: look at the centre of its event rooms (plan x, y) from the same direction as the overview, closer in
   const FOCUS = {0: [30, 15], 1: [36, 8], 2: [22.5, 8], 3: [28, 8]};
-  const fv = i => { const [u, v] = T(...FOCUS[i]), y = lvlY(i); return [[u + 40, y + 37, v + 44], [u, y, v]]; };
-  function view(i, animate = true) {
-    const [p, t] = i === null ? VIEWS.all : fv(i);
+  // camera side: default south-east; 'west' (amphitheater, welcome desk) and 'northeast' (lifts, hotel lobby)
+  // look past the hotel core instead of through it. In 3D, +x is east and +z is south.
+  const SIDE = {west: [-1, 1], northeast: [1, -1]};
+  const fv = (i, side, at) => { const [u, v] = T(...(at || FOCUS[i])), y = lvlY(i), [sx, sz] = SIDE[side] || [1, 1]; return [[u + 40*sx, y + 37, v + 44*sz], [u, y, v]]; };
+  const fall = side => { const [p, t] = VIEWS.all, [sx, sz] = SIDE[side] || [1, 1]; return [[t[0] + (p[0]-t[0])*sx, p[1], t[2] + (p[2]-t[2])*sz], t]; };   // whole building
+  function view(i, animate = true, side, at) {
+    const [p, t] = i === null ? fall(side) : fv(i, side, at);
     if (!animate) { cam.position.set(...p); ctl.target.set(...t); ctl.update(); dirty = true; return; }
     const p0 = cam.position.clone(), t0 = ctl.target.clone(), P = new THREE.Vector3(...p), Tg = new THREE.Vector3(...t), t1 = performance.now();
     (function tween(now) { const k = Math.min(1, (now - t1) / 450), e = k < .5 ? 2*k*k : 1 - Math.pow(-2*k + 2, 2)/2; cam.position.lerpVectors(p0, P, e); ctl.target.lerpVectors(t0, Tg, e); ctl.update(); dirty = true; if (k < 1) requestAnimationFrame(tween); })(t1);
@@ -223,7 +227,7 @@ window.Venue3D = function Venue3D(host, ui) {
 
   return {
     route(id) { act = id; apply(); },
-    place(p) { highlight(p); act = p && p.route || null; apply(); if (p) { solo = null; apply(); view(p.all ? null : p.floor); } },
+    place(p) { highlight(p); act = p && p.route || null; apply(); if (p) { solo = null; apply(); view(p.all ? null : p.floor, true, p.cam, p.cam && !p.all ? centroid(p.area || FLOORS[p.floor].rooms.find(r => p.rooms.includes(r.n)).p) : null); } },
     floor(i) { solo = i; apply(); view(i); },
     reset() { solo = null; act = null; apply(); view(null); },
     start() { if (!running) { running = true; size(); loop(); } },
