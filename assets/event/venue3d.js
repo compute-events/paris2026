@@ -121,7 +121,7 @@ window.Venue3D = function Venue3D(host, ui) {
     D.booths.forEach(b => {
       put(new THREE.BoxGeometry(1.2,.75,.7), mT, ...bl(b,0,.73), .375, ang(b.a)); put(new THREE.BoxGeometry(.85,2,.05), mS, ...bl(b,0,.15), 1, ang(b.a));
     });
-    D.tables.forEach(([x,y]) => { put(new THREE.CylinderGeometry(.4,.4,.05,16), mT, x, y, 1.1); put(new THREE.CylinderGeometry(.04,.04,1.1,6), mI, x, y, .55); });
+    D.tables.forEach(([x,y]) => { put(new THREE.CylinderGeometry(.4,.4,.05,16), mI, x, y, 1.1); put(new THREE.CylinderGeometry(.04,.04,1.1,6), mI, x, y, .55); });   // standing tables: dark top
     D.ltables.forEach(([x,y]) => put(new THREE.CylinderGeometry(.45,.45,.4,16), mT, x, y, .2));
     D.chairs.forEach(([x,y,a,w]) => w ? put(new THREE.BoxGeometry(.44,.9,.44), mI, x, y, .45) : put(new THREE.BoxGeometry(.74,.6,.74), mR, x, y, .3, ang(a)));
     D.wtabs.forEach(([x,y,w,h]) => put(new THREE.BoxGeometry(h,.75,w), mT, x + w/2, y + h/2, .375));
