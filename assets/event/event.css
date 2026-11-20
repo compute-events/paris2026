@@ -73,6 +73,9 @@
 @media (max-width: 699px) { .c26-view { display: none; } }   /* the pretalx grid needs a wide screen */
 
 /* phones: the time is a sticky line above each slot, so cards get the full width */
+.c26-dayh { margin: 28px 0 4px; padding-bottom: 8px; border-bottom: 2px solid var(--beam-gold); color: var(--cream); font: 700 1.3rem var(--font-head); }
+.c26-dayh:first-child { margin-top: 12px; }
+.c26-slot__t .wd { color: var(--cream); font-weight: 600; }
 .c26-slot { display: grid; gap: 8px; padding-bottom: 14px; }
 .c26-slot__t {
   position: sticky; top: calc(var(--nav-h) + var(--c26-bar-h, 0px)); z-index: 4;
@@ -112,6 +115,7 @@
   .c26-slot__t { position: static; display: block; padding: 12px 0 0; background: none; font-size: 1rem; }
   .c26-slot__t small { display: block; font-size: .8rem; }
   .c26-slot__t small::before { content: none; }
+  .c26-slot__t .wd { display: block; }   /* weekday on its own line in the time column */
   .c26-slot--brk .c26-slot__t { display: block; }
   .c26-slot.is-now .c26-slot__t::after { display: block; margin-top: 4px; }
   .c26-slot__items { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
