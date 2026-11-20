@@ -169,7 +169,7 @@
       <div class="c26 c26-evening" id="evening">
         <span class="overline">Wednesday 25 November · 18:30 to 22:00</span>
         <h3>Evening at the guinguette</h3>
-        <p>After the first day, join us at <b>La Guinguette des Maquereaux</b>, on the little island in the harbor right in front of the hotel (Square Tino Rossi, Port de Plaisance). <a href="#venue-map" class="c26-evening__link">Show on the map</a></p>
+        <p>After the first day, join us at <b>La Guinguette des Maquereaux</b>, on the little island in the harbor right in front of the hotel (Square Tino Rossi, Port de Plaisance). <a href="#guinguette" class="c26-evening__link">Show on the map</a></p>
       </div>
       <ul class="c26 c26-good">
         <li><b>Talks:</b> Track 1 in the grand amphitheater (ground floor); Track 2 in Salon 3 and Track 3 in Salon 2 (1st floor). Birds of a Feather sessions in Salon 1.</li>
@@ -376,11 +376,25 @@
         .bindPopup('<strong style="color:#f2c94c">Hôtel du Port</strong><br>8 rue du Port<br>94130 Nogent-sur-Marne')
         .bindTooltip('Hôtel du Port', { permanent: true, direction: 'bottom', offset: [0, 4] });
 
-      // Wednesday evening: La Guinguette des Maquereaux, on the islet in the harbor (Square Tino Rossi, OpenStreetMap)
-      L.circleMarker([48.83166, 2.48929], { radius: 7, color: '#0a1628', weight: 2, fillColor: '#e07535', fillOpacity: 1 })
+      // Wednesday evening: La Guinguette des Maquereaux, on the islet in the harbor (Square Tino Rossi), ~30 m south-east of the hotel
+      var GUING = [48.8315, 2.4896];
+      var guing = L.circleMarker(GUING, { radius: 7, color: '#0a1628', weight: 2, fillColor: '#e07535', fillOpacity: 1 })
         .addTo(map)
         .bindPopup('<strong style="color:#e07535">La Guinguette des Maquereaux</strong><br>Wednesday 25 November, 18:30–22:00<br>Square Tino Rossi, Port de Plaisance')
         .bindTooltip('Guinguette · Wed evening', { permanent: true, direction: 'right', offset: [8, 0] });
+      // "Show on the map" (#guinguette): scroll to the map, zoom in on the islet and highlight the pin and its label
+      function showGuinguette() {
+        document.getElementById('venue-map').scrollIntoView({ block: 'center' });
+        map.setView(GUING, 17);
+        guing.setStyle({ radius: 11, weight: 3 });
+        var tip = guing.getTooltip().getElement(); if (tip) tip.classList.add('map-tip--hl');
+        // narrow maps: move the pin left so its label (to the right of it) fits
+        var room = map.getSize().x / 2 - 24, need = (tip ? tip.offsetWidth : 200) + 20;
+        if (need > room) map.panBy([need - room, 0], { animate: false });
+      }
+      if (location.hash === '#guinguette') setTimeout(showGuinguette, 300);
+      window.addEventListener('hashchange', function () { if (location.hash === '#guinguette') showGuinguette(); });
+      document.addEventListener('click', function (e) { if (e.target.closest('a[href="#guinguette"]') && location.hash === '#guinguette') { e.preventDefault(); showGuinguette(); } });
 
       // Show the whole trip: central Paris (Châtelet, Saint-Lazare) to the venue
       var tripPoints = R.stopsA.concat(R.stopsE).map(function (s) { return [s[0], s[1]]; })
