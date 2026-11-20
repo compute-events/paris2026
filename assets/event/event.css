@@ -322,3 +322,11 @@
 
 /* links to #inside land on the map itself, just below the fixed site header */
 .c26-map { scroll-margin-top: calc(var(--nav-h) + 8px); }
+
+/* 2D on phones: like 3D, the map card fits the screen between the site header and the quick bar;
+   the plan takes whatever height is left after the floor bar, chips and info line */
+@media (max-width: 899px) {
+  .c26-map:not(.is-3d) { display: flex; flex-direction: column; height: calc(100dvh - var(--nav-h) - 8px - 60px - env(safe-area-inset-bottom, 0px)); min-height: 420px; }
+  .c26-map:not(.is-3d) .c26-plan { flex: 1; min-height: 0; }
+  .c26-map:not(.is-3d) .c26-plan svg { height: 100%; }
+}
