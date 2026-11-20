@@ -115,6 +115,8 @@
   }
   // dark or white text, whichever reads better on a tag colour from pretalx
   const ink = hex => { const m = /^#?([0-9a-f]{6})$/i.exec(hex || ''); if (!m) return '#fff'; const n = parseInt(m[1], 16), l = (.299 * (n >> 16) + .587 * (n >> 8 & 255) + .114 * (n & 255)) / 255; return l > .6 ? '#111827' : '#fff'; };
+  // Birds of a Feather: open discussions, marked differently from talks and selectable in the topic filter
+  const FORMAT_BOF = 'format:bof', isBof = t => /^bof$|birds of a feather/i.test(t.type || '');
   const roomLabel = r => ROOMS[r] ? ROOMS[r].name : r;
   const who = t => t.persons.map(p => p.name).filter(Boolean).join(', ');
 
@@ -123,7 +125,7 @@
     // breaks shorter than 10 min ("Room Change") are noise on a phone
     let items = talks.filter(t => t.day === curDay && !(t.brk && t.end - t.start < 600000));
     if (curRoom) items = items.filter(t => t.room === curRoom || (t.brk && !t.room));
-    if (curTopic) items = items.filter(t => t.brk || t.track?.name === curTopic || (t.tags || []).some(g => g.name === curTopic));
+    if (curTopic) items = items.filter(t => t.brk || (curTopic === FORMAT_BOF ? isBof(t) : t.track?.name === curTopic || (t.tags || []).some(g => g.name === curTopic)));
     if (onlySaved) items = items.filter(t => saved.has(t.id));
     if (!items.length) { list.innerHTML = `<p class="c26-empty">${onlySaved ? 'Nothing saved for this day yet. Tap ☆ on a talk to add it here.' : 'Nothing scheduled.'}</p>`; return; }
     const slots = [];
@@ -134,10 +136,10 @@
       return `<div class="c26-slot${cls}"><div class="c26-slot__t">${hm.format(s.start)}<small>${hm.format(end)}</small></div><div class="c26-slot__items">` +
         s.items.map(t => t.brk
           ? `<div class="c26-brk"><b>${esc(t.title)}</b><span>${hm.format(t.start)}–${hm.format(t.end)}</span></div>`
-          : `<div class="c26-talk" role="button" tabindex="0" data-id="${esc(t.id)}" style="${t.track ? `--tc:${esc(t.track.color)}` : ''}">
+          : `<div class="c26-talk${isBof(t) ? ' c26-talk--bof' : ''}" role="button" tabindex="0" data-id="${esc(t.id)}" style="${t.track ? `--tc:${esc(t.track.color)}` : ''}">
               <span class="c26-talk__title">${esc(t.title)}</span>
               ${who(t) ? `<span class="c26-talk__who">${esc(who(t))}</span>` : ''}
-              <span class="c26-talk__meta">${t.type === 'Keynote' ? '<span class="kn">Keynote</span>' : t.type && t.type !== 'Talk' ? `<span>${esc(t.type)}</span>` : ''}<span class="room">${esc(roomLabel(t.room))}</span><span>${Math.round((t.end - t.start) / 60000)} min</span>${t.track ? `<span>${esc(t.track.name)}</span>` : ''}${(t.tags || []).map(g => `<span class="tag" style="--gc:${esc(g.color || '#14274E')};--gt:${ink(g.color)}">${esc(g.name)}</span>`).join('')}</span>
+              <span class="c26-talk__meta">${t.type === 'Keynote' ? '<span class="kn">Keynote</span>' : isBof(t) ? '<span class="bof">Birds of a Feather</span>' : t.type && t.type !== 'Talk' ? `<span>${esc(t.type)}</span>` : ''}<span class="room">${esc(roomLabel(t.room))}</span><span>${Math.round((t.end - t.start) / 60000)} min</span>${t.track ? `<span>${esc(t.track.name)}</span>` : ''}${(t.tags || []).map(g => `<span class="tag" style="--gc:${esc(g.color || '#14274E')};--gt:${ink(g.color)}">${esc(g.name)}</span>`).join('')}</span>
               <button class="c26-star" type="button" aria-pressed="${saved.has(t.id)}" aria-label="Save to my schedule" data-star="${esc(t.id)}">${saved.has(t.id) ? '★' : '☆'}</button>
             </div>`).join('') + `</div></div>`;
     }).join('');
@@ -218,8 +220,8 @@
     // topics: pretalx tracks, then tags (e.g. Jupyter); only those used by a talk
     const tr = [...new Set(talks.map(t => t.track?.name).filter(Boolean))].sort(), tg = [...new Set(talks.flatMap(t => (t.tags || []).map(g => g.name)))].sort();
     const top = $('[data-topic]');
-    top.innerHTML = '<option value="">All topics</option>' + (tr.length ? '<optgroup label="Tracks">' + tr.map(n => `<option>${esc(n)}</option>`).join('') + '</optgroup>' : '') + (tg.length ? '<optgroup label="Tags">' + tg.map(n => `<option>${esc(n)}</option>`).join('') + '</optgroup>' : '');
-    top.value = tr.concat(tg).includes(curTopic) ? curTopic : (curTopic = '');
+    top.innerHTML = '<option value="">All topics</option>' + (talks.some(isBof) ? `<optgroup label="Format"><option value="${FORMAT_BOF}">Birds of a Feather</option></optgroup>` : '') + (tr.length ? '<optgroup label="Tracks">' + tr.map(n => `<option>${esc(n)}</option>`).join('') + '</optgroup>' : '') + (tg.length ? '<optgroup label="Tags">' + tg.map(n => `<option>${esc(n)}</option>`).join('') + '</optgroup>' : '');
+    top.value = tr.concat(tg, [FORMAT_BOF]).includes(curTopic) ? curTopic : (curTopic = '');
     if (!days.includes(curDay)) { const today = keyOf(new Date()); curDay = days.includes(today) ? today : days[0]; }
     $('.c26-src').innerHTML = d.live
       ? `Live from <a href="${EVENT}schedule/" target="_blank" rel="noopener">pretalx ↗</a>, refreshed every few minutes.`
