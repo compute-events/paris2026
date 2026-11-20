@@ -120,20 +120,25 @@
   const roomLabel = r => ROOMS[r] ? ROOMS[r].name : r;
   const who = t => t.persons.map(p => p.name).filter(Boolean).join(', ');
 
+  const ALL = 'all';   // day tab showing the whole program, one day below the other
   function render() {
     const now = new Date();
     // breaks shorter than 10 min ("Room Change") are noise on a phone
-    let items = talks.filter(t => t.day === curDay && !(t.brk && t.end - t.start < 600000));
+    let items = talks.filter(t => (curDay === ALL || t.day === curDay) && !(t.brk && t.end - t.start < 600000));
     if (curRoom) items = items.filter(t => t.room === curRoom || (t.brk && !t.room));
     if (curTopic) items = items.filter(t => t.brk || (curTopic === FORMAT_BOF ? isBof(t) : t.track?.name === curTopic || (t.tags || []).some(g => g.name === curTopic)));
     if (onlySaved) items = items.filter(t => saved.has(t.id));
-    if (!items.length) { list.innerHTML = `<p class="c26-empty">${onlySaved ? 'Nothing saved for this day yet. Tap ☆ on a talk to add it here.' : 'Nothing scheduled.'}</p>`; return; }
+    if (!items.length) { list.innerHTML = `<p class="c26-empty">${onlySaved ? `Nothing saved ${curDay === ALL ? '' : 'for this day '}yet. Tap ☆ on a talk to add it here.` : 'Nothing scheduled.'}</p>`; return; }
     const slots = [];
     items.forEach(t => { const k = +t.start; let s = slots.find(s => s.k === k); if (!s) slots.push(s = {k, start: t.start, items: []}); s.items.push(t); });
+    let lastDay = null;
     list.innerHTML = slots.map(s => {
+      // All days: a heading where a new day starts
+      const day = keyOf(s.start), head = curDay === ALL && day !== lastDay ? `<h3 class="c26-dayh">${esc(full.format(s.start))}</h3>` : '';
+      lastDay = day;
       const end = new Date(Math.max(...s.items.map(t => +t.end)));
       const cls = (now >= s.start && now < end ? ' is-now' : now >= end ? ' is-past' : '') + (s.items.every(t => t.brk) ? ' c26-slot--brk' : '');
-      return `<div class="c26-slot${cls}"><div class="c26-slot__t">${hm.format(s.start)}<small>${hm.format(end)}</small></div><div class="c26-slot__items">` +
+      return head + `<div class="c26-slot${cls}"><div class="c26-slot__t">${curDay === ALL ? `<span class="wd">${esc(wd.format(s.start))}</span> ` : ''}${hm.format(s.start)}<small>${hm.format(end)}</small></div><div class="c26-slot__items">` +
         s.items.map(t => t.brk
           ? `<div class="c26-brk"><b>${esc(t.title)}</b><span>${hm.format(t.start)}–${hm.format(t.end)}</span></div>`
           : `<div class="c26-talk${isBof(t) ? ' c26-talk--bof' : ''}" role="button" tabindex="0" data-id="${esc(t.id)}" style="${t.track ? `--tc:${esc(t.track.color)}` : ''}">
@@ -145,7 +150,8 @@
     }).join('');
   }
   function renderDays() {
-    $('.c26-days').innerHTML = days.map(d => { const dt = new Date(d + 'T12:00:00Z'); return `<button type="button" role="tab" data-day="${d}" aria-selected="${d === curDay}"><b>${wd.format(dt)} ${dnum.format(dt)}</b><small>${mon.format(dt)}${talks.some(t => t.day === d && /sprint/i.test(t.title)) ? ' · sprints' : ''}</small></button>`; }).join('');
+    $('.c26-days').innerHTML = days.map(d => { const dt = new Date(d + 'T12:00:00Z'); return `<button type="button" role="tab" data-day="${d}" aria-selected="${d === curDay}"><b>${wd.format(dt)} ${dnum.format(dt)}</b><small>${mon.format(dt)}${talks.some(t => t.day === d && /sprint/i.test(t.title)) ? ' · sprints' : ''}</small></button>`; }).join('')
+      + `<button type="button" role="tab" data-day="${ALL}" aria-selected="${curDay === ALL}"><b>All days</b><small>${days.length} days</small></button>`;
   }
 
   function open(id) {
@@ -222,7 +228,7 @@
     const top = $('[data-topic]');
     top.innerHTML = '<option value="">All topics</option>' + (talks.some(isBof) ? `<optgroup label="Format"><option value="${FORMAT_BOF}">Birds of a Feather</option></optgroup>` : '') + (tr.length ? '<optgroup label="Tracks">' + tr.map(n => `<option>${esc(n)}</option>`).join('') + '</optgroup>' : '') + (tg.length ? '<optgroup label="Tags">' + tg.map(n => `<option>${esc(n)}</option>`).join('') + '</optgroup>' : '');
     top.value = tr.concat(tg, [FORMAT_BOF]).includes(curTopic) ? curTopic : (curTopic = '');
-    if (!days.includes(curDay)) { const today = keyOf(new Date()); curDay = days.includes(today) ? today : days[0]; }
+    if (curDay !== ALL && !days.includes(curDay)) { const today = keyOf(new Date()); curDay = days.includes(today) ? today : days[0]; }
     $('.c26-src').innerHTML = d.live
       ? `Live from <a href="${EVENT}schedule/" target="_blank" rel="noopener">pretalx ↗</a>, refreshed every few minutes.`
       : `Offline: showing the copy saved on this device on ${esc(hhmm.format(new Date(d.at)))}. It may be out of date.`;
