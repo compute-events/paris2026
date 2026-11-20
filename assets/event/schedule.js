@@ -257,7 +257,7 @@
     const top = $('[data-topic]');
     top.innerHTML = '<option value="">All topics</option>' + (talks.some(isBof) ? `<optgroup label="Format"><option value="${FORMAT_BOF}">Birds of a Feather</option></optgroup>` : '') + (tr.length ? '<optgroup label="Tracks">' + tr.map(n => `<option>${esc(n)}</option>`).join('') + '</optgroup>' : '') + (tg.length ? '<optgroup label="Tags">' + tg.map(n => `<option>${esc(n)}</option>`).join('') + '</optgroup>' : '');
     top.value = tr.concat(tg, [FORMAT_BOF]).includes(curTopic) ? curTopic : (curTopic = '');
-    if (curDay !== ALL && !days.includes(curDay)) { const today = keyOf(new Date()); curDay = days.includes(today) ? today : days[0]; }
+    if (curDay !== ALL && !days.includes(curDay)) curDay = ALL;   // default: the whole program, one day below the other
     $('.c26-src').innerHTML = d.live
       ? `Live from <a href="${EVENT}schedule/" target="_blank" rel="noopener">pretalx ↗</a>, refreshed every few minutes.`
       : `Offline: showing the copy saved on this device on ${esc(hhmm.format(new Date(d.at)))}. It may be out of date.`;
