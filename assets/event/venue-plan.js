@@ -96,7 +96,7 @@ window.VenuePlan = (() => {
       flush();
     }));
     f.rooms.forEach(r => {
-      const name = r.isoLabel || r.n; if (!name) return;
+      const name = r.isoLabel || r.n; if (!name || /^ASC /.test(r.n)) return;   // lift shafts: the lobby next to them is labelled "Lifts"
       const [x,y] = r.isoAt || r.at || centroid(r.p), fs = (r.fs || .82) * k;
       s += `<text class="lbl" x="${x}" y="${y}" style="font-size:${fs}px">${esc(name)}</text>`;
       if (r.sub) s += `<text class="lbl-sub" x="${x + fs*1.1}" y="${y}">${esc(r.sub)}</text>`;

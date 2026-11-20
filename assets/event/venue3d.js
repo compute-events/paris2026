@@ -147,14 +147,17 @@ window.Venue3D = function Venue3D(host, ui) {
     mesh.userData.r = r.id; mesh.userData.u = !!br.unsure; mesh.userData.fl = [...new Set(br.map(q => q[2]))]; mesh.renderOrder = 5; scene.add(mesh); tubes.push(mesh);
   }));
   const coreMat = new THREE.MeshLambertMaterial({color: col('--core')}), edge = new THREE.LineBasicMaterial({color: col('--core-s')});
-  const stairs = new THREE.Group(); scene.add(stairs);
+  // stairs and lift shafts between two floors: one group per pair, shown only while both floors are shown
+  const links = [];
+  const link = (a, b) => { const g = new THREE.Group(); g.userData.fl = [a, b]; scene.add(g); links.push(g); return g; };
+  let stairs = null;   // the group the next steps go into
   const step = (xa, xb, ya, yb, top, th) => { const [ua,va] = T(xa,ya), [ub,vb] = T(xb,yb); const geo = new THREE.BoxGeometry(Math.abs(ub-ua), th, Math.abs(vb-va)); const m = new THREE.Mesh(geo, coreMat); m.position.set((ua+ub)/2, top - th/2, (va+vb)/2); const e = new THREE.LineSegments(new THREE.EdgesGeometry(geo), edge); e.position.copy(m.position); stairs.add(m, e); };
   for (let z = 0; z < 3; z++) {   // lift shaft
     const [x,y] = T(2.9,6.4);
-    stairs.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.LineCurve3(new THREE.Vector3(x,lvlY(z),y), new THREE.Vector3(x,lvlY(z+1),y)), 4, .12, 6, false), new THREE.MeshBasicMaterial({color: col('--core-s'), transparent:true, opacity:.6})));
+    link(z, z + 1).add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.LineCurve3(new THREE.Vector3(x,lvlY(z),y), new THREE.Vector3(x,lvlY(z+1),y)), 4, .12, 6, false), new THREE.MeshBasicMaterial({color: col('--core-s'), transparent:true, opacity:.6})));
   }
   { const n = 12;   // main staircase: two flights per storey with a landing
-    for (let z = 0; z < 3; z++) { const base = lvlY(z), rise = lvlY(z+1) - lvlY(z);
+    for (let z = 0; z < 3; z++) { const base = lvlY(z), rise = lvlY(z+1) - lvlY(z); stairs = link(z, z + 1);
       // flights start and end at y0, where the landings of the floors end (10.8–11.1 m), so they meet the floor
       const y0 = 10.8, run = 14 - y0;
       for (let i = 0; i < n; i++) step(8.4, 10.6, y0 + run*i/n, y0 + run*(i+1)/n, base + rise/2*(i+1)/n, rise/2/n);
@@ -162,7 +165,7 @@ window.Venue3D = function Venue3D(host, ui) {
       for (let i = 0; i < n; i++) step(6, 8.2, 14 - run*(i+1)/n, 14 - run*i/n, base + rise/2 + rise/2*(i+1)/n, rise/2/n);
     }
   }
-  { const rise = lvlY(1) - lvlY(0) - DROP, n = 24;   // event stairs, ground → 1st (lower part of the floor)
+  { const rise = lvlY(1) - lvlY(0) - DROP, n = 24; stairs = link(0, 1);   // event stairs, ground → 1st (lower part of the floor)
     for (let i = 0; i < n; i++) step(35.2 - 6.4*(i+1)/n, 35.2 - 6.4*i/n, 10.6, 13.1, rise*(i+1)/n, rise/n);
   }
 
@@ -171,7 +174,7 @@ window.Venue3D = function Venue3D(host, ui) {
     for (let i = 0; i < s.n; i++) { const [ua,va] = T(s.x0 + i*w, s.y0), [ub,vb] = T(s.x0 + (i+1)*w, s.y1), h = DROP - i * s.rise; const geo = new THREE.BoxGeometry(Math.abs(ub-ua), h, Math.abs(vb-va)); const m = new THREE.Mesh(geo, coreMat); m.position.set((ua+ub)/2, h/2 - DROP, (va+vb)/2); const e = new THREE.LineSegments(new THREE.EdgesGeometry(geo), edge); e.position.copy(m.position); g.add(m, e); }
     if (s.label) { const l = label(s.label, 1.1, '--ink2'); const [lx,ly] = T((s.x0 + s.x1)/2, (s.y0 + s.y1)/2); l.position.set(lx, 2.2, ly); g.add(l); }
   });
-  { const rise = lvlY(3) - lvlY(2), base = lvlY(2), n = 16;   // outdoor stairs, balcony → terrace
+  { const rise = lvlY(3) - lvlY(2), base = lvlY(2), n = 16; stairs = link(2, 3);   // outdoor stairs, balcony → terrace
     for (let i = 0; i < n; i++) step(40.55, 41.75, 7.8 - 7*(i+1)/n, 7.8 - 7*i/n, base + rise*(i+1)/n, rise/n);
   }
 
@@ -180,7 +183,7 @@ window.Venue3D = function Venue3D(host, ui) {
   let shown = new Set(FLOORS.map(f => f.id));   // floors switched on (toggled from the floor buttons)
   function apply() {
     floors.forEach((g, i) => g.visible = shown.has(i));
-    stairs.visible = shown.size === FLOORS.length;   // the stairs between floors only make sense with every floor shown
+    links.forEach(g => g.visible = g.userData.fl.every(f => shown.has(f)));   // stairs/lifts between two shown floors
     tubes.forEach(t => {   // a route is only drawn once it is picked in the route list
       t.visible = t.userData.r === act && t.userData.fl.some(f => shown.has(f));
       t.material.opacity = t.userData.u ? .4 : 1;
