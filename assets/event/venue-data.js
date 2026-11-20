@@ -288,3 +288,6 @@ FLOORS[0].doors = FLOORS[0].doors.filter(([a, b]) => !(a[0] === 19.9 && b[0] ===
 FLOORS[0].notes = FLOORS[0].notes.filter(n => n.t !== 'street door');
 // Only the screens in the salons and the amphitheater are shown, not the COMPUTE! signage screens
 for (const k in LOGO) delete LOGO[k];
+
+// The lift lobby is simply labelled "Lifts" on the plans
+FLOORS.forEach(f => f.rooms.forEach(r => { if (r.n === 'Lift lobby') r.n = 'Lifts'; }));
