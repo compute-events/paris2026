@@ -20,10 +20,12 @@
     'Room 2': {name: 'Track 2 · Salon 3', where: '1st floor', route: 'track2'},
     'Room 3': {name: 'Track 3 · Salon 2', where: '1st floor', route: 'track3'},
     'Salle panoramique': {name: 'Sprints · Salon Panoramique', where: '3rd floor', route: 'sprints'},
+    'Guinguette': {name: 'La Guinguette des Maquereaux', where: 'island in the harbor, in front of the hotel'},
   };
   // Events that are not in pretalx
   const LOCAL = [
-    // e.g. {id: 'social', title: '…', start: '2026-11-25T18:00:00+01:00', end: '…', room: '…', type: 'Social', abstract: '…'},
+    {id: 'guinguette', title: 'Evening at the guinguette', start: '2026-11-25T18:30:00+01:00', end: '2026-11-25T22:00:00+01:00', room: 'Guinguette', type: 'Social',
+     abstract: 'After the first day, join us at La Guinguette des Maquereaux, on the little island in the harbor right in front of the hotel (Square Tino Rossi, Port de Plaisance), from 18:30 to 22:00.'},
   ];
   const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   const tx = v => (v && typeof v === 'object') ? (v.en ?? Object.values(v)[0] ?? '') : (v ?? '');

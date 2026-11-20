@@ -166,6 +166,11 @@
           <p>Each booth has a 1.2 × 0.7 m table, room for a roll-up banner, and power nearby. Breaks and the buffet are in the same room. <a href="#inside/plaisance">Show the booths</a></p>
         </article>
       </div>
+      <div class="c26 c26-evening" id="evening">
+        <span class="overline">Wednesday 25 November · 18:30 to 22:00</span>
+        <h3>Evening at the guinguette</h3>
+        <p>After the first day, join us at <b>La Guinguette des Maquereaux</b>, on the little island in the harbor right in front of the hotel (Square Tino Rossi, Port de Plaisance). <a href="#venue-map" class="c26-evening__link">Show on the map</a></p>
+      </div>
       <ul class="c26 c26-good">
         <li><b>Talks:</b> Track 1 in the grand amphitheater (ground floor); Track 2 in Salon 3 and Track 3 in Salon 2 (1st floor). Birds of a Feather sessions in Salon 1.</li>
         <li><b>Breaks, buffet and sponsors</b> in the Salon Plaisance, 2nd floor. <b>Friday sprints</b> in the Salon Panoramique, 3rd floor.</li>
@@ -370,6 +375,12 @@
         .addTo(map)
         .bindPopup('<strong style="color:#f2c94c">Hôtel du Port</strong><br>8 rue du Port<br>94130 Nogent-sur-Marne')
         .bindTooltip('Hôtel du Port', { permanent: true, direction: 'bottom', offset: [0, 4] });
+
+      // Wednesday evening: La Guinguette des Maquereaux, on the islet in the harbor (Square Tino Rossi, OpenStreetMap)
+      L.circleMarker([48.83166, 2.48929], { radius: 7, color: '#0a1628', weight: 2, fillColor: '#e07535', fillOpacity: 1 })
+        .addTo(map)
+        .bindPopup('<strong style="color:#e07535">La Guinguette des Maquereaux</strong><br>Wednesday 25 November, 18:30–22:00<br>Square Tino Rossi, Port de Plaisance')
+        .bindTooltip('Guinguette · Wed evening', { permanent: true, direction: 'right', offset: [8, 0] });
 
       // Show the whole trip: central Paris (Châtelet, Saint-Lazare) to the venue
       var tripPoints = R.stopsA.concat(R.stopsE).map(function (s) { return [s[0], s[1]]; })
