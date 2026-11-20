@@ -310,8 +310,8 @@
 /* 3D on phones: the map card fills the screen between the site header and the quick bar,
    and the page snaps to it when scrolled close; the rest of the page scrolls as usual */
 @media (max-width: 899px) {
-  html.c26-snap { scroll-snap-type: y proximity; scroll-padding-top: var(--nav-h); }
-  .c26-map.is-3d { scroll-snap-align: start; display: flex; flex-direction: column; height: calc(100dvh - var(--nav-h) - 60px - env(safe-area-inset-bottom, 0px)); }
+  html.c26-snap { scroll-snap-type: y proximity; }   /* the offset under the header comes from .c26-map's scroll-margin-top */
+  .c26-map.is-3d { scroll-snap-align: start; display: flex; flex-direction: column; height: calc(100dvh - var(--nav-h) - 8px - 60px - env(safe-area-inset-bottom, 0px)); }
   .c26-map.is-3d .c26-map__3d { flex: 1; min-height: 0; display: flex; flex-direction: column; }
   .c26-map.is-3d .c26-map__canvas { flex: 1; height: auto; min-height: 0; }
 }
