@@ -330,3 +330,5 @@
   .c26-map:not(.is-3d) .c26-plan { flex: 1; min-height: 0; }
   .c26-map:not(.is-3d) .c26-plan svg { height: 100%; }
 }
+
+.c26-evening .c26-evening__link { color: var(--space); font-weight: 700; text-decoration: underline; }
