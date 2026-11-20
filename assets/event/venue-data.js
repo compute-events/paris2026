@@ -270,7 +270,8 @@ const PLACES = [
   {id:'cloak',   short:'Cloakroom', name:'Cloakroom · bags',       floor:2, rooms:['Cloakroom · bags'], how:'2nd floor, next to the lifts. Although it’s in a safe location, it is not attended, so keep valuables with you.'},
   {id:'terrace', short:'Terrace', name:'Terrace',             floor:2, rooms:['Terrace'], how:'2nd floor, outside the Salon Plaisance, on top of the salons. Outdoor stairs lead up to the Panoramique balcony.'},
   {id:'wc',      short:'Toilets', name:'Toilets',                floor:1, all:true, kind:'wc', rooms:[], how:'There are toilets on every floor; the plans show the ones next to the main staircase.'},
-  {id:'lifts',   short:'Lifts', name:'Lifts & main stairs',    floor:1, all:true, rooms:['ASC 1','ASC 2','Main staircase'], how:'In the hotel’s core, by the hotel lobby. They connect all floors.'},
+  {id:'lifts', cam:'northeast',   short:'Lifts', name:'Lifts & main stairs',    floor:1, all:true, rooms:['ASC 1','ASC 2','Main staircase'], how:'In the hotel’s core, by the hotel lobby. They connect all floors.'},
+  {id:'lobby', cam:'northeast', short:'Lobby · luggage', name:'Hotel lobby · luggage', floor:0, rooms:['Hotel lobby'], how:'Ground floor, through the hotel’s main entrance on the north side. The reception there keeps luggage; the lifts are right behind it.'},
 ];
 // How each floor connects to the others, shown under its plan
 const ACCESS = {
