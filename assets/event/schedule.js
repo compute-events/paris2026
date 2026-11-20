@@ -54,6 +54,7 @@
       <div class="c26-days" role="tablist" aria-label="Day"></div>
       <div class="c26-filters">
         <button type="button" class="c26-chip" data-saved aria-pressed="false">★ My schedule</button>
+        <button type="button" class="c26-chip c26-chip--now" data-now hidden>● Now</button>
         <select class="c26-chip c26-chip--sel" data-room aria-label="Room"><option value="">All rooms</option></select>
         <select class="c26-chip c26-chip--sel" data-topic aria-label="Track or tag"><option value="">All topics</option></select>
         <a class="c26-chip c26-chip--link" href="${EVENT}schedule/" target="_blank" rel="noopener" title="Full schedule on pretalx" aria-label="Full schedule on pretalx">pretalx ↗</a>
@@ -126,6 +127,27 @@
   const who = t => t.persons.map(p => p.name).filter(Boolean).join(', ');
 
   const ALL = 'all';   // day tab showing the whole program, one day below the other
+  // During the event: a "Now" button that jumps to the current (or next) time slot of today
+  const nowBtn = () => $('[data-now]');
+  function nowTarget() {
+    const t = Date.now(), today = keyOf(new Date());
+    const slots = [...list.querySelectorAll('.c26-slot[data-t]')].filter(el => keyOf(new Date(+el.dataset.t)) === today);
+    // the most recently started slot that is still running (a long BoF also counts as "now"), else the next one
+    return slots.filter(el => el.classList.contains('is-now')).pop() || slots.find(el => +el.dataset.t > t) || null;
+  }
+  function updateNow() {
+    const today = keyOf(new Date()), on = talks.some(t => t.day === today && t.end > new Date());
+    nowBtn().hidden = !on;
+    if (on) nowBtn().textContent = list.querySelector('.c26-slot.is-now') ? '● Now' : 'Next ↓';
+  }
+  function jumpNow() {
+    const today = keyOf(new Date());
+    if (curDay !== ALL && curDay !== today) { curDay = today; renderDays(); render(); }
+    const el = nowTarget(); if (!el) return;
+    const navH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 80;
+    scrollTo({top: el.getBoundingClientRect().top + scrollY - navH - bar.offsetHeight - 8, behavior: 'smooth'});
+  }
+
   function render() {
     const now = new Date();
     // breaks shorter than 10 min ("Room Change") are noise on a phone
@@ -133,7 +155,7 @@
     if (curRoom) items = items.filter(t => t.room === curRoom || (t.brk && !t.room));
     if (curTopic) items = items.filter(t => t.brk || (curTopic === FORMAT_BOF ? isBof(t) : t.track?.name === curTopic || (t.tags || []).some(g => g.name === curTopic)));
     if (onlySaved) items = items.filter(t => saved.has(t.id));
-    if (!items.length) { list.innerHTML = `<p class="c26-empty">${onlySaved ? `Nothing saved ${curDay === ALL ? '' : 'for this day '}yet. Tap ☆ on a talk to add it here.` : 'Nothing scheduled.'}</p>`; return; }
+    if (!items.length) { list.innerHTML = `<p class="c26-empty">${onlySaved ? `Nothing saved ${curDay === ALL ? '' : 'for this day '}yet. Tap ☆ on a talk to add it here.` : 'Nothing scheduled.'}</p>`; updateNow(); return; }
     const slots = [];
     items.forEach(t => { const k = +t.start; let s = slots.find(s => s.k === k); if (!s) slots.push(s = {k, start: t.start, items: []}); s.items.push(t); });
     let lastDay = null;
@@ -143,7 +165,7 @@
       lastDay = day;
       const end = new Date(Math.max(...s.items.map(t => +t.end)));
       const cls = (now >= s.start && now < end ? ' is-now' : now >= end ? ' is-past' : '') + (s.items.every(t => t.brk) ? ' c26-slot--brk' : '');
-      return head + `<div class="c26-slot${cls}${curRoom ? '' : ' c26-slot--cols'}"><div class="c26-slot__t">${curDay === ALL ? `<span class="wd">${esc(wd.format(s.start))}</span> ` : ''}${hm.format(s.start)}<small>${hm.format(end)}</small></div><div class="c26-slot__items">` +
+      return head + `<div class="c26-slot${cls}${curRoom ? '' : ' c26-slot--cols'}" data-t="${s.k}"><div class="c26-slot__t">${curDay === ALL ? `<span class="wd">${esc(wd.format(s.start))}</span> ` : ''}${hm.format(s.start)}<small>${hm.format(end)}</small></div><div class="c26-slot__items">` +
         s.items.map(t => t.brk
           ? `<div class="c26-brk"><b>${esc(t.title)}</b><span>${hm.format(t.start)}–${hm.format(t.end)}</span></div>`
           : `<div class="c26-talk${isBof(t) ? ' c26-talk--bof' : ''}" role="button" tabindex="0" data-id="${esc(t.id)}" style="${t.track ? `--tc:${esc(t.track.color)};` : ''}${roomRank(t.room) < ROOM_ORDER.length ? `--col:${roomRank(t.room) + 1}` : ''}">
@@ -153,6 +175,7 @@
               <button class="c26-star" type="button" aria-pressed="${saved.has(t.id)}" aria-label="Save to my schedule" data-star="${esc(t.id)}">${saved.has(t.id) ? '★' : '☆'}</button>
             </div>`).join('') + `</div></div>`;
     }).join('');
+    updateNow();
   }
   function renderDays() {
     $('.c26-days').innerHTML = days.map(d => { const dt = new Date(d + 'T12:00:00Z'); return `<button type="button" role="tab" data-day="${d}" aria-selected="${d === curDay}"><b>${wd.format(dt)} ${dnum.format(dt)}</b><small>${mon.format(dt)}${talks.some(t => t.day === d && /sprint/i.test(t.title)) ? ' · sprints' : ''}</small></button>`; }).join('')
@@ -191,6 +214,7 @@
     const top = host.getBoundingClientRect().top + scrollY - navH;
     if (scrollY > top) scrollTo({top, behavior: 'instant'});
   });
+  nowBtn().addEventListener('click', jumpNow);
   $('[data-saved]').addEventListener('click', e => { onlySaved = !onlySaved; e.currentTarget.setAttribute('aria-pressed', onlySaved); render(); });
   $('[data-room]').addEventListener('change', e => { curRoom = e.target.value; render(); });
   $('[data-topic]').addEventListener('change', e => { curTopic = e.target.value; render(); });
