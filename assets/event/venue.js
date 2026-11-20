@@ -17,8 +17,9 @@
           <div class="c26-map__floors" role="tablist" aria-label="Floor"></div>
           <button class="c26-map__btn c26-map__mode" type="button">View in 3D</button>
         </div>
-        <div class="c26-plan"><p class="c26-map__msg">Loading the floor plans…</p></div>
+        <div class="c26-chips" role="group" aria-label="Where is…?"></div>
         <p class="c26-map__note" aria-live="polite"></p>
+        <div class="c26-plan"><p class="c26-map__msg">Loading the floor plans…</p></div>
         <div class="c26-map__3d" hidden>
           <div class="c26-map__canvas" aria-label="3D model of the venue floors. Drag to turn, pinch or scroll to zoom."></div>
           <button class="c26-map__btn c26-map__reset" type="button">Reset view</button>
@@ -60,6 +61,9 @@
       modeBtn.textContent = '3D not available on this device'; return;
     }
     mode = '3d'; plan.hidden = true; box3d.hidden = false;
+    // 3D fills the screen on phones; the page snaps to it when scrolled close (see .c26-map.is-3d)
+    $('.c26-map').classList.add('is-3d'); document.documentElement.classList.add('c26-snap');
+    if (matchMedia('(max-width: 899px)').matches) $('.c26-map').scrollIntoView({block: 'start'});
     modeBtn.disabled = false; modeBtn.textContent = 'Back to 2D';
     venue.start(); venue.floor(null); venue.place(place);
     host.querySelectorAll('.c26-map__floors button').forEach(b => b.setAttribute('aria-selected', 'false'));
@@ -67,6 +71,7 @@
   function to2d() {
     mode = '2d'; if (venue) venue.stop();
     box3d.hidden = true; plan.hidden = false; modeBtn.textContent = 'View in 3D';
+    $('.c26-map').classList.remove('is-3d'); document.documentElement.classList.remove('c26-snap');
     setFloor(floor);
   }
 
@@ -84,14 +89,18 @@
     const ps = $('.c26-places');
     ps.innerHTML = '<h3 class="c26-routes__h">Where is…?</h3><div class="c26-places__list">' + PLACES.map(p =>
       `<button type="button" class="c26-place" data-p="${p.id}" aria-pressed="false">${esc(p.name)}<small>${p.all ? 'Every floor' : p.floor === 0 ? 'Ground' : FLOORS[p.floor].name.replace(' floor', '')}</small></button>`).join('') + '</div>';
-    ps.addEventListener('click', e => { const b = e.target.closest('.c26-place'); if (b) pick(place && place.id === b.dataset.p ? null : b.dataset.p); });
+    // phones: the same places as a row of chips inside the map, so picking one never scrolls the page
+    const cs = $('.c26-chips');
+    cs.innerHTML = '<span class="c26-chips__h">Where is</span>' + PLACES.map(p => `<button type="button" class="c26-place c26-chip2" data-p="${p.id}" aria-pressed="false">${esc(p.short || p.name)}</button>`).join('');
+    host.addEventListener('click', e => { const b = e.target.closest('.c26-place'); if (b) pick(place && place.id === b.dataset.p ? null : b.dataset.p); });
   }
   function pick(id) {
     place = PLACES.find(p => p.id === id) || null;
     host.querySelectorAll('.c26-place').forEach(b => b.setAttribute('aria-pressed', String(!!place && b.dataset.p === place.id)));
-    if (mode === '3d') { venue.place(place); note.innerHTML = place ? `<b>${esc(place.name)}</b> ${esc(place.how)}` : ''; }
+    if (mode === '3d') { venue.place(place); note.innerHTML = place ? `<b>${esc(place.name)}</b> ${esc(place.how)}` : 'Tap a place to find it in the building.'; }
     else if (place && !place.all) setFloor(place.floor); else draw();
-    if (place && matchMedia('(max-width: 899px)').matches) $('.c26-map').scrollIntoView({block: 'start'});
+    const chip = place && host.querySelector(`.c26-chip2[data-p="${place.id}"]`);
+    if (chip) chip.scrollIntoView({block: 'nearest', inline: 'nearest'});
   }
 
   // #inside, #inside/<place id>, #inside/floor-<n>
