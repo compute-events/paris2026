@@ -285,3 +285,29 @@
   paint-order: stroke; stroke: rgba(251,251,248,.92); stroke-width: .22px; stroke-linejoin: round;
 }
 .c26-plan .lbl { stroke-width: .3px; }
+
+/* "Where is" chips: on phones and tablets they replace the list below the map */
+.c26-chips {
+  display: flex; align-items: center; gap: 6px; padding: 8px 10px; overflow-x: auto; scrollbar-width: none;
+  background: var(--paper); border-bottom: 1px solid var(--line);
+  -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent);
+}
+.c26-chips::-webkit-scrollbar { display: none; }
+.c26-chips__h { flex: none; font: 600 .75rem var(--font-body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding-right: 2px; }
+.c26-chip2 {
+  flex: none; min-height: 36px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: #fff;
+  color: var(--text-dark); font: 600 .85rem var(--font-head); white-space: nowrap; cursor: pointer;
+}
+.c26-chip2[aria-pressed="true"] { background: var(--beam-gold); border-color: var(--beam-gold); color: var(--space); }
+.c26-map__note { border-top: 0; border-bottom: 1px solid var(--line); }
+@media (max-width: 899px) { .c26-places { display: none; } }
+@media (min-width: 900px) { .c26-chips { display: none; } }
+
+/* 3D on phones: the map card fills the screen between the site header and the quick bar,
+   and the page snaps to it when scrolled close; the rest of the page scrolls as usual */
+@media (max-width: 899px) {
+  html.c26-snap { scroll-snap-type: y proximity; scroll-padding-top: var(--nav-h); }
+  .c26-map.is-3d { scroll-snap-align: start; display: flex; flex-direction: column; height: calc(100dvh - var(--nav-h) - 60px - env(safe-area-inset-bottom, 0px)); }
+  .c26-map.is-3d .c26-map__3d { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+  .c26-map.is-3d .c26-map__canvas { flex: 1; height: auto; min-height: 0; }
+}
