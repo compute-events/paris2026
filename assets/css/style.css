@@ -1904,3 +1904,19 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); }
   .c26-quick svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round; }
   body.has-c26-quick { padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)); }
 }
+
+/* Chat panel opened from the phone quick bar (assets/js/main.js) */
+.c26-chat {
+  width: calc(100% - 24px); max-width: 440px; margin: auto auto 12px; padding: 22px 20px calc(20px + env(safe-area-inset-bottom, 0px));
+  border: 0; border-radius: 18px; background: var(--cream); color: var(--text-dark);
+}
+.c26-chat::backdrop { background: rgba(10,22,40,.6); }
+.c26-chat h2 { font-size: 1.35rem; margin-bottom: 8px; }
+.c26-chat h3 { font-size: 1rem; margin: 20px 0 4px; }
+.c26-chat p { margin: 0 0 8px; color: var(--text-mid); font-size: .95rem; }
+.c26-chat__open { display: flex; justify-content: center; margin: 14px 0 4px; }
+.c26-chat__x { position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(10,22,40,.15); background: #fff; cursor: pointer; }
+.c26-chat__host { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.c26-chat__host code { padding: 6px 10px; border-radius: 8px; background: #fff; border: 1px solid rgba(10,22,40,.12); color: var(--navy); font-size: .9rem; }
+.c26-chat__copy { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--navy); background: none; color: var(--navy); font-weight: 600; cursor: pointer; }
+.c26-chat__stores a { color: var(--navy-mid); font-weight: 600; text-decoration: underline; }
