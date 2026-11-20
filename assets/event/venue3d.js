@@ -176,12 +176,13 @@ window.Venue3D = function Venue3D(host, ui) {
   }
 
   /* ---------- state: active route, visible floors, camera ---------- */
-  let act = null, solo = null;
+  let act = null;
+  let shown = new Set(FLOORS.map(f => f.id));   // floors switched on (toggled from the floor buttons)
   function apply() {
-    floors.forEach((g, i) => g.visible = solo === null || solo === i);
-    stairs.visible = solo === null;
+    floors.forEach((g, i) => g.visible = shown.has(i));
+    stairs.visible = shown.size === FLOORS.length;   // the stairs between floors only make sense with every floor shown
     tubes.forEach(t => {   // a route is only drawn once it is picked in the route list
-      t.visible = t.userData.r === act && (solo === null || t.userData.fl.includes(solo));
+      t.visible = t.userData.r === act && t.userData.fl.some(f => shown.has(f));
       t.material.opacity = t.userData.u ? .4 : 1;
     });
     dirty = true;
@@ -229,9 +230,10 @@ window.Venue3D = function Venue3D(host, ui) {
 
   return {
     route(id) { act = id; apply(); },
-    place(p) { highlight(p); act = p && p.route || null; apply(); if (p) { solo = null; apply(); view(p.all ? null : p.floor, true, p.cam, p.cam && !p.all ? centroid(p.area || FLOORS[p.floor].rooms.find(r => p.rooms.includes(r.n)).p) : null); } },
-    floor(i) { solo = i; apply(); view(i); },
-    reset() { solo = null; act = null; apply(); view(null); },
+    place(p) { highlight(p); act = p && p.route || null; apply(); if (p) { shown = new Set(FLOORS.map(f => f.id)); apply(); view(p.all ? null : p.floor, true, p.cam, p.cam && !p.all ? centroid(p.area || FLOORS[p.floor].rooms.find(r => p.rooms.includes(r.n)).p) : null); } },
+    floor(i) { shown = new Set(i === null ? FLOORS.map(f => f.id) : [i]); apply(); view(i); },
+    show(ids) { shown = new Set(ids); apply(); },   // any set of floors, camera unchanged
+    reset() { shown = new Set(FLOORS.map(f => f.id)); act = null; apply(); view(null); },
     start() { if (!running) { running = true; size(); loop(); } },
     stop() { running = false; },
     controls(on) { ctl.enabled = on; },   // off while the page should scroll over the model (touch screens)
