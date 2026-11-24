@@ -469,3 +469,6 @@ WELCOME.at = [9.5, 7.4];
   g.pillars = [[38.6, OVER], [42.3, OVER]];
   g.notes = g.notes.map(n => n.t === 'stage' ? {...n, y: 32.1} : n);
   const pr = FLOORS[1].rooms.find(r => r.n === 'Projection room'); pr.p = R(34.8,16.0,46.1,OVER); }
+
+// No columns drawn in the amphitheater
+FLOORS[0].pillars = [];
