@@ -32,7 +32,10 @@
   const plan = $('.c26-plan'), box3d = $('.c26-map__3d'), canvas = $('.c26-map__canvas'), modeBtn = $('.c26-map__mode');
   let floor = 0, place = null, mode = '2d', venue = null, ready = false, pending = null;
 
-  const load = src => new Promise((ok, fail) => { const s = document.createElement('script'); s.src = BASE + src; s.onload = ok; s.onerror = fail; document.head.appendChild(s); });
+  // bumped with every change to the venue files: the plans and the 3D model are loaded on demand, and browsers keep
+  // serving old copies of on-demand scripts even after a hard reload of the page
+  const REV = '2026-11-24r';
+  const load = src => new Promise((ok, fail) => { const s = document.createElement('script'); s.src = BASE + src + '?v=' + REV; s.onload = ok; s.onerror = fail; document.head.appendChild(s); });
 
   /* ---------- 2D ---------- */
   const note = $('.c26-map__note');
@@ -52,7 +55,7 @@
     mark3d(); venue.show([...shown]);
     if (!place) {
       const names = [...shown].sort().map(i => i === 0 ? 'Ground' : FLOORS[i].name.replace(' floor', ''));
-      note.innerHTML = shown.size === FLOORS.length ? '<b>All floors</b> The lifts and the main stairs connect every floor. Tap a floor to hide or show it.' : `<b>Showing ${esc(names.join(', '))}</b> Tap a floor to hide or show it.`;
+      note.innerHTML = shown.size === FLOORS.length ? '<b>All floors</b> The main lift and the main stairs connect every floor. Tap a floor to hide or show it.' : `<b>Showing ${esc(names.join(', '))}</b> Tap a floor to hide or show it.`;
     }
   }
   // i = null: all floors (3D only)
@@ -60,7 +63,7 @@
     if (i !== null) floor = i;
     host.querySelectorAll('.c26-map__floors button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.f === String(i))));
     if (mode === '2d') draw();
-    else { venue.floor(i); if (!place) note.innerHTML = i === null ? '<b>All floors</b> The lifts and the main stairs connect every floor.' : `<b>${esc(i === 0 ? 'Ground floor' : FLOORS[i].name)}</b> ${esc(ACCESS[i])}`; }
+    else { venue.floor(i); if (!place) note.innerHTML = i === null ? '<b>All floors</b> The main lift and the main stairs connect every floor.' : `<b>${esc(i === 0 ? 'Ground floor' : FLOORS[i].name)}</b> ${esc(ACCESS[i])}`; }
   }
 
   /* ---------- 3D, on request ---------- */
@@ -81,7 +84,7 @@
     $('.c26-map').classList.add('is-3d'); document.documentElement.classList.add('c26-snap');
     if (matchMedia('(max-width: 899px)').matches) $('.c26-map').scrollIntoView({block: 'start'});
     modeBtn.disabled = false; modeBtn.textContent = '2D'; modeBtn.title = 'Back to the 2D plans';
-    if (!place) note.innerHTML = '<b>All floors</b> The lifts and the main stairs connect every floor.';
+    if (!place) note.innerHTML = '<b>All floors</b> The main lift and the main stairs connect every floor.';
     venue.start(); venue.floor(null); venue.place(place);
     allOn();
   }
