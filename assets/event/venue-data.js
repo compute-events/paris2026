@@ -559,3 +559,7 @@ FLOORS[3].rooms = FLOORS[3].rooms.filter(r => r.n !== 'Not detailed');
   f.doors = f.doors.filter(([a, b]) => !(a[1] === 9.5 && b[1] === 9.5)).map(([a, b]) => a[0] === 10 && b[0] === 10 ? [[W, a[1]], [W, b[1]]] : [a, b]);
   f.doors.push([[W,7.9],[W,9.3]]);
   f.notes = f.notes.map(n => n.t === 'entrance' ? {...n, x: 11.3, y: 8.6} : n); }
+
+// 1st floor: the restored second toilet block and its passage are on the lower side of the three steps, like the
+// salon d'attente next to them
+FLOORS[1].rooms.filter(r => (r.k === 'wc' && r.p[0][0] === 15.6) || r.n === 'to WC').forEach(r => r.dz = -DROP);
