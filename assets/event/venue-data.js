@@ -548,3 +548,14 @@ FLOORS.forEach(f => { f.rooms = f.rooms.filter(r => r.k !== 'kitchen' || r.count
 
 // 3rd floor: the area above the cloakroom has no use for the event
 FLOORS[3].rooms = FLOORS[3].rooms.filter(r => r.n !== 'Not detailed');
+
+// 2nd floor: the main stairs arrive on the south half of the stair hall's east edge (x 8.4–10.6). Move the wall
+// between the corridor and the Plaisance/cloakroom from x 10 to 10.6 so the arriving flight lands fully in the corridor;
+// the Plaisance entrance is in that wall, right by the stairs.
+{ const f = FLOORS[2], W = 10.6;
+  const move = r => { r.p = r.p.map(([x, y]) => [x === 10 ? W : x, y]); };
+  f.rooms.filter(r => r.n === 'Salon Plaisance' || /^Cloakroom/.test(r.n)).forEach(move);
+  const c = f.rooms.find(r => r.n === 'Corridor' && r.p[0][0] === 5.6); if (c) c.p = R(5.6,7.3,W,9.5);
+  f.doors = f.doors.filter(([a, b]) => !(a[1] === 9.5 && b[1] === 9.5)).map(([a, b]) => a[0] === 10 && b[0] === 10 ? [[W, a[1]], [W, b[1]]] : [a, b]);
+  f.doors.push([[W,7.9],[W,9.3]]);
+  f.notes = f.notes.map(n => n.t === 'entrance' ? {...n, x: 11.3, y: 8.6} : n); }
