@@ -372,3 +372,7 @@ PLACES.forEach(p => { p.how = p.how.replace('Take the lifts or the main stairs',
   if (c) Object.assign(c, {p: [[0.2,0.3],[10,0.3],[10,7.3],[5.6,7.3],[5.6,5.5],[0.2,5.5]], at: [5.2,3], isoAt: [5.2,3]}); }
 // The lift is by the three steps in the 1st-floor corridor
 PLACES.find(p => p.id === 'lifts').how = 'The lift is near the main staircase; on the 1st floor it opens right next to the three steps in the corridor. It serves every floor. The lifts in the main lobby are for hotel guests only.';
+
+// Projection room ("cabine de projection", 31 m² on the architect's plan): on the 1st floor, above the
+// amphitheater's east end, looking west over the seats to the screen
+FLOORS[1].rooms.push({n:'Projection room', p:R(34.8,16.4,41.6,21.4), k:'amphi', fs:.5, iso:true, dz:-DROP});
