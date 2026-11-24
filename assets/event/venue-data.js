@@ -496,3 +496,9 @@ PLACES.find(p => p.id === 'welcome').area = R(9.2,7.8,11.4,9.5);
   f.doors = f.doors.filter(([a, b]) => !(a[1] === 10.4 && b[1] === 10.4)).concat([[[10.05,9.5],[11.05,9.5]]]);
   f.notes = f.notes.map(n => n.t === 'entrance' ? {...n, x: 10.6, y: 8.8} : n); }
 WELCOME.boxes = [];   // the welcome desk is a single table, no T-shirt boxes
+
+// Plaisance floor: only the toilets in the entry wing; drop the two blocks copied from the floor below and their
+// corridor and doors
+{ const f = FLOORS[2];
+  f.rooms = f.rooms.filter(r => !(r.k === 'wc' && (r.p[0][0] === 11.1 || r.p[0][0] === 15.6)) && !(r.k === 'circ' && r.p[0][0] === 11.1 && r.p[0][1] === 10.8));
+  f.doors = f.doors.filter(([a, b]) => !(a[1] === 11.8 && b[1] === 11.8)); }
