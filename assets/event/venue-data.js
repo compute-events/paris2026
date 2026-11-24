@@ -538,3 +538,10 @@ FLOORS.forEach(f => { f.rooms = f.rooms.filter(r => r.k !== 'kitchen' || r.count
   const f3 = FLOORS[3];
   f3.rooms = f3.rooms.filter(r => r.n !== 'to WC' && !(r.k === 'circ' && r.p[0][0] === 11.1 && r.p[0][1] === 10.8));
   f3.rooms.push({n:'', p:R(11.45,9.5,13.45,10.4), k:'circ'}); }
+
+// 1st floor: the architect's plan does show two toilet blocks side by side south of the lift (15.94 m² with three
+// WCs, and 8.36 m² with three WCs and basins, reached through a small passage from the salon d'attente): restore both
+{ const f = FLOORS[1];
+  if (!f.rooms.some(r => r.k === 'wc' && r.p[0][0] === 15.6)) f.rooms.push({n:'WC', p:R(15.6,11.8,18.7,15.4), k:'wc', fs:.7});
+  if (!f.rooms.some(r => r.n === 'to WC')) f.rooms.push({n:'to WC', p:R(14.7,10.6,18.9,11.8), k:'circ', fs:.4, at:[16.8,11.2]});
+  f.doors.push([[17.2,11.2],[18.6,11.2]]); }
