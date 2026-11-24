@@ -160,9 +160,9 @@ window.Venue3D = function Venue3D(host, ui) {
     for (let z = 0; z < 3; z++) { const base = lvlY(z), rise = lvlY(z+1) - lvlY(z); stairs = link(z, z + 1);
       // flights start and end at y0, where the landings of the floors end (10.8–11.1 m), so they meet the floor
       const y0 = 10.8, run = 14 - y0;
-      for (let i = 0; i < n; i++) step(6, 8.2, y0 + run*i/n, y0 + run*(i+1)/n, base + rise/2*(i+1)/n, rise/2/n);
+      for (let i = 0; i < n; i++) step(8.4, 10.6, y0 + run*i/n, y0 + run*(i+1)/n, base + rise/2*(i+1)/n, rise/2/n);   // up from next to the welcome desk
       step(6, 10.6, 14, 15.3, base + rise/2, .15);
-      for (let i = 0; i < n; i++) step(8.4, 10.6, 14 - run*(i+1)/n, 14 - run*i/n, base + rise/2 + rise/2*(i+1)/n, rise/2/n);
+      for (let i = 0; i < n; i++) step(6, 8.2, 14 - run*(i+1)/n, 14 - run*i/n, base + rise/2 + rise/2*(i+1)/n, rise/2/n);
     }
   }
   { const rise = lvlY(1) - lvlY(0) - DROP, n = 24; stairs = link(0, 1);   // event stairs, ground → 1st (lower part of the floor)

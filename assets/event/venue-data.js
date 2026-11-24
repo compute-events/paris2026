@@ -319,7 +319,7 @@ WELCOME.at = [9.6, 9.3];   // label position
 // entry wing); the kitchen sits in the inner corner; the lift is carved out of the wing
 { const f = FLOORS[2];
   const p = f.rooms.find(r => r.n === 'Salon Plaisance');
-  if (p) p.p = [[10,0.3],[36.9,0.3],[36.9,15.9],[19.4,15.9],[19.4,7.8],[16.5,7.8],[16.5,10.8],[13.9,10.8],[13.9,8.6],[12.4,8.6],[12.4,10.8],[10,10.8]];
+  if (p) p.p = [[10,0.3],[36.9,0.3],[36.9,15.9],[19.4,15.9],[19.4,7.8],[16.5,7.8],[16.5,10.8],[13.9,10.8],[13.9,8.6],[12.4,8.6],[12.4,10.8],[11,10.8],[11,11.1],[10,11.1]];
   f.rooms = f.rooms.filter(r => !(r.k === 'service' && r.p[0][0] === 16.5 && r.p[0][1] === 7.8));   // the corner block becomes the kitchen
   const k = f.rooms.find(r => r.n === 'Kitchen'); if (k) k.p = R(16.5,7.8,19.4,10.8);
   f.doors = f.doors.filter(([a, b]) => !(a[0] === 16.5 && b[0] === 16.5));   // old kitchen door
@@ -376,3 +376,7 @@ FLOORS[1].rooms.push({n:'Projection room', p:R(34.8,16.4,41.6,21.4), k:'amphi', 
 
 // Ground floor: no toilets shown (the two "WC?" were guesses)
 FLOORS[0].rooms = FLOORS[0].rooms.filter(r => r.k !== 'wc');
+
+// Ground floor: the main lobby reaches the main lift (south of the welcome desk)
+{ const l = FLOORS[0].rooms.find(r => r.n === 'Hotel lobby');
+  if (l) l.p = [[0.2,0.3],[12.4,0.3],[12.4,11.1],[5.6,11.1],[5.6,5.5],[0.2,5.5]]; }
