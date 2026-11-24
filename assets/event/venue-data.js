@@ -518,3 +518,7 @@ FLOORS[3].doors = FLOORS[3].doors.filter(([a, b]) => !(a[1] === 14.1 && b[1] ===
 WELCOME.tables = [[9.6, 8.4], [10.8, 8.4]];
 WELCOME.at = [10.2, 8.4];
 PLACES.find(p => p.id === 'welcome').area = R(8.9,7.9,11.45,9.5);
+
+// Kitchens are not needed on the map: drop the kitchen rooms (the bar counter stays); the Plaisance and Panoramique
+// keep their own walls
+FLOORS.forEach(f => { f.rooms = f.rooms.filter(r => r.k !== 'kitchen' || r.counter); });

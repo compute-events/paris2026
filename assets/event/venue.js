@@ -34,7 +34,7 @@
 
   // bumped with every change to the venue files: the plans and the 3D model are loaded on demand, and browsers keep
   // serving old copies of on-demand scripts even after a hard reload of the page
-  const REV = '2026-11-24j';
+  const REV = '2026-11-24k';
   const load = src => new Promise((ok, fail) => { const s = document.createElement('script'); s.src = BASE + src + '?v=' + REV; s.onload = ok; s.onerror = fail; document.head.appendChild(s); });
 
   /* ---------- 2D ---------- */
