@@ -512,3 +512,9 @@ PLACES.find(p => p.id === 'welcome').area = R(9.3,7.9,11.4,9.4);
 // 3rd floor: no toilets shown for now (location to be confirmed)
 FLOORS[3].rooms = FLOORS[3].rooms.filter(r => r.k !== 'wc');
 FLOORS[3].doors = FLOORS[3].doors.filter(([a, b]) => !(a[1] === 14.1 && b[1] === 14.1));
+
+// Compute! desk: the two tables joined on their short sides into one 2.4 m line, closing the gap between the stair
+// hall and the lift (north–south), with about 0.8 m behind it (west) for the people at the desk
+WELCOME.tables = [[9.6, 8.4], [10.8, 8.4]];
+WELCOME.at = [10.2, 8.4];
+PLACES.find(p => p.id === 'welcome').area = R(8.9,7.9,11.45,9.5);
