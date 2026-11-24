@@ -86,7 +86,7 @@ window.Venue3D = function Venue3D(host, ui) {
       const s = label('Reception · luggage', 1.1, '--ink2'); s.position.set(tx, 2.2, ty); g.add(s);
       WELCOME.tables.forEach(([x,y]) => { const [wx,wy] = T(x,y); g.add(box(.6,.75,1.2, new THREE.MeshLambertMaterial({color: col('--paper')}), wx,.375,wy)); });
       WELCOME.boxes.forEach(([x,y]) => { const [bx,by] = T(x + .3, y + .2); for (let k = 0; k < 2; k++) g.add(box(.4,.38,.6, new THREE.MeshLambertMaterial({color: col('--kitchen')}), bx, .2 + k*.4, by)); });
-      const w = label('Welcome desk', 1.3, '--z-spons'); const [lx,ly] = T(...WELCOME.at); w.position.set(lx, 1.5, ly);   // just above the desk g.add(w);
+      const w = label(WELCOME.label || 'Welcome desk', 1.6, '--z-spons'); const [lx,ly] = T(...WELCOME.at); w.position.set(lx, 2.6, ly); w.renderOrder = 12;   // just above the desk g.add(w);
     }
     (LOGO[f.id] || []).forEach(([a,b]) => {
       const c = document.createElement('canvas'); c.width = 512; c.height = 256; const x = c.getContext('2d');

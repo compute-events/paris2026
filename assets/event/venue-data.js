@@ -502,3 +502,13 @@ WELCOME.boxes = [];   // the welcome desk is a single table, no T-shirt boxes
 { const f = FLOORS[2];
   f.rooms = f.rooms.filter(r => !(r.k === 'wc' && (r.p[0][0] === 11.1 || r.p[0][0] === 15.6)) && !(r.k === 'circ' && r.p[0][0] === 11.1 && r.p[0][1] === 10.8));
   f.doors = f.doors.filter(([a, b]) => !(a[1] === 11.8 && b[1] === 11.8)); }
+
+// Compute! desk (welcome desk): two 1.2 × 0.6 m tables side by side, east of the stair hall
+WELCOME.tables = [[10.1, 8.4], [10.1, 9.0]];
+WELCOME.label = 'Compute! desk';
+WELCOME.at = [11.15, 8.7];
+PLACES.find(p => p.id === 'welcome').area = R(9.3,7.9,11.4,9.4);
+
+// 3rd floor: no toilets shown for now (location to be confirmed)
+FLOORS[3].rooms = FLOORS[3].rooms.filter(r => r.k !== 'wc');
+FLOORS[3].doors = FLOORS[3].doors.filter(([a, b]) => !(a[1] === 14.1 && b[1] === 14.1));
