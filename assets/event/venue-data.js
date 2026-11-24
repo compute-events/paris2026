@@ -186,15 +186,16 @@ function layout(id) {
   const bands = (cx,cy) => { D.bufs.push([cx-4, cy-1.35, 8, .75], [cx-3, cy+.6, 6, .75]); };
   const grid = (x0,x1,y0,y1,step,avoid) => { for (let x=x0;x<=x1+1e-6;x+=step) for (let y=y0;y<=y1+1e-6;y+=step) { if ((avoid||[]).some(([px,py,pr])=>Math.hypot(px-x,py-y)<(pr||1.1))) continue; stand(x,y); } };
   if (id === 'C') {
-    [14.8,12.7,10.6].forEach((y,i) => booth(19.4,y,-90,i+1));
-    [22.3,24.4,26.5].forEach((x,i) => booth(x,15.9,180,i+4));
-    lounge(33,12.9,210); lounge(35.4,14.6,30);
-    bands(29.4,7.8);
-    // eating on the east side: standing tables along the east wall and around the buffet
-    grid(20.5,34.5,1.6,1.6,2.6,[]);
-    grid(24,34.4,3.8,9,2.6,[[31.9,5.3],[31.9,10.3],[26.9,5.3],[26.9,10.3],[21.9,5.3],[21.9,10.3],[25.4,7.8,2.3],[27.4,7.8,2.3],[29.4,7.8,2.3],[31.4,7.8,2.3],[33.4,7.8,2.3]]);
-    // quiet west side: work tables between the sponsor booths and the lounge
-    [28.6,30.6].forEach(x => [12.4,14.4].forEach(y => wtable(x,y)));
+    // Salon Plaisance (x 19.4–36.9 north→south, y 0.3–15.9 east→west):
+    // sponsors along the east and west walls (booths 1–3 east, 4–6 west, north to south)
+    [22.5,26.5,30.5].forEach((x,i) => booth(x,0.3,0,i+1));
+    [22.5,26.5,30.5].forEach((x,i) => booth(x,15.9,180,i+4));
+    // buffet in the middle: a closed rectangle of tables, served from all sides
+    D.bufs.push([25.6,6.4,5,.75], [25.6,8.45,5,.75], [25.6,7.15,.75,1.3], [29.85,7.15,.75,1.3]);
+    // lounge in the south-east corner
+    lounge(35.2,2.3,210); lounge(35,5.5,30);
+    // four standing tables
+    [[22.6,4.2],[22.6,11.6],[33.4,11.6],[33.6,8.6]].forEach(([x,y]) => stand(x,y));
   } else {
     [24,31].forEach(x => [7,12].forEach(y => bigtable(x,y)));
   }
@@ -203,7 +204,7 @@ function layout(id) {
 const LAYOUTS = [{floor:2, D:layout('C')}, {floor:3, D:layout('S')}];
 // area labels per floor, shared by the 2D plans and the 3D model: [text, x, y, colour token]
 const ZONES = {
-  2: [['Sponsors', 23.5, 12.9, '--z-spons'], ['Buffet', 29.4, 7.8, '--z-buffet'], ['Work area', 27.3, 13.4, '--z-relax'], ['Lounge', 36.3, 12.4, '--z-relax']],
+  2: [['Sponsors', 24.5, 3.4, '--z-spons'], ['Sponsors', 24.5, 12.8, '--z-spons'], ['Buffet', 28.1, 7.8, '--z-buffet'], ['Lounge', 33.2, 4.3, '--z-relax']],
   3: [['Sprints', 27.5, 9.5, '--z-relax']],
 };
 
@@ -250,7 +251,7 @@ TT[3] = TT[3].filter((_, i) => i % 2 === 0);                        // balcony: 
 TT[2] = [[42.7,0], [42.7,6], [42.7,12], [46.6,3], [46.6,9], [46.6,15]];   // terrace: 6 tables in two loose rows
 
 // 2nd floor: the label sits in the open south-east part of the Plaisance, away from the furniture
-{ const p = FLOORS[2].rooms.find(r => r.n === 'Salon Plaisance'); if (p) Object.assign(p, {isoAt: [35.6, 4.6], at: [35.6, 4.6], sub: ''}); }
+{ const p = FLOORS[2].rooms.find(r => r.n === 'Salon Plaisance'); if (p) Object.assign(p, {isoAt: [20.6, 8], at: [20.6, 8], sub: ''}); }
 { const s = FLOORS[2].rooms.find(r => r.n === 'Storage?'); if (s) s.n = ''; }
 
 // The fixed bar in the salon d'attente is a counter, not a room
@@ -263,7 +264,7 @@ const PLACES = [
   {id:'track2',  short:'Track 2', name:'Track 2 · Salon 3',      floor:1, rooms:['Salon 3'], how:'1st floor. From the event entrance, take the stairs straight ahead up to the foyer. From the lifts or main stairs, go through the salon d’attente.'},
   {id:'track3',  short:'Track 3', name:'Track 3 · Salon 2',      floor:1, rooms:['Salon 2'], how:'1st floor, next to Salon 1. Same way as Track 2: up the event stairs to the foyer, or through the salon d’attente from the lifts.'},
   {id:'bof',     short:'BoF room', name:'BoF room · Salon 1',     floor:1, rooms:['Salon 1'], how:'1st floor, the first room on the right in the foyer at the top of the event stairs.'},
-  {id:'coffee', short:'☕ Coffee', name:'☕ Coffee', floor:2, rooms:[], area:R(24.8,5.8,34,9.8), how:'2nd floor, at the buffet in the middle of the Salon Plaisance, during every break. Take the lifts or the main stairs.'},
+  {id:'coffee', short:'☕ Coffee', name:'☕ Coffee', floor:2, rooms:[], area:R(25.3,6.1,30.9,9.5), how:'2nd floor, at the buffet in the middle of the Salon Plaisance, during every break. Take the lifts or the main stairs.'},
   {id:'plaisance', short:'Sponsors & food', name:'Sponsors, buffet & breaks', floor:2, rooms:['Salon Plaisance'], how:'2nd floor, Salon Plaisance. Take the lifts or the main stairs, then follow the corridor to the entrance. The terrace is just outside.'},
   {id:'sprints', short:'Sprints', name:'Sprints · Salon Panoramique', floor:3, rooms:['Salon Panoramique'], how:'3rd floor, Friday only. Take the lifts or the main stairs, then the corridor past the toilets to the entrance.'},
   {id:'welcome', cam:'west', short:'Welcome', name:'Welcome desk',           floor:0, rooms:['Welcome'], how:'Ground floor, just inside the event entrance on the south side of the building.'},
@@ -291,3 +292,83 @@ for (const k in LOGO) delete LOGO[k];
 
 // The lift lobby is simply labelled "Lifts" on the plans
 FLOORS.forEach(f => f.rooms.forEach(r => { if (r.n === 'Lift lobby') r.n = 'Lifts'; }));
+
+/* ---------- corrections from the site visit (November) ---------- */
+// The one lift for the event is near the main staircase, directly next to the three steps in the 1st-floor corridor.
+// The lifts in the core (ASC 1/2) are for hotel guests and only open into the main lobby.
+const MAIN_LIFT = [13.15, 9.4];   // centre, plan coordinates
+FLOORS.forEach(f => {
+  f.rooms.forEach(r => {
+    if (r.n === 'Lifts') r.n = 'Hotel lifts';   // the landing in front of ASC 1/2
+    if (r.n === 'ASC 2') { r.isoLabel = 'Hotel lifts'; r.iso = true; }
+  });
+  f.rooms.push({n:'Lift', p:R(12.4,8.6,13.9,10.2), k:'core', fs:.42, iso:true});
+});
+
+// Welcome desk: in the hotel's main lobby, inside the main entrance (east side), no longer at the south event entrance
+WELCOME.tables = [[9.2,10.3],[10.4,10.3]];
+WELCOME.boxes = [[7.6,10.3],[8.2,10.3]];
+WELCOME.at = [9.6, 9.3];   // label position
+{ const g = FLOORS[0];
+  const w = g.rooms.find(r => r.n === 'Welcome'); if (w) Object.assign(w, {n:'', k:'circ', iso:false});
+  g.notes = g.notes.map(n => n.t === 'HOTEL ENTRANCE' ? {...n, t:'MAIN ENTRANCE'} : n).filter(n => n.t !== 'EVENT ENTRANCE');
+  g.doors = g.doors.filter(([a, b]) => !(a[0] === 46.9 && b[0] === 46.9));   // the south event entrance is not used
+}
+
+// Plaisance floor: the toilets are in the entry wing, between the kitchen and the cloakroom (as on the hotel's plan)
+{ const f = FLOORS[2];
+  f.rooms = f.rooms.filter(r => r.k !== 'wc' && !(r.k === 'circ' && r.p[0][0] === 11 && r.p[0][1] === 10.8));
+  const p = f.rooms.find(r => r.n === 'Salon Plaisance');
+  // as on the hotel's sketch: toilets just off the entry, the kitchen pushed into the corner behind them
+  if (p) p.p = [[10,0.3],[36.9,0.3],[36.9,15.9],[19.4,15.9],[19.4,7.8],[14,7.8],[14,10.8],[10,10.8]];
+  f.rooms = f.rooms.filter(r => !(r.k === 'service' && r.p[0][0] === 16.5 && r.p[0][1] === 7.8));   // the corner block becomes the kitchen
+  const k = f.rooms.find(r => r.n === 'Kitchen'); if (k) k.p = R(16.5,7.8,19.4,10.8);
+  f.rooms.push({n:'WC', p:R(14,7.8,16.5,10.8), k:'wc', fs:.55});
+  f.doors = f.doors.filter(([a, b]) => !(a[0] === 16.5 && b[0] === 16.5));   // old kitchen door
+  f.doors = f.doors.filter(([p, q]) => !(p[1] === 11.8 && q[1] === 11.8));   // doors of the old toilets
+  f.notes = f.notes.map(n => n.t === 'entrance' ? {...n, y: 3.2} : n); }
+
+// Amphitheater, as on the architect's 1st-floor plan ("vide sur salle de conférences", 163 m², projection room on its
+// east side): about 11 × 16 m at the south-west. Entrance on the east wall, where the corridor from the entrance hallway
+// ends; stage and screen on the west wall; 193 seats in 12 rows rising towards the east.
+{ const g = FLOORS[0];
+  g.rooms = g.rooms.filter(r => !(r.k === 'amphi' && r.low));   // old space under the projection room
+  const a = g.rooms.find(r => r.n === 'Grand amphitheater');
+  Object.assign(a, {p: R(34.8,21.4,46.1,37.4), sub: '≈ 11 × 16 m'}); delete a.at;
+  g.plate = g.plate.filter(p => !(p[0][0] === 12.5 && p[0][1] === 15.9)).concat([R(34.8,21.4,46.1,37.4)]);
+  g.pillars = [];
+  g.doors = g.doors.filter(([p, q]) => !(p[0] === 36.5 && q[0] === 36.5)).concat([[[36.6,21.4],[38.5,21.4]]]);
+  SCREENS[0] = [[[37.3,37.2],[43.6,37.2]]];
+  STAGE[0] = R(35.3,34.6,45.6,37.2);
+  SEATS[0] = [];
+  for (let i = 0; i < 12; i++) { const n = i === 11 ? 6 : 17, y = 33.6 - i*0.92, x0 = 40.45 - (n-1)*0.55/2;
+    for (let j = 0; j < n; j++) SEATS[0].push({x: x0 + j*0.55, y, r: true, h: i*0.12}); }
+  g.notes = g.notes.filter(n => n.t !== 'under the projection room').map(n => n.t === 'stage' ? {...n, x: 40.45, y: 35.9} : n);
+}
+
+// Texts that depended on the old entrance and lifts
+ACCESS[0] = 'Main entrance with the welcome desk on the east side, in the hotel lobby. The main lift and main stairs lead to all floors. The amphitheater is reached from the 1st floor, down the event stairs.';
+ACCESS[1] = 'Event stairs down to the ground floor. The main lift and main stairs to all floors. Three steps between the lift and the salons, with a ramp for step-free access.';
+ACCESS[2] = 'The main lift and main stairs to all floors. Outdoor stairs from the terrace up to the Panoramique balcony.';
+ACCESS[3] = 'The main lift and main stairs to all floors. Outdoor stairs from the balcony down to the Plaisance terrace.';
+{ const P = id => PLACES.find(p => p.id === id);
+  Object.assign(P('amphi'), {how: 'Ground floor, south-west. From the lobby, go up to the 1st floor, through the salon d’attente to the foyer, then take the event stairs down; the corridor at the bottom leads to the amphitheater’s east entrance. For step-free access, please contact us.'});
+  Object.assign(P('welcome'), {cam: 'northeast', rooms: [], area: R(7.2,9.4,11.4,11.1), how: 'Ground floor, in the hotel’s main lobby, right next to the main staircase, between the stairs and the lift.'});
+  Object.assign(P('lobby'), {how: 'Ground floor, through the main entrance on the east side. The welcome desk is here, and the reception keeps luggage.'});
+  Object.assign(P('lifts'), {short: 'Lift', name: 'Lift & main stairs', rooms: ['Lift', 'Main staircase'], how: 'The lift is next to the main staircase and serves every floor. The lifts in the main lobby are for hotel guests only.'}); }
+
+// The event uses the main lift (the lobby lifts are for hotel guests)
+PLACES.forEach(p => { p.how = p.how.replace('Take the lifts or the main stairs', 'Take the lift or the main stairs').replace('Take the lifts or the main stairs', 'Take the lift or the main stairs'); });
+{ const P = id => PLACES.find(p => p.id === id);
+  P('track2').how = '1st floor. From the lobby, take the main stairs or the lift up, then go through the salon d’attente to the foyer; Salon 3 opens onto it.';
+  P('track3').how = '1st floor, next to Salon 1. From the lobby, take the main stairs or the lift up, then go through the salon d’attente to the foyer.';
+  P('bof').how = '1st floor, on the foyer: from the lobby, take the main stairs or the lift up and go through the salon d’attente.';
+  P('cloak').how = '2nd floor, near the main staircase and the lift. Although it’s in a safe location, it is not attended, so keep valuables with you.'; }
+
+// Plaisance floor: the cloakroom continues behind the hotel lifts (the area that was "not detailed")
+{ const f = FLOORS[2];
+  f.rooms = f.rooms.filter(r => !(r.n === 'Not detailed' && r.p[0][0] === 0.2 && r.p[0][1] === 0.3));
+  const c = f.rooms.find(r => /^Cloakroom/.test(r.n));
+  if (c) Object.assign(c, {p: [[0.2,0.3],[10,0.3],[10,7.3],[5.6,7.3],[5.6,5.5],[0.2,5.5]], at: [5.2,3], isoAt: [5.2,3]}); }
+// The lift is by the three steps in the 1st-floor corridor
+PLACES.find(p => p.id === 'lifts').how = 'The lift is near the main staircase; on the 1st floor it opens right next to the three steps in the corridor. It serves every floor. The lifts in the main lobby are for hotel guests only.';

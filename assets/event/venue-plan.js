@@ -62,7 +62,7 @@ window.VenuePlan = (() => {
     if (f.id === 0) {
       s += `<circle class="rdesk" cx="${DESK[0]}" cy="${DESK[1]}" r="${DESK[2]}"/><text class="lbl-s" x="${DESK[0]}" y="${DESK[1]+.15}">Reception</text>`;
       WELCOME.tables.forEach(([x,y]) => s += `<rect class="wtab" x="${x-.6}" y="${y-.3}" width="1.2" height=".6"/>`);
-      s += `<text class="lbl-s" x="43.9" y="10.2" style="fill:var(--z-spons)">Welcome desk</text>`;
+      s += `<text class="lbl-s" x="${WELCOME.at[0]}" y="${WELCOME.at[1]}" style="fill:var(--z-spons)">Welcome desk</text>`;
     }
     (LOGO[f.id] || []).forEach(([a,b]) => s += `<line class="screen logo" x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}"/>`);
     (TT[f.id] || []).forEach(([x,y]) => s += `<circle class="ttable" cx="${x}" cy="${y}" r=".85"/>`);

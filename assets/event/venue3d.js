@@ -56,7 +56,7 @@ window.Venue3D = function Venue3D(host, ui) {
         return;
       }
       const slab = new THREE.Mesh(prism(r.p, .3), new THREE.MeshLambertMaterial({color: col(KIND[r.k] || '--circ'), transparent: r.k==='outdoor' || r.k==='void', opacity: r.k==='outdoor' ? .5 : r.k==='void' ? .35 : 1}));
-      slab.position.y = -.3; g.add(slab);
+      slab.position.y = r.k === 'core' ? -.29 : -.3; g.add(slab);
       if (['event','amphi','core','wc','kitchen'].includes(r.k)) {
         const wall = prism(r.p, H);
         const m = new THREE.Mesh(wall, new THREE.MeshLambertMaterial({color: col(r.k==='amphi' ? '--r-amphi' : r.k==='core' ? '--core-s' : r.k==='wc' ? '--wc-s' : r.k==='kitchen' ? '--kitchen-s' : '--event-s'), transparent:true, opacity: (r.k==='wc' || r.k==='kitchen') ? .35 : .10, depthWrite:false, side:THREE.DoubleSide}));
@@ -86,7 +86,7 @@ window.Venue3D = function Venue3D(host, ui) {
       const s = label('Reception · luggage', 1.1, '--ink2'); s.position.set(tx, 2.2, ty); g.add(s);
       WELCOME.tables.forEach(([x,y]) => { const [wx,wy] = T(x,y); g.add(box(.6,.75,1.2, new THREE.MeshLambertMaterial({color: col('--paper')}), wx,.375,wy)); });
       WELCOME.boxes.forEach(([x,y]) => { const [bx,by] = T(x + .3, y + .2); for (let k = 0; k < 2; k++) g.add(box(.4,.38,.6, new THREE.MeshLambertMaterial({color: col('--kitchen')}), bx, .2 + k*.4, by)); });
-      const w = label('Welcome desk', 1.3, '--z-spons'); const [lx,ly] = T(43.9,11.9); w.position.set(lx, 2.4, ly); g.add(w);
+      const w = label('Welcome desk', 1.3, '--z-spons'); const [lx,ly] = T(...WELCOME.at); w.position.set(lx, 2.4, ly); g.add(w);
     }
     (LOGO[f.id] || []).forEach(([a,b]) => {
       const c = document.createElement('canvas'); c.width = 512; c.height = 256; const x = c.getContext('2d');
@@ -153,16 +153,16 @@ window.Venue3D = function Venue3D(host, ui) {
   let stairs = null;   // the group the next steps go into
   const step = (xa, xb, ya, yb, top, th) => { const [ua,va] = T(xa,ya), [ub,vb] = T(xb,yb); const geo = new THREE.BoxGeometry(Math.abs(ub-ua), th, Math.abs(vb-va)); const m = new THREE.Mesh(geo, coreMat); m.position.set((ua+ub)/2, top - th/2, (va+vb)/2); const e = new THREE.LineSegments(new THREE.EdgesGeometry(geo), edge); e.position.copy(m.position); stairs.add(m, e); };
   for (let z = 0; z < 3; z++) {   // lift shaft
-    const [x,y] = T(2.9,6.4);
+    const [x,y] = T(...MAIN_LIFT);
     link(z, z + 1).add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.LineCurve3(new THREE.Vector3(x,lvlY(z),y), new THREE.Vector3(x,lvlY(z+1),y)), 4, .12, 6, false), new THREE.MeshBasicMaterial({color: col('--core-s'), transparent:true, opacity:.6})));
   }
   { const n = 12;   // main staircase: two flights per storey with a landing
     for (let z = 0; z < 3; z++) { const base = lvlY(z), rise = lvlY(z+1) - lvlY(z); stairs = link(z, z + 1);
       // flights start and end at y0, where the landings of the floors end (10.8–11.1 m), so they meet the floor
       const y0 = 10.8, run = 14 - y0;
-      for (let i = 0; i < n; i++) step(8.4, 10.6, y0 + run*i/n, y0 + run*(i+1)/n, base + rise/2*(i+1)/n, rise/2/n);
+      for (let i = 0; i < n; i++) step(6, 8.2, y0 + run*i/n, y0 + run*(i+1)/n, base + rise/2*(i+1)/n, rise/2/n);
       step(6, 10.6, 14, 15.3, base + rise/2, .15);
-      for (let i = 0; i < n; i++) step(6, 8.2, 14 - run*(i+1)/n, 14 - run*i/n, base + rise/2 + rise/2*(i+1)/n, rise/2/n);
+      for (let i = 0; i < n; i++) step(8.4, 10.6, 14 - run*(i+1)/n, 14 - run*i/n, base + rise/2 + rise/2*(i+1)/n, rise/2/n);
     }
   }
   { const rise = lvlY(1) - lvlY(0) - DROP, n = 24; stairs = link(0, 1);   // event stairs, ground → 1st (lower part of the floor)
@@ -194,7 +194,7 @@ window.Venue3D = function Venue3D(host, ui) {
     all: [[75, 70, 95], [8, 9, 22]],
   };
   // per floor: look at the centre of its event rooms (plan x, y) from the same direction as the overview, closer in
-  const FOCUS = {0: [30, 15], 1: [36, 8], 2: [22.5, 8], 3: [28, 8]};
+  const FOCUS = {0: [38, 20], 1: [36, 8], 2: [22.5, 8], 3: [28, 8]};
   // camera side: default south-east; 'west' (amphitheater, welcome desk) and 'northeast' (lifts, hotel lobby)
   // look past the hotel core instead of through it. In 3D, +x is east and +z is south.
   const SIDE = {west: [-1, 1], northeast: [1, -1]};
