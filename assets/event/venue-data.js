@@ -433,3 +433,19 @@ WELCOME.at = [9.5, 9.0];
 { const f = FLOORS[1];
   f.rooms = f.rooms.filter(r => !(r.k === 'wc' && r.p[0][0] === 15.6) && r.n !== 'to WC');
   f.doors = f.doors.filter(([a, b]) => !(a[1] === 11.2 && b[1] === 11.2)); }
+
+// Plaisance entry, back to the earlier model (which matched the hotel's sketch) with only the kitchen moved into
+// the inner corner: the wing's south side opens onto the corridor that leads from the main stairs and the lift to the
+// toilets; the entrance door is in that wall, just past the lift.
+{ const f = FLOORS[2];
+  const p = f.rooms.find(r => r.n === 'Salon Plaisance');
+  if (p) p.p = [[10,0.3],[36.9,0.3],[36.9,15.9],[19.4,15.9],[19.4,7.8],[16.5,7.8],[16.5,10.4],[11.1,10.4],[11.1,9.5],[10,9.5]];
+  const k = f.rooms.find(r => r.n === 'Kitchen'); if (k) k.p = R(16.5,7.8,19.4,10.4);
+  const c = f.rooms.find(r => r.k === 'circ' && r.p[0][1] === 10.8 && r.p[0][0] === 11);
+  if (c) c.p = [[11.1,10.4],[16.5,10.4],[16.5,10.8],[18.7,10.8],[18.7,11.8],[11.1,11.8]];
+  f.doors = f.doors.concat([[[13.8,10.4],[15.8,10.4]]]);
+  f.notes = f.notes.map(n => n.t === 'entrance' ? {...n, x: 14.8, y: 9.8} : n); }
+
+// 2D treads of the main staircase, matching the 3D flights: up on the north side beside the welcome desk, landing at
+// the west end, back on the south side to arrive above the desk
+FLOORS[0].rooms.find(r => r.n === 'Main staircase').flights = [[9.5,14,6,8.2,'y'],[14,9.5,8.4,10.6,'y']];
