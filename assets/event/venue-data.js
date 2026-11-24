@@ -315,17 +315,14 @@ WELCOME.at = [9.6, 9.3];   // label position
   g.doors = g.doors.filter(([a, b]) => !(a[0] === 46.9 && b[0] === 46.9));   // the south event entrance is not used
 }
 
-// Plaisance floor: the toilets are in the entry wing, between the kitchen and the cloakroom (as on the hotel's plan)
+// Plaisance floor: the two toilets and the corridor in front of them stay where the plan has them (west of the
+// entry wing); the kitchen sits in the inner corner; the lift is carved out of the wing
 { const f = FLOORS[2];
-  f.rooms = f.rooms.filter(r => r.k !== 'wc' && !(r.k === 'circ' && r.p[0][0] === 11 && r.p[0][1] === 10.8));
   const p = f.rooms.find(r => r.n === 'Salon Plaisance');
-  // as on the hotel's sketch: toilets just off the entry, the kitchen pushed into the corner behind them
-  if (p) p.p = [[10,0.3],[36.9,0.3],[36.9,15.9],[19.4,15.9],[19.4,7.8],[14,7.8],[14,10.8],[10,10.8]];
+  if (p) p.p = [[10,0.3],[36.9,0.3],[36.9,15.9],[19.4,15.9],[19.4,7.8],[16.5,7.8],[16.5,10.8],[13.9,10.8],[13.9,8.6],[12.4,8.6],[12.4,10.8],[10,10.8]];
   f.rooms = f.rooms.filter(r => !(r.k === 'service' && r.p[0][0] === 16.5 && r.p[0][1] === 7.8));   // the corner block becomes the kitchen
   const k = f.rooms.find(r => r.n === 'Kitchen'); if (k) k.p = R(16.5,7.8,19.4,10.8);
-  f.rooms.push({n:'WC', p:R(14,7.8,16.5,10.8), k:'wc', fs:.55});
   f.doors = f.doors.filter(([a, b]) => !(a[0] === 16.5 && b[0] === 16.5));   // old kitchen door
-  f.doors = f.doors.filter(([p, q]) => !(p[1] === 11.8 && q[1] === 11.8));   // doors of the old toilets
   f.notes = f.notes.map(n => n.t === 'entrance' ? {...n, y: 3.2} : n); }
 
 // Amphitheater, as on the architect's 1st-floor plan ("vide sur salle de conférences", 163 m², projection room on its
@@ -376,3 +373,6 @@ PLACES.find(p => p.id === 'lifts').how = 'The lift is near the main staircase; o
 // Projection room ("cabine de projection", 31 m² on the architect's plan): on the 1st floor, above the
 // amphitheater's east end, looking west over the seats to the screen
 FLOORS[1].rooms.push({n:'Projection room', p:R(34.8,16.4,41.6,21.4), k:'amphi', fs:.5, iso:true, dz:-DROP});
+
+// Ground floor: no toilets shown (the two "WC?" were guesses)
+FLOORS[0].rooms = FLOORS[0].rooms.filter(r => r.k !== 'wc');
