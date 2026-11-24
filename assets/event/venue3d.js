@@ -84,9 +84,9 @@ window.Venue3D = function Venue3D(host, ui) {
     if (f.id === 0) {
       const [tx,ty] = T(DESK[0], DESK[1]); const m = new THREE.Mesh(new THREE.CylinderGeometry(DESK[2], DESK[2], 1.1, 32, 1, true), new THREE.MeshLambertMaterial({color: col('--paper'), side: THREE.DoubleSide})); m.position.set(tx, .55, ty); g.add(m);
       const s = label('Reception · luggage', 1.1, '--ink2'); s.position.set(tx, 2.2, ty); g.add(s);
-      WELCOME.tables.forEach(([x,y]) => { const [wx,wy] = T(x,y); g.add(box(.6,.75,1.2, new THREE.MeshLambertMaterial({color: col('--paper')}), wx,.375,wy)); });
+      WELCOME.tables.forEach(([x,y]) => { const [wx,wy] = T(x,y); g.add(box(.6,.75,1.2, new THREE.MeshLambertMaterial({color: 0xa0703f}), wx,.375,wy)); });   // wood
       WELCOME.boxes.forEach(([x,y]) => { const [bx,by] = T(x + .3, y + .2); for (let k = 0; k < 2; k++) g.add(box(.4,.38,.6, new THREE.MeshLambertMaterial({color: col('--kitchen')}), bx, .2 + k*.4, by)); });
-      const w = label(WELCOME.label || 'Welcome desk', 1.6, '--z-spons'); const [lx,ly] = T(...WELCOME.at); w.position.set(lx, 1.4, ly); w.renderOrder = 12;   // tag right on the desk   // just above the desk g.add(w);
+      const w = label(WELCOME.label || 'Welcome desk', 1.6, '--z-spons'); const [lx,ly] = T(...WELCOME.at); w.position.set(lx, 1.4, ly); w.renderOrder = 12; g.add(w);   // tag right on the desk
     }
     (LOGO[f.id] || []).forEach(([a,b]) => {
       const c = document.createElement('canvas'); c.width = 512; c.height = 256; const x = c.getContext('2d');

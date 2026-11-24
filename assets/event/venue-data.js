@@ -522,3 +522,19 @@ PLACES.find(p => p.id === 'welcome').area = R(8.9,7.9,11.45,9.5);
 // Kitchens are not needed on the map: drop the kitchen rooms (the bar counter stays); the Plaisance and Panoramique
 // keep their own walls
 FLOORS.forEach(f => { f.rooms = f.rooms.filter(r => r.k !== 'kitchen' || r.counter); });
+
+// Ground floor: the lobby extends south past the lift, so the lift is entered from the east
+{ const l = FLOORS[0].rooms.find(r => r.n === 'Hotel lobby');
+  if (l) l.p = [[0.2,0.3],[13.6,0.3],[13.6,10.4],[11.1,10.4],[11.1,9.5],[5.6,9.5],[5.6,5.5],[0.2,5.5]]; }
+
+// The lift always opens to the east, onto the hallway in front of it; no stray floor patches around it.
+// 2nd floor: the entry strip reaches the lift's east face (toilets move one step south), and the grey block behind the
+// notch goes. 3rd floor: a short hallway links the lift to the corridor; the old passages to the toilets go.
+{ const f2 = FLOORS[2];
+  const p = f2.rooms.find(r => r.n === 'Salon Plaisance');
+  if (p) p.p = [[10,0.3],[36.9,0.3],[36.9,15.9],[19.4,15.9],[19.4,7.8],[16.5,7.8],[16.5,4.3],[13.45,4.3],[13.45,10.4],[11.45,10.4],[11.45,10.8],[11.1,10.8],[11.1,9.5],[10,9.5]];
+  const wc = f2.rooms.find(r => r.k === 'wc'); if (wc) wc.p = R(13.45,4.3,15.45,10.4);
+  f2.rooms = f2.rooms.filter(r => !(r.k === 'service' && r.p[0][0] === 16.5 && r.p[0][1] === 7.8));
+  const f3 = FLOORS[3];
+  f3.rooms = f3.rooms.filter(r => r.n !== 'to WC' && !(r.k === 'circ' && r.p[0][0] === 11.1 && r.p[0][1] === 10.8));
+  f3.rooms.push({n:'', p:R(11.45,9.5,13.45,10.4), k:'circ'}); }
