@@ -449,3 +449,6 @@ WELCOME.at = [9.5, 9.0];
 // 2D treads of the main staircase, matching the 3D flights: up on the north side beside the welcome desk, landing at
 // the west end, back on the south side to arrive above the desk
 FLOORS[0].rooms.find(r => r.n === 'Main staircase').flights = [[9.5,14,6,8.2,'y'],[14,9.5,8.4,10.6,'y']];
+
+// Welcome desk label in the lobby just east of the desk, clear of the staircase
+WELCOME.at = [9.5, 7.4];
