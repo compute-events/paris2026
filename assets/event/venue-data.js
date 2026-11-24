@@ -472,3 +472,9 @@ WELCOME.at = [9.5, 7.4];
 
 // No columns drawn in the amphitheater
 FLOORS[0].pillars = [];
+
+// Welcome desk: one table only (the other stood right before the stairs), boxes beside it, label below (south of) it
+WELCOME.tables = [[10.1, 9.0]];
+WELCOME.boxes = [[9.3,7.9],[9.9,7.9]];
+WELCOME.at = [11.15, 9.0];
+PLACES.find(p => p.id === 'welcome').area = R(9.2,7.8,11.4,9.5);
