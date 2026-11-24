@@ -86,7 +86,7 @@ window.Venue3D = function Venue3D(host, ui) {
       const s = label('Reception · luggage', 1.1, '--ink2'); s.position.set(tx, 2.2, ty); g.add(s);
       WELCOME.tables.forEach(([x,y]) => { const [wx,wy] = T(x,y); g.add(box(.6,.75,1.2, new THREE.MeshLambertMaterial({color: col('--paper')}), wx,.375,wy)); });
       WELCOME.boxes.forEach(([x,y]) => { const [bx,by] = T(x + .3, y + .2); for (let k = 0; k < 2; k++) g.add(box(.4,.38,.6, new THREE.MeshLambertMaterial({color: col('--kitchen')}), bx, .2 + k*.4, by)); });
-      const w = label('Welcome desk', 1.3, '--z-spons'); const [lx,ly] = T(...WELCOME.at); w.position.set(lx, 2.4, ly); g.add(w);
+      const w = label('Welcome desk', 1.3, '--z-spons'); const [lx,ly] = T(...WELCOME.at); w.position.set(lx, 1.5, ly);   // just above the desk g.add(w);
     }
     (LOGO[f.id] || []).forEach(([a,b]) => {
       const c = document.createElement('canvas'); c.width = 512; c.height = 256; const x = c.getContext('2d');
@@ -159,7 +159,7 @@ window.Venue3D = function Venue3D(host, ui) {
   { const n = 12;   // main staircase: two flights per storey with a landing
     for (let z = 0; z < 3; z++) { const base = lvlY(z), rise = lvlY(z+1) - lvlY(z); stairs = link(z, z + 1);
       // flights start and end at y0, where the landings of the floors end (10.8–11.1 m), so they meet the floor
-      const y0 = 10.8, run = 14 - y0;
+      const y0 = 9.5, run = 14 - y0;   // flights start and end at the stair hall's edge (y 9.5), where the floors meet it
       for (let i = 0; i < n; i++) step(8.4, 10.6, y0 + run*i/n, y0 + run*(i+1)/n, base + rise/2*(i+1)/n, rise/2/n);   // up from next to the welcome desk
       step(6, 10.6, 14, 15.3, base + rise/2, .15);
       for (let i = 0; i < n; i++) step(6, 8.2, 14 - run*(i+1)/n, 14 - run*i/n, base + rise/2 + rise/2*(i+1)/n, rise/2/n);

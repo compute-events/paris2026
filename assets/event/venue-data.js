@@ -380,3 +380,56 @@ FLOORS[0].rooms = FLOORS[0].rooms.filter(r => r.k !== 'wc');
 // Ground floor: the main lobby reaches the main lift (south of the welcome desk)
 { const l = FLOORS[0].rooms.find(r => r.n === 'Hotel lobby');
   if (l) l.p = [[0.2,0.3],[12.4,0.3],[12.4,11.1],[5.6,11.1],[5.6,5.5],[0.2,5.5]]; }
+
+// Main lift at its position on the architect's 1st-floor plan (the crossed square at the south-east corner of the
+// main staircase). On the 1st floor the corridor is widened up to it, so it opens right by the three steps.
+{ const LIFT = R(11.45,10.4,13.45,11.75);
+  MAIN_LIFT[0] = 12.45; MAIN_LIFT[1] = 11.075;
+  FLOORS.forEach(f => f.rooms.filter(r => r.n === 'Lift').forEach(r => r.p = LIFT));
+  const f1 = FLOORS[1];
+  f1.rooms.filter(r => r.k === 'circ' && r.p[0][1] === 5.5 && (r.p[0][0] === 11 || r.p[0][0] === 14.35)).forEach(r => { r.p = R(r.p[0][0], 5.5, r.p[1][0], 10.4); });
+  STEPS[0].y1 = 10.4;
+  const l = FLOORS[0].rooms.find(r => r.n === 'Hotel lobby');
+  if (l) l.p = [[0.2,0.3],[11.45,0.3],[11.45,11.1],[5.6,11.1],[5.6,5.5],[0.2,5.5]];   // reaches the lift
+  const p = FLOORS[2].rooms.find(r => r.n === 'Salon Plaisance');
+  if (p) p.p = [[10,0.3],[36.9,0.3],[36.9,15.9],[19.4,15.9],[19.4,7.8],[16.5,7.8],[16.5,10.8],[13.45,10.8],[13.45,10.4],[11.45,10.4],[11.45,10.8],[11,10.8],[11,11.1],[10,11.1]]; }
+
+// Measured on the architect's 1st-floor plan (40 px per metre at 300 dpi): the main stair hall (22.58 m²) runs from
+// y 9.5 to the west wall, with the open area in front of the flights at its east end; the lift sits against its
+// south wall there (x 11.5–13.5, y 10.4–11.9). The model's staircase box started 1.6 m too far west.
+{ const hall = FLOORS[0].rooms.find(r => r.n === 'Main staircase');   // shared by every floor
+  hall.p = R(5.6,9.5,11.1,15.6); hall.at = [8.3, 15]; hall.isoAt = [8.3, 13.3];
+  FLOORS.forEach(f => f.rooms.filter(r => r.n === 'Lift').forEach(r => r.p = R(11.45,10.4,13.45,11.9)));
+  MAIN_LIFT[0] = 12.45; MAIN_LIFT[1] = 11.15;
+  const cut = (f, test, y1) => FLOORS[f].rooms.filter(test).forEach(r => { const [a, , c] = r.p; r.p = R(a[0], a[1], c[0], y1); });
+  cut(1, r => r.n === 'Hotel landing', 9.5);
+  cut(2, r => r.n === 'Corridor' && r.p[0][0] === 5.6, 9.5);
+  cut(3, r => r.n === 'Corridor' && r.p[0][0] === 5.6, 9.5);
+  // ground floor: the lobby runs along the stair hall up to the lift; the welcome desk faces the foot of the stairs
+  const l = FLOORS[0].rooms.find(r => r.n === 'Hotel lobby');
+  if (l) l.p = [[0.2,0.3],[11.45,0.3],[11.45,11.9],[11.1,11.9],[11.1,9.5],[5.6,9.5],[5.6,5.5],[0.2,5.5]];
+  WELCOME.tables = [[8.9,9.0],[10.1,9.0]]; WELCOME.boxes = [[6.4,8.9],[7.0,8.9]]; WELCOME.at = [9.5, 8.2];
+  PLACES.find(p => p.id === 'welcome').area = R(6.2,7.9,11.4,9.5);
+  // Plaisance floor: the entry wing's wall meets the stair hall
+  const p = FLOORS[2].rooms.find(r => r.n === 'Salon Plaisance');
+  if (p) p.p = [[10,0.3],[36.9,0.3],[36.9,15.9],[19.4,15.9],[19.4,7.8],[16.5,7.8],[16.5,10.8],[13.45,10.8],[13.45,10.4],[11.45,10.4],[11.45,10.8],[11.1,10.8],[11.1,9.5],[10,9.5]]; }
+
+// Amphitheater, from the site visit: 13 seats per row, 14 full rows and an unfinished last row (193 seats) rising
+// from the stage (west) to the entrance (east). The projection room (≈31 m²) overhangs the whole east end on the
+// 1st floor, carried by two columns; the last rows sit beneath it.
+{ SEATS[0] = [];
+  for (let i = 0; i < 15; i++) { const n = i === 14 ? 11 : 13, y = 33.8 - i*0.85, x0 = 40.45 - (n-1)*0.55/2;
+    for (let j = 0; j < n; j++) SEATS[0].push({x: x0 + j*0.55, y, r: true, h: i*0.12}); }
+  const OVER = 24.1;   // west edge of the overhang, between two rows
+  FLOORS[0].pillars = [[38.6, OVER], [42.3, OVER]];
+  FLOORS[1].rooms = FLOORS[1].rooms.filter(r => r.n !== 'Projection room');
+  FLOORS[1].rooms.push({n:'Projection room', p:R(34.8,21.4,46.1,OVER), k:'amphi', fs:.5, iso:true, dz:-DROP}); }
+
+// The welcome desk label sits on the desk itself
+WELCOME.at = [9.5, 9.0];
+
+// 1st floor: keep only the toilets right by the lift (as on the architect's plan); the second block and its
+// passage from the salon d'attente are dropped
+{ const f = FLOORS[1];
+  f.rooms = f.rooms.filter(r => !(r.k === 'wc' && r.p[0][0] === 15.6) && r.n !== 'to WC');
+  f.doors = f.doors.filter(([a, b]) => !(a[1] === 11.2 && b[1] === 11.2)); }
