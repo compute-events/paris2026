@@ -452,3 +452,20 @@ FLOORS[0].rooms.find(r => r.n === 'Main staircase').flights = [[9.5,14,6,8.2,'y'
 
 // Welcome desk label in the lobby just east of the desk, clear of the staircase
 WELCOME.at = [9.5, 7.4];
+
+// Amphitheater, longer to the east: its east end (with the projection room above) is right next to Salon 3 on the
+// 1st floor. Stage and screen on the west wall; rows rise towards the east entrance; the projection room (≈31 m²)
+// overhangs the east end on two columns, above the last row.
+{ const g = FLOORS[0], AMPHI = R(34.8,16.0,46.1,33.5), OVER = 18.74;
+  const a = g.rooms.find(r => r.n === 'Grand amphitheater'); a.p = AMPHI; a.sub = '≈ 11 × 17.5 m';
+  g.rooms = g.rooms.filter(r => !(r.k === 'circ' && r.p[0][0] === 36.5 && r.p[0][1] === 15.9));   // corridor now inside the room
+  g.plate = g.plate.filter(p => !(p[0][0] === 34.8 && p[0][1] === 21.4)).concat([AMPHI]);
+  g.doors = g.doors.filter(([p, q]) => !(p[1] === 21.4 && q[1] === 21.4)).concat([[[36.6,16.0],[38.5,16.0]]]);
+  SCREENS[0] = [[[37.3,33.3],[43.6,33.3]]];
+  STAGE[0] = R(35.3,30.9,45.6,33.3);
+  SEATS[0] = [];
+  for (let i = 0; i < 15; i++) { const n = i === 14 ? 11 : 13, y = 30.1 - i*0.85, x0 = 40.45 - (n-1)*0.55/2;
+    for (let j = 0; j < n; j++) SEATS[0].push({x: x0 + j*0.55, y, r: true, h: i*0.12}); }
+  g.pillars = [[38.6, OVER], [42.3, OVER]];
+  g.notes = g.notes.map(n => n.t === 'stage' ? {...n, y: 32.1} : n);
+  const pr = FLOORS[1].rooms.find(r => r.n === 'Projection room'); pr.p = R(34.8,16.0,46.1,OVER); }
