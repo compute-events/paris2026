@@ -478,3 +478,21 @@ WELCOME.tables = [[10.1, 9.0]];
 WELCOME.boxes = [[9.3,7.9],[9.9,7.9]];
 WELCOME.at = [11.15, 9.0];
 PLACES.find(p => p.id === 'welcome').area = R(9.2,7.8,11.4,9.5);
+
+// Plaisance outline as on the hotel's sketch (Plan Salon Plaisance): the main room, then the entry wing about 7.5 m
+// wide next to it, narrowing to about 4 m, and a 2.5 m entry strip at its north end. The notch beside the narrow part
+// is not part of the room: the kitchen sits in its corner next to the step, the toilets below it by the entry strip.
+// The entrance opens from the main-staircase landing; the stair hall and the lift are cut out of the strip.
+{ const f = FLOORS[2];
+  const p = f.rooms.find(r => r.n === 'Salon Plaisance');
+  if (p) p.p = [[10,0.3],[36.9,0.3],[36.9,15.9],[19.4,15.9],[19.4,7.8],[16.5,7.8],[16.5,4.3],[12.5,4.3],[12.5,10.4],[11.45,10.4],[11.45,10.8],[11.1,10.8],[11.1,9.5],[10,9.5]];
+  const k = f.rooms.find(r => r.n === 'Kitchen'); if (k) k.p = R(14.5,4.3,16.5,10.8);
+  f.rooms = f.rooms.filter(r => !(r.k === 'wc' && r.p[0][0] === 12.5));
+  f.rooms.push({n:'WC', p:R(12.5,4.3,14.5,10.4), k:'wc', fs:.55});
+  if (!f.rooms.some(r => r.n === 'Storage?' || (r.k === 'service' && r.p[0][0] === 16.5 && r.p[0][1] === 7.8)))
+    f.rooms.push({n:'', p:R(16.5,7.8,19.4,10.8), k:'service', approx:true});
+  const c = f.rooms.find(r => r.k === 'circ' && Array.isArray(r.p) && r.p[0][0] === 11.1 && r.p[0][1] === 10.4);
+  if (c) c.p = R(11.1,10.8,18.7,11.8);
+  f.doors = f.doors.filter(([a, b]) => !(a[1] === 10.4 && b[1] === 10.4)).concat([[[10.05,9.5],[11.05,9.5]]]);
+  f.notes = f.notes.map(n => n.t === 'entrance' ? {...n, x: 10.6, y: 8.8} : n); }
+WELCOME.boxes = [];   // the welcome desk is a single table, no T-shirt boxes
