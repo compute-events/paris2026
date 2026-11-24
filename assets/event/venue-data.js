@@ -545,3 +545,6 @@ FLOORS.forEach(f => { f.rooms = f.rooms.filter(r => r.k !== 'kitchen' || r.count
   if (!f.rooms.some(r => r.k === 'wc' && r.p[0][0] === 15.6)) f.rooms.push({n:'WC', p:R(15.6,11.8,18.7,15.4), k:'wc', fs:.7});
   if (!f.rooms.some(r => r.n === 'to WC')) f.rooms.push({n:'to WC', p:R(14.7,10.6,18.9,11.8), k:'circ', fs:.4, at:[16.8,11.2]});
   f.doors.push([[17.2,11.2],[18.6,11.2]]); }
+
+// 3rd floor: the area above the cloakroom has no use for the event
+FLOORS[3].rooms = FLOORS[3].rooms.filter(r => r.n !== 'Not detailed');
